@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA0B63F129FBF364001DD8DB /* AstellaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B63F029FBF364001DD8DB /* AstellaApp.swift */; };
+		EA0B63F329FBF364001DD8DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B63F229FBF364001DD8DB /* ContentView.swift */; };
+		EA0B63F529FBF366001DD8DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA0B63F429FBF366001DD8DB /* Assets.xcassets */; };
+		EA0B63F829FBF366001DD8DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA0B63F729FBF366001DD8DB /* Preview Assets.xcassets */; };
+		EA0B640229FBF367001DD8DB /* AstellaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B640129FBF367001DD8DB /* AstellaTests.swift */; };
+		EA0B640C29FBF367001DD8DB /* AstellaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B640B29FBF367001DD8DB /* AstellaUITests.swift */; };
+		EA0B640E29FBF367001DD8DB /* AstellaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0B640D29FBF367001DD8DB /* AstellaUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA0B63FE29FBF367001DD8DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA0B63E529FBF364001DD8DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA0B63EC29FBF364001DD8DB;
+			remoteInfo = Astella;
+		};
+		EA0B640829FBF367001DD8DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA0B63E529FBF364001DD8DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA0B63EC29FBF364001DD8DB;
+			remoteInfo = Astella;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EA0B63ED29FBF364001DD8DB /* Astella.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Astella.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA0B63F029FBF364001DD8DB /* AstellaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstellaApp.swift; sourceTree = "<group>"; };
+		EA0B63F229FBF364001DD8DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EA0B63F429FBF366001DD8DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA0B63F729FBF366001DD8DB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EA0B63FD29FBF367001DD8DB /* AstellaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstellaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA0B640129FBF367001DD8DB /* AstellaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstellaTests.swift; sourceTree = "<group>"; };
+		EA0B640729FBF367001DD8DB /* AstellaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstellaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA0B640B29FBF367001DD8DB /* AstellaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstellaUITests.swift; sourceTree = "<group>"; };
+		EA0B640D29FBF367001DD8DB /* AstellaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstellaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA0B63EA29FBF364001DD8DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA0B63FA29FBF367001DD8DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA0B640429FBF367001DD8DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA0B63E429FBF364001DD8DB = {
+			isa = PBXGroup;
+			children = (
+				EA0B63EF29FBF364001DD8DB /* Astella */,
+				EA0B640029FBF367001DD8DB /* AstellaTests */,
+				EA0B640A29FBF367001DD8DB /* AstellaUITests */,
+				EA0B63EE29FBF364001DD8DB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA0B63EE29FBF364001DD8DB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B63ED29FBF364001DD8DB /* Astella.app */,
+				EA0B63FD29FBF367001DD8DB /* AstellaTests.xctest */,
+				EA0B640729FBF367001DD8DB /* AstellaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA0B63EF29FBF364001DD8DB /* Astella */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B63F029FBF364001DD8DB /* AstellaApp.swift */,
+				EA0B63F229FBF364001DD8DB /* ContentView.swift */,
+				EA0B63F429FBF366001DD8DB /* Assets.xcassets */,
+				EA0B63F629FBF366001DD8DB /* Preview Content */,
+			);
+			path = Astella;
+			sourceTree = "<group>";
+		};
+		EA0B63F629FBF366001DD8DB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B63F729FBF366001DD8DB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EA0B640029FBF367001DD8DB /* AstellaTests */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B640129FBF367001DD8DB /* AstellaTests.swift */,
+			);
+			path = AstellaTests;
+			sourceTree = "<group>";
+		};
+		EA0B640A29FBF367001DD8DB /* AstellaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EA0B640B29FBF367001DD8DB /* AstellaUITests.swift */,
+				EA0B640D29FBF367001DD8DB /* AstellaUITestsLaunchTests.swift */,
+			);
+			path = AstellaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA0B63EC29FBF364001DD8DB /* Astella */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA0B641129FBF367001DD8DB /* Build configuration list for PBXNativeTarget "Astella" */;
+			buildPhases = (
+				EA0B63E929FBF364001DD8DB /* Sources */,
+				EA0B63EA29FBF364001DD8DB /* Frameworks */,
+				EA0B63EB29FBF364001DD8DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Astella;
+			productName = Astella;
+			productReference = EA0B63ED29FBF364001DD8DB /* Astella.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EA0B63FC29FBF367001DD8DB /* AstellaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA0B641429FBF367001DD8DB /* Build configuration list for PBXNativeTarget "AstellaTests" */;
+			buildPhases = (
+				EA0B63F929FBF367001DD8DB /* Sources */,
+				EA0B63FA29FBF367001DD8DB /* Frameworks */,
+				EA0B63FB29FBF367001DD8DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA0B63FF29FBF367001DD8DB /* PBXTargetDependency */,
+			);
+			name = AstellaTests;
+			productName = AstellaTests;
+			productReference = EA0B63FD29FBF367001DD8DB /* AstellaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EA0B640629FBF367001DD8DB /* AstellaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA0B641729FBF367001DD8DB /* Build configuration list for PBXNativeTarget "AstellaUITests" */;
+			buildPhases = (
+				EA0B640329FBF367001DD8DB /* Sources */,
+				EA0B640429FBF367001DD8DB /* Frameworks */,
+				EA0B640529FBF367001DD8DB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA0B640929FBF367001DD8DB /* PBXTargetDependency */,
+			);
+			name = AstellaUITests;
+			productName = AstellaUITests;
+			productReference = EA0B640729FBF367001DD8DB /* AstellaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA0B63E529FBF364001DD8DB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					EA0B63EC29FBF364001DD8DB = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					EA0B63FC29FBF367001DD8DB = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = EA0B63EC29FBF364001DD8DB;
+					};
+					EA0B640629FBF367001DD8DB = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = EA0B63EC29FBF364001DD8DB;
+					};
+				};
+			};
+			buildConfigurationList = EA0B63E829FBF364001DD8DB /* Build configuration list for PBXProject "Astella" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EA0B63E429FBF364001DD8DB;
+			productRefGroup = EA0B63EE29FBF364001DD8DB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA0B63EC29FBF364001DD8DB /* Astella */,
+				EA0B63FC29FBF367001DD8DB /* AstellaTests */,
+				EA0B640629FBF367001DD8DB /* AstellaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA0B63EB29FBF364001DD8DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0B63F829FBF366001DD8DB /* Preview Assets.xcassets in Resources */,
+				EA0B63F529FBF366001DD8DB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA0B63FB29FBF367001DD8DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA0B640529FBF367001DD8DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA0B63E929FBF364001DD8DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0B63F329FBF364001DD8DB /* ContentView.swift in Sources */,
+				EA0B63F129FBF364001DD8DB /* AstellaApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA0B63F929FBF367001DD8DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0B640229FBF367001DD8DB /* AstellaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA0B640329FBF367001DD8DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA0B640C29FBF367001DD8DB /* AstellaUITests.swift in Sources */,
+				EA0B640E29FBF367001DD8DB /* AstellaUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA0B63FF29FBF367001DD8DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA0B63EC29FBF364001DD8DB /* Astella */;
+			targetProxy = EA0B63FE29FBF367001DD8DB /* PBXContainerItemProxy */;
+		};
+		EA0B640929FBF367001DD8DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EA0B63EC29FBF364001DD8DB /* Astella */;
+			targetProxy = EA0B640829FBF367001DD8DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		EA0B640F29FBF367001DD8DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EA0B641029FBF367001DD8DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA0B641229FBF367001DD8DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Astella/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Project.Astella;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EA0B641329FBF367001DD8DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Astella/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Project.Astella;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EA0B641529FBF367001DD8DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Project.AstellaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astella.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Astella";
+			};
+			name = Debug;
+		};
+		EA0B641629FBF367001DD8DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Project.AstellaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Astella.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Astella";
+			};
+			name = Release;
+		};
+		EA0B641829FBF367001DD8DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Project.AstellaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Astella;
+			};
+			name = Debug;
+		};
+		EA0B641929FBF367001DD8DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Project.AstellaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Astella;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA0B63E829FBF364001DD8DB /* Build configuration list for PBXProject "Astella" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA0B640F29FBF367001DD8DB /* Debug */,
+				EA0B641029FBF367001DD8DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA0B641129FBF367001DD8DB /* Build configuration list for PBXNativeTarget "Astella" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA0B641229FBF367001DD8DB /* Debug */,
+				EA0B641329FBF367001DD8DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA0B641429FBF367001DD8DB /* Build configuration list for PBXNativeTarget "AstellaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA0B641529FBF367001DD8DB /* Debug */,
+				EA0B641629FBF367001DD8DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA0B641729FBF367001DD8DB /* Build configuration list for PBXNativeTarget "AstellaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA0B641829FBF367001DD8DB /* Debug */,
+				EA0B641929FBF367001DD8DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA0B63E529FBF364001DD8DB /* Project object */;
+}
