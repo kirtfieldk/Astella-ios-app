@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct MessageStructMainViewController: UIViewControllerRepresentable {
+struct EventStructMainViewController: UIViewControllerRepresentable {
     
-    func makeUIViewController(context: Context) -> MessagesViewController {
-        return MessagesViewController()
+    func makeUIViewController(context: Context) -> TabBarViewController {
+        return TabBarViewController()
         }
     ///Useless
-    func updateUIViewController(_ uiViewController: MessagesViewController, context: Context) {
+    func updateUIViewController(_ uiViewController: TabBarViewController, context: Context) {
         
     }
 }

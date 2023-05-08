@@ -8,12 +8,17 @@
 import UIKit
 
 final class EventCellViewViewModel {
-    let event : Event
+    public let event : Event
+    public var isPublic : Bool
+    public let isMember : Bool
     // MARK: - Init
     init(
-        event : Event
+        event : Event,
+        isMember : Bool
     ) {
         self.event = event
+        self.isPublic = event.is_public
+        self.isMember = isMember
     }
 }
 

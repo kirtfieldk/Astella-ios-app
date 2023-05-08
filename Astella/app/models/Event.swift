@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+
+struct Event : Hashable, Codable, Identifiable {
+    let id : UUID
+    let name : String
+    let is_public : Bool
+    let end_time: String
+    let code : String
+    let created : String
+    let description : String
+    let location_info : LocationInfo
+}

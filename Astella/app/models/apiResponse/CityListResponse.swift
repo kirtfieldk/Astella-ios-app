@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct CityListResponse : Hashable, Codable {
+    let info : InfoResponse
+    let data : [Event]
+}

@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+
+struct UserListResponse : Hashable, Codable {
+    let info : InfoResponse
+    let data : [User]
+}

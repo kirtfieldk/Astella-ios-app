@@ -7,13 +7,15 @@
 
 import UIKit
 
-final class MessageCellView : UICollectionViewCell {
-    static let cellIdentifier = "MessageCellView"
-    private let imageView : UIImageView = {
+final class MessageCollectionViewCell : UICollectionViewCell {
+    static let cellIdentifier = "MessageCollectionViewCell"
+    private let iconImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
+        imageView.image = UIImage(systemName: "globe.americas")
+        
         return imageView
     }()
     
@@ -34,13 +36,23 @@ final class MessageCellView : UICollectionViewCell {
         content.translatesAutoresizingMaskIntoConstraints = false
         return content
     }()
+    
+    private let userSignature : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .tertiarySystemBackground
+        return view
+    }()
     // MARK: - Init
     
     override init(frame : CGRect) {
         super.init(frame : frame)
+        print("STARTUP")
+        contentView.layer.masksToBounds = true
         contentView.backgroundColor = .secondarySystemBackground
         ///Using content view helps with safe area
-        contentView.addSubviews(imageView, nameLabel, content)
+        contentView.addSubviews(content, userSignature)
+        userSignature.addSubviews(iconImageView, nameLabel)
         addConstraints()
     }
     
@@ -55,21 +67,25 @@ final class MessageCellView : UICollectionViewCell {
     required init?(coder : NSCoder) {
         fatalError("Not Supported")
     }
-    
+    //MARK: - Constraint
     private func addConstraints() {
         NSLayoutConstraint.activate([
-            content.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
-            content.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 2),
-            content.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 2),
-            content.heightAnchor.constraint(equalToConstant: 30),
-            nameLabel.topAnchor.constraint(equalTo: content.bottomAnchor, constant: 5),
-            nameLabel.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 10),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-            imageView.topAnchor.constraint(equalTo: content.bottomAnchor, constant: -2),
-            imageView.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: -2),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0),
-//            imageView.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 0.2)
+            userSignature.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            userSignature.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            userSignature.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            userSignature.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.20),
+
+            iconImageView.heightAnchor.constraint(equalToConstant: 30),
+            iconImageView.widthAnchor.constraint(equalToConstant: 30),
+            iconImageView.topAnchor.constraint(equalTo: userSignature.topAnchor, constant: 0),
+            iconImageView.leftAnchor.constraint(equalTo: userSignature.leftAnchor, constant: 0),
+            
+            nameLabel.leftAnchor.constraint(equalTo: userSignature.leftAnchor),
+            nameLabel.rightAnchor.constraint(equalTo: userSignature.rightAnchor),
+            nameLabel.topAnchor.constraint(equalTo: userSignature.topAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: userSignature.bottomAnchor),
+
+            
             
 
         ])
@@ -82,13 +98,12 @@ final class MessageCellView : UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
+        iconImageView.image = nil
         nameLabel.text = nil
         content.text = nil
     }
     
     public func configuration(with viewModel : MessageCellViewViewModel) {
-      
         nameLabel.text = viewModel.message.user.username
         content.text = viewModel.message.content
         print(viewModel.message.content)
@@ -97,13 +112,17 @@ final class MessageCellView : UICollectionViewCell {
             case .success(let data):
                 DispatchQueue.main.async {
                     let image = UIImage(data: data)
-                    self?.imageView.image = image
+                    self?.iconImageView.image = image
                 }
             case .failure(let error):
                 print(String(describing: error))
                 break
             }
         }
+        
+    }
+    
+    func upvoteMessage() {
         
     }
     

@@ -5,4 +5,12 @@
 //  Created by Keith Kirtfield on 5/1/23.
 //
 
-import Foundation
+import UIKit
+
+
+
+final class EventCellView : EventCellParentView {
+    static let cellIdentifier = "EventCellView"
+}
+
+

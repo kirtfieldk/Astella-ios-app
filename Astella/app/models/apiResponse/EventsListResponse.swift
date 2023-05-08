@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct EventList : Codable, Hashable {
+struct EventListResponse : Codable, Hashable {
     let info : InfoResponse
     let data : [Event]
 }

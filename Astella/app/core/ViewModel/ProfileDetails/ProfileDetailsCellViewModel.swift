@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+
+final class ProfileDetailCellViewModel {
+    let usr : User
+    
+    init(usr : User) {
+        self.usr = usr
+        
+    }
+}

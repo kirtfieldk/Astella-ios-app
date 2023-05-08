@@ -11,20 +11,15 @@ import SwiftUI
 
 
 struct ContentView: View {
-//    Maintain state between renders
-    @StateObject var viewModel = FetchMessages()
-    @State private var path = NavigationPath()
-     let locationService = LocationTrackingViewController()
-    var body: some View {
-        NavigationStack(path: $path) {
-            List {
-                NavigationLink("Events",value: present(LocationTrackingViewController(), Animation: true))
-            }
-            
-        }
 
-        }
+    var body: some View {
+        EventStructMainViewController()
     }
+    
+}
+
+        
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

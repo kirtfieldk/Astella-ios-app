@@ -7,42 +7,70 @@
 
 import UIKit
 
-/// MARK: - Protocol
+// MARK:  - Protocol
 protocol MessageListViewModelDelegate : AnyObject{
     func didLoadInitialMessages()
+    func didLoadInitialUsers()
 }
 ///ViewModel to handle message logic
 final class MessageListViewModel : NSObject {
     //Do not want circle pointer
+    //MARK: - INIT
     public weak var delegate : MessageListViewModelDelegate?
-    private var cellViewModels : [MessageCellViewViewModel] = []
+    private var messageCellViewModels : [MessageCellViewViewModel] = []
+    private var userCellViewModel : [UserCollectionViewCellViewModel] = []
     private let event : Event
     private var apiInfo : InfoResponse? = nil
-    enum SectionTypes : CaseIterable {
-        case messages
-        case users
+    enum SectionTypes {
+        case messages(viewModel : [MessageCellViewViewModel])
+        case users(viewModel : [UserCollectionViewCellViewModel])
     }
-    public let sections = SectionTypes.allCases
+    public var sections : [SectionTypes] = []
     
     
     ///DO not create cells every time we get new data, only create new
-    private var messages : [Message] = []{
+    public var messages : [Message] = []{
         didSet {
             for msg in messages {
-                let viewModel = MessageCellViewViewModel(message: msg)
-                cellViewModels.append(viewModel)
+                let viewModel = MessageCellViewViewModel(message: msg, eventId: event.id)
+                messageCellViewModels.append(viewModel)
+            }
+        }
+    }
+    
+    public var users : [User] = []{
+        didSet {
+            for usr in users {
+                let viewModel = UserCollectionViewCellViewModel(user: usr)
+                userCellViewModel.append(viewModel)
             }
         }
     }
         
     init(event : Event) {
         self.event = event
+        super.init()
+        self.fetchMessages()
+        self.fetchUsers()
+        self.setUpSections()
+    }
+    
+    public func setUpSections() {
+        sections = [
+            .messages(viewModel: messages.compactMap({
+                return MessageCellViewViewModel(message: $0, eventId: event.id)
+            })),
+            .users(viewModel: users.compactMap({
+                return UserCollectionViewCellViewModel(user: $0)
+            }))
+        ]
     }
     
     func fetchMessages() {
-        print("Fetching Messages")
+        print("Fetching Messages \(eventId)")
         UserLocationManager.shared.getUserLocation {[weak self] location in
             guard let eventId = self?.event.id.uuidString else { return }
+            
             let urlIds = AstellaUrlIds(
                 userId: "dd5fa511-4ec1-4882-9a04-462d8e43856e",
                 eventId: eventId,
@@ -50,9 +78,9 @@ final class MessageListViewModel : NSObject {
             let coords = LocationBody(
                 latitude: 53.020485,
                 longitude: -8.128898)
-            let requestService = RequestService(
+            let requestService = RequestPostService(
                 urlIds: urlIds,
-                endpoint: AstellaEndpoints.GET_MESSAGE_IN_EVENT.rawValue,
+                endpoint: AstellaEndpoints.GET_MESSAGE_IN_EVENT,
                 httpMethod: "POST",
                 httpBody: coords,
                 queryParameters: [URLQueryItem(name: "page", value: "0")]
@@ -74,6 +102,27 @@ final class MessageListViewModel : NSObject {
             }
             
             
+        }
+    }
+    
+    public func fetchUsers() {
+        let req = RequestGetService(
+            urlIds: AstellaUrlIds(userId: "",
+                                  eventId: event.id.uuidString,
+                                  messageId: ""),
+            endpoint: AstellaEndpoints.GET_EVENTS_MEMBER,
+            queryParameters: [URLQueryItem(name: "page", value: "0")])
+        AstellaService.shared.execute(req, expecting: UserListResponse.self) {[weak self] result in
+            switch result {
+            case .success(let success):
+                self?.users = success.data
+                DispatchQueue.main.async {
+                    self?.delegate?.didLoadInitialUsers()
+                }
+                print(String(describing: success))
+            case .failure(let err):
+                print(String(describing: err))
+            }
         }
     }
     
@@ -116,6 +165,7 @@ final class MessageListViewModel : NSObject {
     
     //MARK: - Create section layouts
     public func createMessageSectionLayout() -> NSCollectionLayoutSection {
+        print("created section")
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1))
@@ -161,34 +211,7 @@ final class MessageListViewModel : NSObject {
     
 }
 
-// MARK: - Collection View Impl
-/// Create extension to conform to protocol
-extension MessageListViewModel : UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellViewModels.count
-    }
-    ///Deque and return single cell, using messagecellview
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MessageCellView.cellIdentifier,
-            for: indexPath
-        ) as? MessageCellView else {
-            fatalError("Unsupported cell")
-        }
-        cell.configuration(with: cellViewModels[indexPath.row])
-        
-        return cell
-    }
-    ///Get the size of the UI screenof the device
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let bounds = UIScreen.main.bounds.width
-        let width = bounds - 20
-        
-        return CGSize(width: width , height: ( UIScreen.main.bounds.height * 0.08 ))
-    }
-    
-    
-}
+
 
 // MARK: Scroll View
 extension MessageListViewModel : UIScrollViewDelegate {
@@ -199,4 +222,5 @@ extension MessageListViewModel : UIScrollViewDelegate {
             return
         }
     }
+    
 }

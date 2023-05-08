@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct CityBody : Hashable, Codable {
+    var city : String
+}
+
+

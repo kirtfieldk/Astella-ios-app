@@ -9,18 +9,18 @@ import Foundation
 
 
 
-class RequestService : ObservableObject {
+class RequestPostService : ObservableObject {
     private struct constants {
         static let Base_URL = "http://0.0.0.0:9000/api/v1/"
     }
     private let urlIds : AstellaUrlIds
-    private let endpoint : String
+    public let endpoint : AstellaEndpoints
     public let httpMethod : String
     public var httpBody : Codable
     private let queryParameters: [URLQueryItem]
     
     private var urlString : String {
-        var urlString = constants.Base_URL + endpoint
+        var urlString = constants.Base_URL + endpoint.rawValue
         if urlIds.eventId != "" {
             urlString += urlIds.eventId + "/"
         }
@@ -40,7 +40,6 @@ class RequestService : ObservableObject {
 
             urlString += argumentString
         }
-        
         return urlString
     }
     
@@ -50,7 +49,7 @@ class RequestService : ObservableObject {
         return URL(string: urlString)
     }
     
-    public init(urlIds: AstellaUrlIds, endpoint : String, httpMethod : String,
+    public init(urlIds: AstellaUrlIds, endpoint : AstellaEndpoints, httpMethod : String,
                 httpBody : Codable, queryParameters : [URLQueryItem]) {
         self.urlIds = urlIds
         self.endpoint = endpoint

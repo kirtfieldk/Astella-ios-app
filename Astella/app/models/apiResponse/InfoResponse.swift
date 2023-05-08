@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+
+struct InfoResponse : Codable, Hashable {
+    let page : Int
+    let total : Int
+    let count : Int
+    let next : Bool
+}

@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+
+struct LocationBody : Hashable, Codable {
+    var latitude : Double
+    var longitude : Double
+}
+
+

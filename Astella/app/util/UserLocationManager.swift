@@ -12,8 +12,11 @@ class UserLocationManager : NSObject, CLLocationManagerDelegate {
     static let shared = UserLocationManager()
     let manager = CLLocationManager()
     var completion : ((CLLocation) -> Void)?
+    
     public func getUserLocation(completion: @escaping ((CLLocation) -> Void)) {
+        self.completion = completion
         manager.requestWhenInUseAuthorization()
+        manager.requestAlwaysAuthorization()
         manager.delegate = self
         manager.startUpdatingLocation()
     }
@@ -35,7 +38,6 @@ class UserLocationManager : NSObject, CLLocationManagerDelegate {
                 completion(nil)
                 return
             }
-            print(place)
             var name = ""
             if let locality = place.locality {
                 name += locality
