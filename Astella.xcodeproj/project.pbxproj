@@ -36,6 +36,9 @@
 		EA9C4B4329FEC9B500D46F15 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B4229FEC9B500D46F15 /* MessagesViewController.swift */; };
 		EA9C4B4929FF0A5100D46F15 /* EventstructMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B4829FF0A5100D46F15 /* EventstructMainViewController.swift */; };
 		EA9C4B4B29FF0FF800D46F15 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B4A29FF0FF800D46F15 /* Extensions.swift */; };
+		EAA1D0642A0B015100A3F192 /* MessagePinnedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1D0632A0B015100A3F192 /* MessagePinnedViewModel.swift */; };
+		EAA1D0662A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1D0652A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift */; };
+		EAA1D0682A0B0C2400A3F192 /* MessageCollectionParentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1D0672A0B0C2400A3F192 /* MessageCollectionParentViewCell.swift */; };
 		EAA3B4422A0445E300D63F20 /* ProfilePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA3B4412A0445E300D63F20 /* ProfilePhotoCollectionViewCell.swift */; };
 		EAA3B44A2A04722200D63F20 /* ProfilePhotoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA3B4492A04722200D63F20 /* ProfilePhotoCellViewModel.swift */; };
 		EAA812B22A05D4C900B7FB07 /* EventPasswordModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA812B12A05D4C900B7FB07 /* EventPasswordModal.swift */; };
@@ -121,6 +124,9 @@
 		EA9C4B4229FEC9B500D46F15 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		EA9C4B4829FF0A5100D46F15 /* EventstructMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventstructMainViewController.swift; sourceTree = "<group>"; };
 		EA9C4B4A29FF0FF800D46F15 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EAA1D0632A0B015100A3F192 /* MessagePinnedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePinnedViewModel.swift; sourceTree = "<group>"; };
+		EAA1D0652A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionPinnedViewCell.swift; sourceTree = "<group>"; };
+		EAA1D0672A0B0C2400A3F192 /* MessageCollectionParentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionParentViewCell.swift; sourceTree = "<group>"; };
 		EAA3B4412A0445E300D63F20 /* ProfilePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA3B4492A04722200D63F20 /* ProfilePhotoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCellViewModel.swift; sourceTree = "<group>"; };
 		EAA812B12A05D4C900B7FB07 /* EventPasswordModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPasswordModal.swift; sourceTree = "<group>"; };
@@ -329,6 +335,8 @@
 				EA9C4B3E29FEC92700D46F15 /* MessageListView.swift */,
 				EAA873A029FF2D3100A5D24A /* MessageCollectionViewCell.swift */,
 				EAA83BBF2A02C51C00C48813 /* UsersCollectionViewCell.swift */,
+				EAA1D0652A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift */,
+				EAA1D0672A0B0C2400A3F192 /* MessageCollectionParentViewCell.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -400,6 +408,7 @@
 				EA9C4B3A29FEC8C200D46F15 /* MessageListViewModel.swift */,
 				EAA873A229FF2DB800A5D24A /* MessageCellViewViewModel.swift */,
 				EAA83BC22A02C73800C48813 /* UserCollectionViewCellViewModel.swift */,
+				EAA1D0632A0B015100A3F192 /* MessagePinnedViewModel.swift */,
 			);
 			path = MessageDetails;
 			sourceTree = "<group>";
@@ -625,9 +634,12 @@
 				EABA16562A05158800B39140 /* ProfileDetailsCellViewModel.swift in Sources */,
 				EA0B643329FD3B45001DD8DB /* UserProfileView.swift in Sources */,
 				EAB08D392A013D040058240C /* ProfileViewController.swift in Sources */,
+				EAA1D0662A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift in Sources */,
 				EA0B63F329FBF364001DD8DB /* ContentView.swift in Sources */,
 				EAB193042A04283F00A7F0C3 /* ProfileViewModel.swift in Sources */,
 				EAB67EFA2A01887C0043B58C /* InfoResponse.swift in Sources */,
+				EAA1D0642A0B015100A3F192 /* MessagePinnedViewModel.swift in Sources */,
+				EAA1D0682A0B0C2400A3F192 /* MessageCollectionParentViewCell.swift in Sources */,
 				EAB193012A041DB500A7F0C3 /* ApiCacheManager.swift in Sources */,
 				EAB7AEF629FDC5A3007C3BF5 /* AstellaService.swift in Sources */,
 				EAB943522A02823B001602A2 /* ImageManager.swift in Sources */,

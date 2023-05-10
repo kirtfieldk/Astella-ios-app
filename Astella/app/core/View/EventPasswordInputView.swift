@@ -68,7 +68,6 @@ final class EventPasswordInputView : UIView {
         container.addSubviews(label, input, invalidPassword, submitBtn)
         addConstraints()
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hideKeyboard)))
-        print("INIT CALLED")
         
     }
     

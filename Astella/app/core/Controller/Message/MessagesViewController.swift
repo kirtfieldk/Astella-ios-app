@@ -11,14 +11,28 @@ final class MessagesViewController: UIViewController {
     
     private var viewModel : MessageListViewModel
     private let messageListView : MessageListView
+    private let messagePinnedViewModel : MessagePinnedViewModel
     
+    //MARK: - Init, Delegate
     init(viewModel : MessageListViewModel) {
         self.viewModel = viewModel
         self.messageListView = MessageListView(frame: .zero, viewModel: viewModel)
+        self.messagePinnedViewModel = MessagePinnedViewModel()
         super.init(nibName: nil, bundle: nil)
+        setUpDelegate()
+
+    }
+    
+    private func setUpDelegate() {
         self.messageListView.collectionView?.delegate = self
         self.messageListView.collectionView?.dataSource = self
-
+        self.messageListView.pinnedMessagesCollectionView?.delegate = self
+        self.messageListView.pinnedMessagesCollectionView?.dataSource = self
+        self.messageListView.userCollectionView?.delegate = viewModel
+        self.messageListView.userCollectionView?.dataSource = viewModel
+        self.messageListView.pinnedMessagesCollectionView?.delegate = messagePinnedViewModel
+        self.messageListView.pinnedMessagesCollectionView?.dataSource = messagePinnedViewModel
+        self.viewModel.pinnedDelegate = messagePinnedViewModel
     }
     
     required init?(coder: NSCoder) {
@@ -65,46 +79,25 @@ final class MessagesViewController: UIViewController {
 extension MessagesViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel.sections.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let sectionType = viewModel.sections[section]
-        switch sectionType {
-        case .messages(viewModel: let self):
-            print(self.count)
-            return self.count
-        case .users(viewModel: let self):
-            print(self.count)
-            return self.count
+        return viewModel.messageCellViewModels.count
         }
-    }
+    
     ///Deque and return single cell, using messagecellview
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let sectionType = viewModel.sections[indexPath.section]
-        switch sectionType {
-        case .messages(let viewModel):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MessageCollectionViewCell.cellIdentifier,
-                for: indexPath
-            ) as? MessageCollectionViewCell else {
-                fatalError("Unsupported cell")
-            }
-            cell.configuration(with: viewModel[indexPath.row])
-            return cell
-        case .users(let viewModel):
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: UserCollectionViewCell.cellIdentifier,
-                for: indexPath
-            ) as? UserCollectionViewCell else {
-                fatalError("Unsupported cell")
-            }
-            cell.configure(with: viewModel[indexPath.row])
-            return cell
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: MessageCollectionViewCell.cellIdentifier,
+            for: indexPath
+        ) as? MessageCollectionViewCell else {
+            fatalError("Unsupported cell")
         }
-        
-       
+        cell.configuration(with: viewModel.messageCellViewModels[indexPath.row])
+        return cell
     }
+    
     ///Get the size of the UI screenof the device
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = UIScreen.main.bounds.width
@@ -112,19 +105,5 @@ extension MessagesViewController : UICollectionViewDataSource, UICollectionViewD
         
         return CGSize(width: width , height: ( UIScreen.main.bounds.height * 0.08 ))
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let sectionType = viewModel.sections[indexPath.section]
-        switch sectionType {
-        case .messages:
-            let msg = viewModel.messages[indexPath.row]
-//            let vc = MessageListV
-        case .users:
-            let usr = viewModel.users[indexPath.row]
-            let vc = ProfileViewController(viewModel: ProfileViewModel(user: usr))
-            navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-     
 }
+

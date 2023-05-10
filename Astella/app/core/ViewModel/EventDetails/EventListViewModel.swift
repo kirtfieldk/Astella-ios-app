@@ -85,6 +85,9 @@ final class EventListViewModel : NSObject {
     }
     //MARK: - FERCHING EVENTS
     func fetchEvents(tmp : [URLQueryItem], firstFetch : Bool) {
+        if isLoadingMoreEvents {
+            return
+        }
         isLoadingMoreEvents = true
         UserLocationManager.shared.getUserLocation { location in
             UserLocationManager.shared.resolveLocationName(with: location) {[weak self] city in
@@ -119,7 +122,6 @@ final class EventListViewModel : NSObject {
                 print(String(describing: err))
             }
         }
-        
     }
     
     public var shouldShowLoadMore : Bool {

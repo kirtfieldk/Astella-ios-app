@@ -30,11 +30,11 @@ final class MessageCellViewViewModel {
     //Need to upvote message
     public func upvoteMessage(completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         UserLocationManager.shared.getUserLocation {[weak self] location in
-            let point = LocationBody(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let point = LocationBody(latitude: 53.020485, longitude: -8.128898)
             guard let messageId = self?.message.id.uuidString else {return}
             guard let event = self?.eventId.uuidString else {return}
             AstellaService.shared.execute(
-                RequestPostService(urlIds: AstellaUrlIds(userId: "", eventId: event, messageId: messageId),
+                RequestPostService(urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: event, messageId: messageId),
                 endpoint: AstellaEndpoints.LIKE_MESSAGE_IN_EVENT,
                 httpMethod: "POST",
                 httpBody: point,

@@ -10,7 +10,7 @@ import UIKit
 ///View model logic for Display Brief overview of user
 ///Icon + username
 final class UserCollectionViewCellViewModel {
-    private let user : User
+    public let user : User
     private var isLoading : Bool = false
 
     init(user : User) {

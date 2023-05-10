@@ -33,11 +33,11 @@ struct MessageFetchBody : Codable {
 struct PostMessageToEventBody : Codable {
     let content : String
     let user_id : UUID
-    let parent_id : UUID
+    let parent_id : UUID?
     let event_id : UUID
     let upvotes : Int
     let pinned : Bool
-    let latitude : Float
-    let longitude : Float
+    let latitude : Double
+    let longitude : Double
 
 }

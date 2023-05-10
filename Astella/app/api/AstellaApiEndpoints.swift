@@ -19,6 +19,7 @@ enum AstellaEndpoints: String, Codable, CaseIterable {
     case GET_EVENTS_MEMBER_OF  = "user/event/member/"
     case GET_EVENTS_MEMBER  = "member/user/event/"
     case GET_USRS_LIKE_MESSAGE  = "message/event/whoupvote/"
+    case PIN_MESSAGE, UNPIN_MESSAGE, GET_USER_PIN = "event/pin/message/"
 }
     
 

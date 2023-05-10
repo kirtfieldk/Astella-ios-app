@@ -29,7 +29,8 @@ final class ApiCacheManger {
     //MARK: - get cache items
     public func cacheResponse(for endpoint : AstellaEndpoints, url : URL?) -> Data? {
         guard let targetCache = cacheDictionary[endpoint], let url = url, endpoint != AstellaEndpoints.ADD_USER_TO_EVENT,
-              endpoint != AstellaEndpoints.GET_EVENTS_MEMBER_OF, endpoint != AstellaEndpoints.GET_EVENT_BY_CITY
+              endpoint != AstellaEndpoints.GET_EVENTS_MEMBER_OF, endpoint != AstellaEndpoints.GET_EVENT_BY_CITY,
+              endpoint != AstellaEndpoints.POST_MESSAGE_TO_EVENT, endpoint != AstellaEndpoints.LIKE_MESSAGE_IN_EVENT
         else {
             return nil
         }

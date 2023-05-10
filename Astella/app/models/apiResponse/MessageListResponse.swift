@@ -9,5 +9,6 @@ import Foundation
 
 struct MessageListResponse : Codable, Hashable {
     let info : InfoResponse
+    let success : Bool?
     let data : [Message]
 }
