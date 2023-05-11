@@ -15,6 +15,7 @@ final class MessageDetailViewController : UIViewController {
         self.viewModel = viewModel
         self.messageView = MessageDetailView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self.messageView
 
     }
     required init?(coder: NSCoder) {

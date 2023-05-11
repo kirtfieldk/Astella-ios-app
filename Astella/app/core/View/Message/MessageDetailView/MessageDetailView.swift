@@ -36,10 +36,13 @@ final class MessageDetailView : UIView {
     init(frame: CGRect, viewModel : MessageDetailViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
-        let collectionView = createCollectionView()
-        self.collectionView = collectionView
+        translatesAutoresizingMaskIntoConstraints = false
+
+//        let collectionView = createCollectionView()
+//        self.collectionView = collectionView
         textInput.addSubviews(messageInputText, submitTextBtn)
-        addSubviews(collectionView, textInput)
+        addSubviews( textInput)
+        
         addConstraints()
     }
     
@@ -78,15 +81,25 @@ final class MessageDetailView : UIView {
     private func addConstraints() {
         guard let collectionView = collectionView else {return}
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+//            collectionView.topAnchor.constraint(equalTo: topAnchor),
+//            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+//            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
 //            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            textInput.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 20),
+            textInput.topAnchor.constraint(equalTo: topAnchor, constant: 20),
             textInput.leftAnchor.constraint(equalTo: leftAnchor),
             textInput.rightAnchor.constraint(equalTo: rightAnchor),
             textInput.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textInput.heightAnchor.constraint(equalToConstant: 100),
+            
+            messageInputText.topAnchor.constraint(equalTo: textInput.topAnchor),
+            messageInputText.leftAnchor.constraint(equalTo: textInput.leftAnchor),
+            messageInputText.bottomAnchor.constraint(equalTo: textInput.bottomAnchor),
+            
+            submitTextBtn.bottomAnchor.constraint(equalTo: textInput.bottomAnchor),
+            submitTextBtn.topAnchor.constraint(equalTo: textInput.topAnchor),
+            submitTextBtn.rightAnchor.constraint(equalTo: textInput.rightAnchor),
+
         ])
     }
     
@@ -94,8 +107,14 @@ final class MessageDetailView : UIView {
     private func submit() {
         guard let text = messageInputText.text else {return}
         viewModel.postMessage(msg: text)
-        collectionView?.reloadData()
         messageInputText.text = nil
 
+    }
+}
+
+
+extension MessageDetailView : MessageDetailViewModelDelegate {
+    func refreshThread() {
+        collectionView?.reloadData()
     }
 }

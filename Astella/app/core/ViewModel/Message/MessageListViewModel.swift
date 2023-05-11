@@ -18,7 +18,7 @@ protocol MessagePinnedListViewModelDelegate : AnyObject {
     func setMessageCellViewModel(messageCellViewModels : [MessageCellViewViewModel])
 }
 ///ViewModel to handle message logic
-final class MessageListViewModel : NSObject {
+final class MessageListViewModel : MessageParentViewModel {
     //Do not want circle pointer
     //MARK: - INIT
     public weak var delegate : MessageListViewModelDelegate?
@@ -64,41 +64,27 @@ final class MessageListViewModel : NSObject {
         
     init(event : Event) {
         self.event = event
-        super.init()
+        super.init(eventId: event.id)
     }
     
     //MARK: - Post Message
     func postMessage(msg : String) {
-        UserLocationManager.shared.getUserLocation {[weak self] location in
-            guard let eventId = self?.event.id else { return }
-            guard let userId = UUID(uuidString: "db212c03-8d8a-4d36-9046-ab60ac5b250d") else {return}
-            let req = RequestPostService(
-                urlIds:
-                    AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: eventId.uuidString, messageId: ""),
-                endpoint: AstellaEndpoints.POST_MESSAGE_TO_EVENT,
-                httpMethod: "POST",
-                httpBody: PostMessageToEventBody(
-                    content: msg, user_id: userId,
-                    parent_id: nil,
-                    event_id: eventId, upvotes: 0, pinned: false,
-                    latitude: 53.020485, longitude: -8.128898),
-                queryParameters: [])
-            AstellaService.shared.execute(req, expecting: MessageListResponse.self) { result in
-                switch result {
-                case .success(let resp):
-                    guard let success = resp.success else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self?.messages = resp.data
-                        self?.delegate?.postedMessageRefreshMessages()
-                    }
-                case .failure(let err):
-                    print(String(describing: err))
+        super.postMessage(msg: msg) { [weak self] result in
+            switch result {
+            case .success(let resp):
+                guard let success = resp.success else {
+                    return
                 }
+                DispatchQueue.main.async {
+                    self?.messages = resp.data
+                    self?.delegate?.postedMessageRefreshMessages()
+                }
+            case .failure(let err):
+                print(String(describing: err))
             }
         }
     }
+    
     
     //MARK: - Fetching Messages
     func fetchMessages(page : String) {

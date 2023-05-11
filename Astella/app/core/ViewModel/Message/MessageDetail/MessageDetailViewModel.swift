@@ -7,10 +7,15 @@
 
 import UIKit
 
-final class MessageDetailViewModel : NSObject {
+protocol MessageDetailViewModelDelegate : AnyObject {
+    func refreshThread()
+}
+
+final class MessageDetailViewModel : MessageParentViewModel {
     private let msg : Message?
     private let event : UUID?
-    private let threadMsg : [Message] = []
+    private var threadMsg : [Message] = []
+    public weak var delegate : MessageDetailViewModelDelegate?
     enum SectionTypes {
         case message(viewModel : MessageCellViewViewModel)
         case threadMessages(viewModel : [MessageCellViewViewModel])
@@ -21,7 +26,8 @@ final class MessageDetailViewModel : NSObject {
     init(msg : Message, event : UUID) {
         self.msg = msg
         self.event = event
-        super.init()
+        super.init(eventId: event)
+        super.setParentId(parentId: msg.id)
     }
     
     private func fetchThread() {
@@ -38,37 +44,7 @@ final class MessageDetailViewModel : NSObject {
         ]
     }
     
-    func postMessage(msg : String) {
-        UserLocationManager.shared.getUserLocation {[weak self] location in
-            guard let eventId = self?.event else { return }
-            guard let userId = UUID(uuidString: "db212c03-8d8a-4d36-9046-ab60ac5b250d") else {return}
-            let req = RequestPostService(
-                urlIds:
-                    AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: eventId.uuidString, messageId: ""),
-                endpoint: AstellaEndpoints.POST_MESSAGE_TO_EVENT,
-                httpMethod: "POST",
-                httpBody: PostMessageToEventBody(
-                    content: msg, user_id: userId,
-                    parent_id: nil,
-                    event_id: eventId, upvotes: 0, pinned: false,
-                    latitude: 53.020485, longitude: -8.128898),
-                queryParameters: [])
-            AstellaService.shared.execute(req, expecting: MessageListResponse.self) { result in
-                switch result {
-                case .success(let resp):
-                    guard let success = resp.success else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self?.messages = resp.data
-                        self?.delegate?.postedMessageRefreshMessages()
-                    }
-                case .failure(let err):
-                    print(String(describing: err))
-                }
-            }
-        }
-    }
+    
     
     public func createMsgFocusSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
@@ -87,6 +63,24 @@ final class MessageDetailViewModel : NSObject {
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
+    }
+    
+    func postMessage(msg: String) {
+        super.postMessage(msg: msg) {[weak self] result in
+            switch result {
+            case .success(let resp):
+                guard let success = resp.success else {
+                    print("Unable to Post Message")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self?.threadMsg = resp.data
+                    self?.delegate?.refreshThread()
+                }
+            case .failure(let err):
+                print(String(describing: err))
+            }
+        }
     }
     
     public func createMsgThreadSection() -> NSCollectionLayoutSection {
