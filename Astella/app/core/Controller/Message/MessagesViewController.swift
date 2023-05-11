@@ -54,6 +54,9 @@ final class MessagesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.fetchMessages(page: "0")
+        viewModel.fetchUsers(page : "0")
+        viewModel.fetchUserPinnedMessages(page: "0")
     }
     
     func setUpView() {
@@ -71,6 +74,14 @@ final class MessagesViewController: UIViewController {
     private func didTapShare() {
         
     }
+    
+    //MARK: - Redirect
+    private func redirectIntoMessageDetail(msg : Message, eventId : UUID) {
+        let vm = MessageDetailViewModel(msg: msg, event: eventId)
+        let vc = MessageDetailViewController(viewModel: vm)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 
@@ -84,7 +95,7 @@ extension MessagesViewController : UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.messageCellViewModels.count
-        }
+    }
     
     ///Deque and return single cell, using messagecellview
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -94,6 +105,7 @@ extension MessagesViewController : UICollectionViewDataSource, UICollectionViewD
         ) as? MessageCollectionViewCell else {
             fatalError("Unsupported cell")
         }
+        cell.delegate = viewModel
         cell.configuration(with: viewModel.messageCellViewModels[indexPath.row])
         return cell
     }
@@ -104,6 +116,11 @@ extension MessagesViewController : UICollectionViewDataSource, UICollectionViewD
         let width = bounds - 20
         
         return CGSize(width: width , height: ( UIScreen.main.bounds.height * 0.08 ))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        redirectIntoMessageDetail(msg: viewModel.messageCellViewModels[indexPath.row].message,
+                                        eventId: viewModel.messageCellViewModels[indexPath.row].eventId)
     }
 }
 

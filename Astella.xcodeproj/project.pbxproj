@@ -28,6 +28,10 @@
 		EA9A40202A06D97A006E40DA /* EventPasswordInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A401F2A06D97A006E40DA /* EventPasswordInputViewModel.swift */; };
 		EA9A40222A06DA16006E40DA /* EventPasswordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A40212A06DA16006E40DA /* EventPasswordInputView.swift */; };
 		EA9A40242A06DC25006E40DA /* BooleanResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9A40232A06DC25006E40DA /* BooleanResponse.swift */; };
+		EA9AA6A72A0C69CC007BCB26 /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA6A62A0C69CC007BCB26 /* MessageDetailViewController.swift */; };
+		EA9AA6AA2A0C6A68007BCB26 /* MessageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA6A92A0C6A68007BCB26 /* MessageDetailViewModel.swift */; };
+		EA9AA6AD2A0C6C17007BCB26 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA6AC2A0C6C17007BCB26 /* MessageDetailView.swift */; };
+		EA9AA6AF2A0D1896007BCB26 /* MessageDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA6AE2A0D1896007BCB26 /* MessageDetailViewCell.swift */; };
 		EA9C4B3329FE8B9C00D46F15 /* RequestPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B3229FE8B9C00D46F15 /* RequestPostService.swift */; };
 		EA9C4B3629FEC0A000D46F15 /* MessageListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B3529FEC0A000D46F15 /* MessageListResponse.swift */; };
 		EA9C4B3829FEC6B600D46F15 /* EventsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B3729FEC6B600D46F15 /* EventsListResponse.swift */; };
@@ -116,6 +120,10 @@
 		EA9A401F2A06D97A006E40DA /* EventPasswordInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPasswordInputViewModel.swift; sourceTree = "<group>"; };
 		EA9A40212A06DA16006E40DA /* EventPasswordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPasswordInputView.swift; sourceTree = "<group>"; };
 		EA9A40232A06DC25006E40DA /* BooleanResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooleanResponse.swift; sourceTree = "<group>"; };
+		EA9AA6A62A0C69CC007BCB26 /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
+		EA9AA6A92A0C6A68007BCB26 /* MessageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewModel.swift; sourceTree = "<group>"; };
+		EA9AA6AC2A0C6C17007BCB26 /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
+		EA9AA6AE2A0D1896007BCB26 /* MessageDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewCell.swift; sourceTree = "<group>"; };
 		EA9C4B3229FE8B9C00D46F15 /* RequestPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostService.swift; sourceTree = "<group>"; };
 		EA9C4B3529FEC0A000D46F15 /* MessageListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListResponse.swift; sourceTree = "<group>"; };
 		EA9C4B3729FEC6B600D46F15 /* EventsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListResponse.swift; sourceTree = "<group>"; };
@@ -332,6 +340,7 @@
 		EA0B644529FD665D001DD8DB /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				EA9AA6AB2A0C6BFD007BCB26 /* MessageDetailView */,
 				EA9C4B3E29FEC92700D46F15 /* MessageListView.swift */,
 				EAA873A029FF2D3100A5D24A /* MessageCollectionViewCell.swift */,
 				EAA83BBF2A02C51C00C48813 /* UsersCollectionViewCell.swift */,
@@ -357,6 +366,23 @@
 			path = OtherViewModel;
 			sourceTree = "<group>";
 		};
+		EA9AA6A82A0C6A41007BCB26 /* MessageDetail */ = {
+			isa = PBXGroup;
+			children = (
+				EA9AA6A92A0C6A68007BCB26 /* MessageDetailViewModel.swift */,
+			);
+			path = MessageDetail;
+			sourceTree = "<group>";
+		};
+		EA9AA6AB2A0C6BFD007BCB26 /* MessageDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				EA9AA6AC2A0C6C17007BCB26 /* MessageDetailView.swift */,
+				EA9AA6AE2A0D1896007BCB26 /* MessageDetailViewCell.swift */,
+			);
+			path = MessageDetailView;
+			sourceTree = "<group>";
+		};
 		EA9C4B3429FEC07D00D46F15 /* apiResponse */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,7 +401,7 @@
 			children = (
 				EA9A401E2A06D907006E40DA /* OtherViewModel */,
 				EAB193022A04282400A7F0C3 /* ProfileDetails */,
-				EAA83BC12A02C5BC00C48813 /* MessageDetails */,
+				EAA83BC12A02C5BC00C48813 /* Message */,
 				EAC7E3722A0042D8007E8656 /* EventDetails */,
 			);
 			path = ViewModel;
@@ -402,15 +428,16 @@
 			path = OtherViewController;
 			sourceTree = "<group>";
 		};
-		EAA83BC12A02C5BC00C48813 /* MessageDetails */ = {
+		EAA83BC12A02C5BC00C48813 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				EA9AA6A82A0C6A41007BCB26 /* MessageDetail */,
 				EA9C4B3A29FEC8C200D46F15 /* MessageListViewModel.swift */,
 				EAA873A229FF2DB800A5D24A /* MessageCellViewViewModel.swift */,
 				EAA83BC22A02C73800C48813 /* UserCollectionViewCellViewModel.swift */,
 				EAA1D0632A0B015100A3F192 /* MessagePinnedViewModel.swift */,
 			);
-			path = MessageDetails;
+			path = Message;
 			sourceTree = "<group>";
 		};
 		EAB08D312A00A2AC0058240C /* Location */ = {
@@ -459,6 +486,7 @@
 			children = (
 				EA9C4B4229FEC9B500D46F15 /* MessagesViewController.swift */,
 				EA9C4B4829FF0A5100D46F15 /* EventstructMainViewController.swift */,
+				EA9AA6A62A0C69CC007BCB26 /* MessageDetailViewController.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -639,6 +667,7 @@
 				EAB193042A04283F00A7F0C3 /* ProfileViewModel.swift in Sources */,
 				EAB67EFA2A01887C0043B58C /* InfoResponse.swift in Sources */,
 				EAA1D0642A0B015100A3F192 /* MessagePinnedViewModel.swift in Sources */,
+				EA9AA6AD2A0C6C17007BCB26 /* MessageDetailView.swift in Sources */,
 				EAA1D0682A0B0C2400A3F192 /* MessageCollectionParentViewCell.swift in Sources */,
 				EAB193012A041DB500A7F0C3 /* ApiCacheManager.swift in Sources */,
 				EAB7AEF629FDC5A3007C3BF5 /* AstellaService.swift in Sources */,
@@ -671,6 +700,7 @@
 				EA0B642F29FD38E6001DD8DB /* Message.swift in Sources */,
 				EAA812B42A06955A00B7FB07 /* EventMemberCollectionCellView.swift in Sources */,
 				EAA83BC32A02C73800C48813 /* UserCollectionViewCellViewModel.swift in Sources */,
+				EA9AA6A72A0C69CC007BCB26 /* MessageDetailViewController.swift in Sources */,
 				EAC7E3772A004378007E8656 /* EventListViewController.swift in Sources */,
 				EAB7AEFA29FDC68F007C3BF5 /* AstellaApiEndpoints.swift in Sources */,
 				EAA83BC02A02C51C00C48813 /* UsersCollectionViewCell.swift in Sources */,
@@ -680,7 +710,9 @@
 				EAC7E37E2A004773007E8656 /* CityBody.swift in Sources */,
 				EA9A40202A06D97A006E40DA /* EventPasswordInputViewModel.swift in Sources */,
 				EAA873A329FF2DB800A5D24A /* MessageCellViewViewModel.swift in Sources */,
+				EA9AA6AF2A0D1896007BCB26 /* MessageDetailViewCell.swift in Sources */,
 				EAC7E3742A004300007E8656 /* EventListViewModel.swift in Sources */,
+				EA9AA6AA2A0C6A68007BCB26 /* MessageDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,6 @@ final class MessagePinnedViewModel : NSObject, MessagePinnedListViewModelDelegat
     private var messageCellViewModels : [MessageCellViewViewModel] = []
     
     func setMessageCellViewModel(messageCellViewModels: [MessageCellViewViewModel]) {
-        print("Called")
         self.messageCellViewModels = messageCellViewModels
     }
 }

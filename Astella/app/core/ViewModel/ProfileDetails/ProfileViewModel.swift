@@ -42,7 +42,6 @@ final class ProfileViewModel : NSObject{
     }
 
     public func setUpSections() {
-        print("setting up sections")
         guard let user = user else {return}
         sections = [
             .photos(viewModel: photoList.compactMap({

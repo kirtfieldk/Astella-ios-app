@@ -12,6 +12,7 @@ protocol MessageListViewModelDelegate : AnyObject{
     func didLoadInitialMessages()
     func didLoadInitialUsers()
     func postedMessageRefreshMessages()
+    func didLoadPinnedMessages()
 }
 protocol MessagePinnedListViewModelDelegate : AnyObject {
     func setMessageCellViewModel(messageCellViewModels : [MessageCellViewViewModel])
@@ -64,9 +65,6 @@ final class MessageListViewModel : NSObject {
     init(event : Event) {
         self.event = event
         super.init()
-        self.fetchMessages(page: "0")
-        self.fetchUsers(page : "0")
-        self.fetchUserPinnedMessages(page: "0")
     }
     
     //MARK: - Post Message
@@ -104,8 +102,6 @@ final class MessageListViewModel : NSObject {
     
     //MARK: - Fetching Messages
     func fetchMessages(page : String) {
-        print("Fetching Messages \(eventId)")
-        
         let urlIds = AstellaUrlIds(
             userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d",
             eventId: eventId.uuidString,
@@ -226,6 +222,8 @@ final class MessageListViewModel : NSObject {
                     self?.pinnedDelegate?
                         .setMessageCellViewModel(
                             messageCellViewModels: messagePinnedCellViewModels)
+                    self?.delegate?.didLoadPinnedMessages()
+                    
                 }
             case .failure(let err):
                 print(String(describing: err))
@@ -249,7 +247,34 @@ extension MessageListViewModel : UIScrollViewDelegate {
     
 }
 
-
+// MARK: - Delegate to refresh Pins
+extension MessageListViewModel : MessageCollectionParentViewCellDelegate {
+    func deletePin(msg: Message) {
+        messagePinnedCellViewModels = messagePinnedCellViewModels.filter({ $0.message.id != msg.id })
+        pinnedMessages = pinnedMessages.filter({$0.id != msg.id})
+        pinnedDelegate?.setMessageCellViewModel(messageCellViewModels: messagePinnedCellViewModels)
+        delegate?.didLoadPinnedMessages()
+    }
+    
+    func updateMessage(msg: Message) {
+        for (index, el) in messageCellViewModels.enumerated() {
+            if el.message.id == msg.id {
+                messageCellViewModels[index] = MessageCellViewViewModel(message: msg, eventId: eventId)
+            }
+        }
+        for (index, el) in messagePinnedCellViewModels.enumerated() {
+            if el.message.id == msg.id {
+                messagePinnedCellViewModels[index] = MessageCellViewViewModel(message: msg, eventId: eventId)
+            }
+        }
+        pinnedDelegate?.setMessageCellViewModel(messageCellViewModels: messagePinnedCellViewModels)
+        delegate?.didLoadPinnedMessages()
+    }
+    
+    func fetchPinMessages() {
+        fetchUserPinnedMessages(page: "0")
+    }
+}
 
 //MARK: - DELEGATE 4 UserCell
 extension MessageListViewModel : UICollectionViewDataSource, UICollectionViewDelegate {
@@ -263,7 +288,6 @@ extension MessageListViewModel : UICollectionViewDataSource, UICollectionViewDel
     
     ///Deque and return single cell, using messagecellview
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("DEQUEUEUSERS")
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: UserCollectionViewCell.cellIdentifier,
             for: indexPath
@@ -278,7 +302,6 @@ extension MessageListViewModel : UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = UIScreen.main.bounds.width
         let width = bounds - 20
-        print("bounds")
         return CGSize(width: width , height: ( UIScreen.main.bounds.height))
     }
     

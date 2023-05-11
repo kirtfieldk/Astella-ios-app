@@ -34,7 +34,9 @@ struct User : Hashable, Codable, Identifiable {
                           img_three: "https://rickandmortyapi.com/api/character/avatar/3.jpeg")
 }
 
-
+struct EmptyBody : Codable {
+    
+}
 
 struct AddUserToEventBody : Codable {
     let code : String

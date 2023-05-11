@@ -9,13 +9,12 @@ import UIKit
 
 class MessageCollectionParentViewCell : UICollectionViewCell {
     private var viewModel : MessageCellViewViewModel?
+    public weak var delegate : MessageCollectionParentViewCellDelegate?
     private let iconImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-//        imageView.image = UIImage(systemName: "globe.americas")
-        
         return imageView
     }()
     
@@ -34,28 +33,33 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         content.font = .systemFont(ofSize: 18, weight: .light)
         content.contentMode = .scaleAspectFit
         content.translatesAutoresizingMaskIntoConstraints = false
-        content.backgroundColor = .cyan
-        content.layer.borderWidth = 2
         content.isEditable = false
-        content.gestureRecognizers = nil
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(upvoteMessage))
-        tapRecognizer.numberOfTapsRequired = 2;
-        content.addGestureRecognizer(tapRecognizer)
-        content.contentInset = UIEdgeInsets(top: 2, left: 10, bottom: 2, right: 0)
+        content.contentInset = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
         return content
     }()
     
     private let userSignature : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .tertiarySystemBackground
+        return view
+    }()
+    
+    private let divider : UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private let mainContentView : UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private let upvoteArea : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        
         return view
     }()
     
@@ -63,7 +67,18 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         let btn = UIButton()
         let img = UIImage(systemName: "heart.fill")
         btn.setImage(img, for: .normal)
+        btn.tintColor = .lightGray
         btn.addTarget(self, action: #selector(upvoteMessage), for: .touchDown)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    private let pinBtn : UIButton = {
+        let btn = UIButton()
+        let img = UIImage(systemName: "pin.fill")
+        btn.setImage(img, for: .normal)
+        btn.tintColor = .lightGray
+        btn.addTarget(self, action: #selector(pinMessage), for: .touchDown)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -85,7 +100,8 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         contentView.layer.masksToBounds = true
 
         ///Using content view helps with safe area
-        contentView.addSubviews(content, userSignature, upvoteArea)
+        contentView.addSubviews(userSignature, mainContentView, divider)
+        mainContentView.addSubviews(content, upvoteArea, pinBtn)
         upvoteArea.addSubviews(upvoteBtn, upvoteCtn)
         userSignature.addSubviews(iconImageView, nameLabel)
         addConstraints()
@@ -94,10 +110,6 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
     
     func setUpLayers() {
         contentView.layer.cornerRadius = 10
-        contentView.layer.shadowRadius = 5
-        contentView.layer.shadowColor = UIColor.label.cgColor
-        contentView.layer.shadowOpacity = 0.2
-        contentView.layer.shadowOffset = CGSize(width: -4, height: 4)
     }
     
     required init?(coder : NSCoder) {
@@ -108,7 +120,7 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         NSLayoutConstraint.activate([
             userSignature.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             userSignature.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            userSignature.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            userSignature.bottomAnchor.constraint(equalTo: divider.topAnchor),
             userSignature.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.20),
 
             iconImageView.heightAnchor.constraint(equalToConstant: 30),
@@ -123,24 +135,41 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
             nameLabel.topAnchor.constraint(equalTo: userSignature.topAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: userSignature.bottomAnchor),
 
+            mainContentView.topAnchor.constraint(equalTo: topAnchor),
+            mainContentView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
+            mainContentView.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
+            mainContentView.bottomAnchor.constraint(equalTo: userSignature.topAnchor),
             
-            content.topAnchor.constraint(equalTo: topAnchor),
-            content.leftAnchor.constraint(equalTo: leftAnchor, constant: 25),
+            content.topAnchor.constraint(equalTo: mainContentView.topAnchor),
+            content.leftAnchor.constraint(equalTo: mainContentView.leftAnchor, constant: 5),
             content.bottomAnchor.constraint(equalTo: upvoteArea.topAnchor),
-            content.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.60),
+            content.rightAnchor.constraint(equalTo: pinBtn.leftAnchor),
+            
+            pinBtn.rightAnchor.constraint(equalTo: mainContentView.rightAnchor,constant: -15),
+            pinBtn.topAnchor.constraint(equalTo: mainContentView.topAnchor, constant: 10),
+//            pinBtn.widthAnchor.constraint(equalToConstant: 150),
+//            content.widthAnchor.constraint(equalToConstant: mainContentView.bounds.width * 0.90),
             
             upvoteArea.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.20),
-            upvoteArea.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
-            upvoteArea.bottomAnchor.constraint(equalTo: userSignature.topAnchor),
-            upvoteArea.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.60),
+            upvoteArea.rightAnchor.constraint(equalTo: mainContentView.rightAnchor, constant: 0),
+            upvoteArea.bottomAnchor.constraint(equalTo: mainContentView.bottomAnchor),
+            upvoteArea.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier:  0.60),
             
             upvoteBtn.rightAnchor.constraint(equalTo: upvoteCtn.leftAnchor),
             upvoteBtn.bottomAnchor.constraint(equalTo: upvoteArea.bottomAnchor),
             upvoteBtn.topAnchor.constraint(equalTo: upvoteArea.topAnchor),
             
-            upvoteCtn.rightAnchor.constraint(equalTo: upvoteArea.rightAnchor),
+            upvoteCtn.rightAnchor.constraint(equalTo: upvoteArea.rightAnchor, constant: -10),
             upvoteCtn.bottomAnchor.constraint(equalTo: upvoteArea.bottomAnchor),
             upvoteCtn.topAnchor.constraint(equalTo: upvoteArea.topAnchor),
+
+//            divider.topAnchor.constraint(equalTo: contentView.bottomAnchor),
+            divider.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            divider.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            divider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            divider.topAnchor.constraint(equalTo: userSignature.bottomAnchor),
+            divider.heightAnchor.constraint(equalToConstant: 1),
+
 
         ])
     }
@@ -156,6 +185,8 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         nameLabel.text = nil
         content.text = nil
         upvoteCtn.text = nil
+        upvoteBtn.tintColor = .lightGray
+        pinBtn.tintColor = .lightGray
     }
     
     public func configuration(with viewModel : MessageCellViewViewModel) {
@@ -163,6 +194,16 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         content.text = viewModel.message.content
         upvoteCtn.text = String(describing : (viewModel.message.up_votes))
         self.viewModel = viewModel
+        guard let upvoted = viewModel.message.upvoted_by_user else {return}
+        self.viewModel?.upvotedByUser = upvoted
+        if upvoted {
+            upvoteBtn.tintColor = .red
+        }
+        guard let pinned = viewModel.message.pinned_by_user else {return}
+        self.viewModel?.pinnedByUser = pinned
+        if pinned {
+            pinBtn.tintColor = .yellow
+        }
 //        viewModel.fetchUserAvatar {[weak self] result in
 //            switch result {
 //            case .success(let data):
@@ -181,19 +222,83 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
     //MARK: - Upvote
     @objc
     func upvoteMessage() {
-        guard let viewModel = viewModel else {return}
-        viewModel.upvoteMessage {[weak self] resp in
-            switch resp {
-            case .success(let res):
-                let msg = res.data[0]
-                DispatchQueue.main.async {
-                    self?.upvoteBtn.tintColor = .red
-                    self?.upvoteCtn.text = String(describing: msg.up_votes)
+        guard let viewModel = viewModel, let upvotedByUser = viewModel.upvotedByUser else {return}
+        if !upvotedByUser {
+            viewModel.upvoteMessage {[weak self] resp in
+                switch resp {
+                case .success(let res):
+                    let msg = res.data[0]
+                    DispatchQueue.main.async {
+                        self?.upvoteBtn.tintColor = .red
+                        self?.upvoteCtn.text = String(describing: msg.up_votes)
+                        self?.viewModel?.upvotedByUser = true
+                        self?.delegate?.updateMessage(msg: msg)
+                    }
+                case .failure(let err):
+                    print(String(describing: err))
+                    
                 }
-            case .failure(let err):
-                print(String(describing: err))
-                        
+            }
+        } else {
+            viewModel.downvoteMessage {[weak self] resp in
+                switch resp {
+                case .success(let res):
+                    let msg = res.data[0]
+                    DispatchQueue.main.async {
+                        self?.upvoteBtn.tintColor = .lightGray
+                        self?.upvoteCtn.text = String(describing: msg.up_votes)
+                        self?.viewModel?.upvotedByUser = false
+                        self?.delegate?.updateMessage(msg: msg)
+                    }
+                case .failure(let err):
+                    print(String(describing: err))
+                    
+                }
+            }
+
+        }
+    }
+    
+    // MARK: - Pin Messages
+    @objc
+    private func pinMessage() {
+        guard let viewModel = viewModel, let upvotedByUser = viewModel.pinnedByUser else {return}
+        if upvotedByUser {
+            viewModel.unpinMessage {[weak self] result in
+                switch result {
+                case .success(let data):
+                    DispatchQueue.main.async {
+                        self?.pinBtn.tintColor = .lightGray
+                        self?.viewModel?.pinnedByUser = false
+                        self?.delegate?.fetchPinMessages()
+                        self?.delegate?.deletePin(msg: data.data[0])
+                        self?.delegate?.updateMessage(msg: data.data[0])
+                    }
+                case .failure(let err):
+                    print(String(describing: err))
+                }
+            }
+        } else {
+            viewModel.pinMessage {[weak self] result in
+                switch result {
+                case .success(let data):
+                    DispatchQueue.main.async {
+                        self?.pinBtn.tintColor = .yellow
+                        self?.viewModel?.pinnedByUser = true
+                        self?.delegate?.fetchPinMessages()
+                        self?.delegate?.updateMessage(msg: data.data[0])
+                    }
+                case .failure(let err):
+                    print(String(describing: err))
+                }
             }
         }
     }
+}
+
+
+protocol MessageCollectionParentViewCellDelegate : AnyObject {
+    func fetchPinMessages()
+    func updateMessage(msg : Message)
+    func deletePin(msg : Message)
 }

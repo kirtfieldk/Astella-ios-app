@@ -234,8 +234,8 @@ final class MessageListView: UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         ///Input for our messageCell
         collectionView.register(
-            MessageCollectionViewCell.self,
-            forCellWithReuseIdentifier: MessageCollectionViewCell.cellIdentifier
+            MessageCollectionPinnedViewCell.self,
+            forCellWithReuseIdentifier: MessageCollectionPinnedViewCell.cellIdentifier
         )
         return collectionView
     }
@@ -260,40 +260,44 @@ final class MessageListView: UIView {
 
 //MARK: - MessageListViewModelDelegate
 extension MessageListView : MessageListViewModelDelegate {
+    
     func postedMessageRefreshMessages() {
         guard let collectionView = collectionView else {return}
         collectionView.isHidden = false
         userCollectionView?.isHidden = false
         refreshCells()
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.7) {
             collectionView.alpha = 1
         }
     }
     
     func didLoadInitialUsers() {
-        guard let collectionView = collectionView else {return}
-        guard let userCollectionView = userCollectionView else {return}
-        print("reloading Users")
+        guard let collectionView = userCollectionView else {return}
         spinner.stopAnimating()
-        collectionView.isHidden = false
-        userCollectionView.isHidden = false
         refreshCells()
         //Only reload for init fetch of characters
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.7) {
+            collectionView.alpha = 1
+        }
+    }
+    
+    func didLoadPinnedMessages() {
+        guard let collectionView = pinnedMessagesCollectionView else {return}
+        collectionView.reloadData()
+        UIView.animate(withDuration: 0.7) {
             collectionView.alpha = 1
         }
     }
     
 
     func didLoadInitialMessages() {
-        print("reloading Messages")
         guard let collectionView = collectionView else {return}
         spinner.stopAnimating()
         
         collectionView.isHidden = false
         userCollectionView?.isHidden = false
         refreshCells()
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.7) {
             collectionView.alpha = 1
         }
     }
@@ -301,25 +305,23 @@ extension MessageListView : MessageListViewModelDelegate {
     
 }
 
+//MARK: - TabBar Delegate
 extension MessageListView : UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.title == Tabs.users.rawValue {
             collectionView?.isHidden = true
             userCollectionView?.isHidden = false
             pinnedMessagesCollectionView?.isHidden = true
-//            userCollectionView?.reloadData()
             addConstraints()
         } else if item.title == Tabs.messages.rawValue {
             collectionView?.isHidden = false
             userCollectionView?.isHidden = true
             pinnedMessagesCollectionView?.isHidden = true
-//            collectionView?.reloadData()
             addConstraints()
         } else if item.title == Tabs.pinned.rawValue {
             collectionView?.isHidden = true
             userCollectionView?.isHidden = true
             pinnedMessagesCollectionView?.isHidden = false
-//            collectionView?.reloadData()
             addConstraints()
         }
     }
