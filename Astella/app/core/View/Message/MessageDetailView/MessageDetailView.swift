@@ -29,6 +29,7 @@ final class MessageDetailView : UIView {
     
     private let textInput : UIView = {
        let textInput = UIView()
+        textInput.backgroundColor = .lightGray
         textInput.translatesAutoresizingMaskIntoConstraints = false
         return textInput
     }()
@@ -37,11 +38,10 @@ final class MessageDetailView : UIView {
         self.viewModel = viewModel
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-
-//        let collectionView = createCollectionView()
-//        self.collectionView = collectionView
+        let collectionView = createCollectionView()
+        self.collectionView = collectionView
         textInput.addSubviews(messageInputText, submitTextBtn)
-        addSubviews( textInput)
+        addSubviews(collectionView, textInput)
         
         addConstraints()
     }
@@ -58,8 +58,8 @@ final class MessageDetailView : UIView {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         ///Input for our messageCell
         collectionView.register(
-            MessageCollectionViewCell.self,
-            forCellWithReuseIdentifier: MessageCollectionViewCell.cellIdentifier
+            MessageDetailThreadViewCell.self,
+            forCellWithReuseIdentifier: MessageDetailThreadViewCell.cellIdentifier
         )
         collectionView.register(
             MessageDetailViewCell.self,
@@ -81,19 +81,21 @@ final class MessageDetailView : UIView {
     private func addConstraints() {
         guard let collectionView = collectionView else {return}
         NSLayoutConstraint.activate([
-//            collectionView.topAnchor.constraint(equalTo: topAnchor),
-//            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-//            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
 //            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            textInput.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            textInput.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
             textInput.leftAnchor.constraint(equalTo: leftAnchor),
             textInput.rightAnchor.constraint(equalTo: rightAnchor),
             textInput.bottomAnchor.constraint(equalTo: bottomAnchor),
-            textInput.heightAnchor.constraint(equalToConstant: 100),
+//            textInput.heightAnchor.constraint(equalToConstant: 100),
             
             messageInputText.topAnchor.constraint(equalTo: textInput.topAnchor),
             messageInputText.leftAnchor.constraint(equalTo: textInput.leftAnchor),
+            messageInputText.rightAnchor.constraint(equalTo: submitTextBtn.rightAnchor),
+
             messageInputText.bottomAnchor.constraint(equalTo: textInput.bottomAnchor),
             
             submitTextBtn.bottomAnchor.constraint(equalTo: textInput.bottomAnchor),

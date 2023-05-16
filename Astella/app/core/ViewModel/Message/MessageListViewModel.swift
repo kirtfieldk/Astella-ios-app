@@ -100,10 +100,10 @@ final class MessageListViewModel : MessageParentViewModel {
         AstellaService.shared.execute(requestService, expecting: MessageListResponse.self) {[weak self] result in
             switch result{
             case .success(let model):
-                self?.messages = model.data
-                self?.apiInfo = model.info
                 DispatchQueue.main.async {
-                    //Throw in main  queue since it is UI refresh
+                    self?.messageCellViewModels = []
+                    self?.messages = model.data
+                    self?.apiInfo = model.info
                     self?.delegate?.didLoadInitialMessages()
                 }
                 
@@ -233,7 +233,7 @@ extension MessageListViewModel : UIScrollViewDelegate {
     
 }
 
-// MARK: - Delegate to refresh Pins
+// MARK: - Delegate Connect Cells
 extension MessageListViewModel : MessageCollectionParentViewCellDelegate {
     func deletePin(msg: Message) {
         messagePinnedCellViewModels = messagePinnedCellViewModels.filter({ $0.message.id != msg.id })
@@ -280,7 +280,7 @@ extension MessageListViewModel : UICollectionViewDataSource, UICollectionViewDel
         ) as? UserCollectionViewCell else {
             fatalError("Unsupported cell")
         }
-        cell.configure(with: userCellViewModel[indexPath.row])
+        cell.configuration(viewModel: userCellViewModel[indexPath.row])
         return cell
     }
     

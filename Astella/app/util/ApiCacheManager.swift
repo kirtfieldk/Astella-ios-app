@@ -32,7 +32,8 @@ final class ApiCacheManger {
               endpoint != AstellaEndpoints.GET_EVENTS_MEMBER_OF, endpoint != AstellaEndpoints.GET_EVENT_BY_CITY,
               endpoint != AstellaEndpoints.POST_MESSAGE_TO_EVENT, endpoint != AstellaEndpoints.LIKE_MESSAGE_IN_EVENT,
               endpoint != AstellaEndpoints.GET_MESSAGE_IN_EVENT, endpoint != AstellaEndpoints.UNLIKE_MESSAGE_IN_EVENT,
-              endpoint != AstellaEndpoints.PIN_MESSAGE, endpoint != AstellaEndpoints.UNPIN_MESSAGE, endpoint != AstellaEndpoints.GET_USER_PIN
+              endpoint != AstellaEndpoints.PIN_MESSAGE, endpoint != AstellaEndpoints.UNPIN_MESSAGE, endpoint != AstellaEndpoints.GET_USER_PIN, endpoint != AstellaEndpoints.GET_MESSAGE_THREAD,
+              endpoint != AstellaEndpoints.GET_USRS_LIKE_MESSAGE
         else {
             return nil
         }

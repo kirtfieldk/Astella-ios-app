@@ -119,38 +119,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3E2F86C5-3D21-480D-BE08-A2AB85C71977"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Astella/app/core/View/Message/UsersCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "addConstraints()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "04D72E3E-5E34-47CA-BBEC-AEF447678483"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Astella/app/core/View/Message/UsersCollectionViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "addConstraints()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D7CCC0E9-0F5C-4B0D-A786-7E4408FF3457"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -158,8 +126,8 @@
             filePath = "Astella/app/core/View/Message/MessageCollectionParentViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "upvoteMessage()"
             landmarkType = "7">
             <Locations>
@@ -207,6 +175,292 @@
                   startingLineNumber = "203"
                   endingLineNumber = "203"
                   offsetFromSymbolStart = "188">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E76946AF-6E96-40AA-AA01-306610D8814F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astella/app/core/View/Message/MessageDetailView/MessageDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "addConstraints()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C312242A-D269-4D74-A090-321FC6E21C0A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astella/app/core/Controller/Message/MessageDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "setUpView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB97305F-AB2B-46E0-9F31-E57A1F7B2C49"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astella/app/core/Controller/OtherViewController/ProfileBriefListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "init(viewModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C867B121-F0A5-4A57-A323-CBE0635C40F4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astella/app/core/Controller/OtherViewController/ProfileBriefListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "setUpView()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C867B121-F0A5-4A57-A323-CBE0635C40F4 - 5ce5be18ab9f97e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.ProfileBriefListViewController.setUpView() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/Controller/OtherViewController/ProfileBriefListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  uuid = "C867B121-F0A5-4A57-A323-CBE0635C40F4 - 5ce5be18ab9f97e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.ProfileBriefListViewController.setUpView() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/Controller/OtherViewController/ProfileBriefListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  uuid = "C867B121-F0A5-4A57-A323-CBE0635C40F4 - 5ce5be18ab9f911d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.ProfileBriefListViewController.setUpView() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/Controller/OtherViewController/ProfileBriefListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  uuid = "C867B121-F0A5-4A57-A323-CBE0635C40F4 - 5ce5be18ab9f9191"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.ProfileBriefListViewController.setUpView() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/Controller/OtherViewController/ProfileBriefListViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "86">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47850203-AE05-46E7-8F08-A9FCD37A504E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astella/app/core/View/OtherView/ProfileBriefListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "addConstrains()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38DAA9BD-B8CC-4068-B4E3-B20DF21E8B5C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astella/app/core/View/Event/EventCreateView/EventCreateView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "addConstraint()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "38DAA9BD-B8CC-4068-B4E3-B20DF21E8B5C - 6de54e7d10cbfd9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.EventCreateView.addConstraint() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/View/Event/EventCreateView/EventCreateView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "1421">
+               </Location>
+               <Location
+                  uuid = "38DAA9BD-B8CC-4068-B4E3-B20DF21E8B5C - 6de54e7d10cbfd9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.EventCreateView.addConstraint() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/View/Event/EventCreateView/EventCreateView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "1186">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D019F3A-5055-43C9-921D-C48142A39D0B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astella/app/core/Controller/Event/EventCreateViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "addConstrains()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8D019F3A-5055-43C9-921D-C48142A39D0B - d61780c4aabb4c72"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.EventCreateViewController.addConstrains() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/Controller/Event/EventCreateViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "203">
+               </Location>
+               <Location
+                  uuid = "8D019F3A-5055-43C9-921D-C48142A39D0B - d61780c4aabb4eef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.EventCreateViewController.addConstrains() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/Controller/Event/EventCreateViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "203">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "565A3503-11A1-4DE7-BB04-C63056BB73B6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Astella/app/core/View/Event/EventCreateView/EventCreateView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "addConstraint()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "565A3503-11A1-4DE7-BB04-C63056BB73B6 - 6de54e7d10cbf2fe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.EventCreateView.addConstraint() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/View/Event/EventCreateView/EventCreateView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "565A3503-11A1-4DE7-BB04-C63056BB73B6 - 6de54e7d10cbf2fe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Astella.EventCreateView.addConstraint() -&gt; ()"
+                  moduleName = "Astella"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/keithkirtfield/Documents/Astella-UI/Astella/Astella/app/core/View/Event/EventCreateView/EventCreateView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "206">
                </Location>
             </Locations>
          </BreakpointContent>

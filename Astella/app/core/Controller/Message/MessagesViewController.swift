@@ -106,6 +106,7 @@ extension MessagesViewController : UICollectionViewDataSource, UICollectionViewD
             fatalError("Unsupported cell")
         }
         cell.delegate = viewModel
+        cell.vcDelegate = self
         cell.configuration(with: viewModel.messageCellViewModels[indexPath.row])
         return cell
     }
@@ -124,3 +125,15 @@ extension MessagesViewController : UICollectionViewDataSource, UICollectionViewD
     }
 }
 
+//MARK: - Connect to Cell
+extension MessagesViewController : MessageCollectionParentViewToVcCellDelegate {
+    func redirectToUpvoteUserList(msg: Message) {
+        print("redirected")
+        let vm = ProfileBriefListViewModel(msg: msg, eventId: viewModel.eventId)
+        let vc = ProfileBriefListViewController(viewModel: vm)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+}

@@ -21,6 +21,7 @@ class MessageParentViewModel : NSObject {
         self.parentId = parentId
     }
     
+    //MARK: - POST MSG
     func postMessage(msg : String, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         UserLocationManager.shared.getUserLocation {[weak self] location in
             guard let eventId = self?.eventId else { return }
@@ -38,6 +39,15 @@ class MessageParentViewModel : NSObject {
                 queryParameters: [])
             AstellaService.shared.execute(req, expecting: MessageListResponse.self, completion: completion) 
         }
+    }
+    
+    public func getMessageThread(msg : Message, page : String, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
+        guard let eventId = eventId else {return}
+        let req = RequestGetService(
+            urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: eventId.uuidString, messageId: msg.id.uuidString),
+                        endpoint: AstellaEndpoints.GET_MESSAGE_THREAD,
+            queryParameters: [URLQueryItem(name: "page", value: page)])
+        AstellaService.shared.execute(req, expecting: MessageListResponse.self, completion: completion)
     }
     
     //MARK: - PIN MSG
@@ -67,10 +77,10 @@ class MessageParentViewModel : NSObject {
             expecting: MessageListResponse.self,
             completion: completion)
     }
+    
     // MARK: - LIKE MSG
     public func upvoteMessage(messageId : UUID, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         UserLocationManager.shared.getUserLocation {[weak self] location in
-            guard let eventId = self?.eventId else {return}
             let point = LocationBody(latitude: 53.020485, longitude: -8.128898)
             guard let event = self?.eventId?.uuidString else {return}
             AstellaService.shared.execute(

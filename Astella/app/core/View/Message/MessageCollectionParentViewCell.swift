@@ -10,6 +10,7 @@ import UIKit
 class MessageCollectionParentViewCell : UICollectionViewCell {
     private var viewModel : MessageCellViewViewModel?
     public weak var delegate : MessageCollectionParentViewCellDelegate?
+    public weak var vcDelegate : MessageCollectionParentViewToVcCellDelegate?
     private let iconImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -83,20 +84,20 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         return btn
     }()
     
-    private let upvoteCtn : UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 12, weight: .light)
-        label.contentMode = .scaleAspectFit
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private let upvoteCtn : UIButton = {
+        let btn = UIButton(configuration: .plain())
+        btn.configuration?.buttonSize = .medium
+        btn.tintColor = .black
+        btn.addTarget(self, action: #selector(redirectToUpvoteUserList), for: .touchDown)
+        btn.contentMode = .scaleAspectFit
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
     }()
     
     // MARK: - Init
     
     override init(frame : CGRect) {
         super.init(frame : frame)
-        print("STARTUP")
         contentView.layer.masksToBounds = true
 
         ///Using content view helps with safe area
@@ -184,7 +185,7 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         iconImageView.image = nil
         nameLabel.text = nil
         content.text = nil
-        upvoteCtn.text = nil
+        upvoteCtn.configuration?.title = nil
         upvoteBtn.tintColor = .lightGray
         pinBtn.tintColor = .lightGray
     }
@@ -192,7 +193,7 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
     public func configuration(with viewModel : MessageCellViewViewModel) {
         nameLabel.text = viewModel.message.user.username
         content.text = viewModel.message.content
-        upvoteCtn.text = String(describing : (viewModel.message.up_votes))
+        upvoteCtn.configuration?.title = String(describing : (viewModel.message.up_votes))
         self.viewModel = viewModel
         guard let upvoted = viewModel.message.upvoted_by_user else {return}
         self.viewModel?.upvotedByUser = upvoted
@@ -218,6 +219,12 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
 //        }
         
     }
+    //MARK: - ProfileListRedirect
+    @objc
+    func redirectToUpvoteUserList() {
+        guard let msg = viewModel?.message else {return}
+        vcDelegate?.redirectToUpvoteUserList(msg: msg)
+    }
     
     //MARK: - Upvote
     @objc
@@ -230,7 +237,7 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
                     let msg = res.data[0]
                     DispatchQueue.main.async {
                         self?.upvoteBtn.tintColor = .red
-                        self?.upvoteCtn.text = String(describing: msg.up_votes)
+                        self?.upvoteCtn.configuration?.title = String(describing: msg.up_votes)
                         self?.viewModel?.upvotedByUser = true
                         self?.delegate?.updateMessage(msg: msg)
                     }
@@ -246,7 +253,7 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
                     let msg = res.data[0]
                     DispatchQueue.main.async {
                         self?.upvoteBtn.tintColor = .lightGray
-                        self?.upvoteCtn.text = String(describing: msg.up_votes)
+                        self?.upvoteCtn.configuration?.title = String(describing: msg.up_votes)
                         self?.viewModel?.upvotedByUser = false
                         self?.delegate?.updateMessage(msg: msg)
                     }
@@ -262,6 +269,7 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
     // MARK: - Pin Messages
     @objc
     private func pinMessage() {
+        print("CLICKED")
         guard let viewModel = viewModel, let upvotedByUser = viewModel.pinnedByUser else {return}
         if upvotedByUser {
             viewModel.unpinMessage {[weak self] result in
@@ -296,9 +304,14 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
     }
 }
 
-
+//MARK: - Protocol
 protocol MessageCollectionParentViewCellDelegate : AnyObject {
     func fetchPinMessages()
     func updateMessage(msg : Message)
     func deletePin(msg : Message)
+}
+
+//MARK: - Connect to VC
+protocol MessageCollectionParentViewToVcCellDelegate : AnyObject {
+    func redirectToUpvoteUserList(msg : Message)
 }

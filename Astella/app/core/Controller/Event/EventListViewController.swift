@@ -22,7 +22,6 @@ final class EventListViewController : UIViewController, EventListViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("ViewWillAppear")
         eventListView.fetchEvents()
         navigationController?.viewControllers = [self]
     }

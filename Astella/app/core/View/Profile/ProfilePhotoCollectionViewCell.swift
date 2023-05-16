@@ -54,7 +54,6 @@ final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
             switch data {
             case .success(let data):
                 DispatchQueue.main.async {
-                    print(String(describing: data))
                     self?.imageView.image = UIImage(data: data)
                 }
             case .failure(let err):

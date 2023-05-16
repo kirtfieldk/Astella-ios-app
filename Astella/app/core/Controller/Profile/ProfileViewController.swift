@@ -36,7 +36,6 @@ final class ProfileViewController : UIViewController {
     }
     
     func setUpView() {
-        
         NSLayoutConstraint.activate([
             profileView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             profileView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),

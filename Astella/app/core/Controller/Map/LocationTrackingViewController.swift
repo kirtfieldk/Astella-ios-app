@@ -47,6 +47,7 @@ class LocationTrackingViewController : UIViewController {    // Step 2: Declare 
         map.addAnnotation(pin)
         UserLocationManager.shared.resolveLocationName(with: location) {[weak self] locationName in
             self?.title = locationName
+            
         }
     }
     

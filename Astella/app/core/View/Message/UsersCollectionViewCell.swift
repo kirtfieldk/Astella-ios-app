@@ -12,51 +12,53 @@ final class UserCollectionViewCell : UICollectionViewCell {
     
     private let nameLabel : UILabel = {
         let label = UILabel()
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 28, weight: .light)
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.contentMode = .scaleAspectFit
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-        
+    }()
+    
+    private let divider : UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     //Called each time cell is dequed, best way is to background fetch
-    public func configure(with viewModel : UserCollectionViewCellViewModel) {
+    func configuration(viewModel : UserCollectionViewCellViewModel) {
         nameLabel.text = viewModel.user.username
-//        nameLabel.text = viewModel.user.username
-        contentView.layer.masksToBounds = true
-        setUpLayers()
-
-        addSubviews(nameLabel)
-
-        addConstraints()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.layer.masksToBounds = true
-        contentView.backgroundColor = .systemRed
-        contentView.addSubviews(nameLabel)
-
+        contentView.addSubviews(nameLabel, divider)
         addConstraints()
-        setUpLayers()
     }
     
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
     
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        ])
+    override func prepareForReuse() {
+        nameLabel.text = nil
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        nameLabel.text = nil
+    func addConstraints() {
+        NSLayoutConstraint.activate([
+            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            divider.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            divider.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            divider.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            divider.heightAnchor.constraint(equalToConstant: 1),
+
+
+        ])
     }
     
     func setUpLayers() {

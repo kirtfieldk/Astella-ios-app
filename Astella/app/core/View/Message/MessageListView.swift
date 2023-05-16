@@ -292,6 +292,7 @@ extension MessageListView : MessageListViewModelDelegate {
 
     func didLoadInitialMessages() {
         guard let collectionView = collectionView else {return}
+        print("Made it here")
         spinner.stopAnimating()
         
         collectionView.isHidden = false

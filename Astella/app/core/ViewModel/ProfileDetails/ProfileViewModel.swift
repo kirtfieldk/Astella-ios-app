@@ -53,7 +53,6 @@ final class ProfileViewModel : NSObject{
     
     //MARK: - Creating Sections
     public func createProfileBioSection() -> NSCollectionLayoutSection {
-        print("created section")
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1))

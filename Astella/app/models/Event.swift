@@ -13,8 +13,18 @@ struct Event : Hashable, Codable, Identifiable {
     let name : String
     let is_public : Bool
     let end_time: String
+    let duration : Int
     let code : String
     let created : String
     let description : String
+    let location_info : LocationInfo
+}
+
+struct EventPost : Codable {
+    let name : String
+    let is_public : Bool
+    let code : String
+    let description : String
+    let duration : Int
     let location_info : LocationInfo
 }

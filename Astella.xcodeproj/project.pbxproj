@@ -33,6 +33,7 @@
 		EA9AA6AD2A0C6C17007BCB26 /* MessageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA6AC2A0C6C17007BCB26 /* MessageDetailView.swift */; };
 		EA9AA6AF2A0D1896007BCB26 /* MessageDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA6AE2A0D1896007BCB26 /* MessageDetailViewCell.swift */; };
 		EA9AA6B12A0D1CF0007BCB26 /* MessageParentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA6B02A0D1CF0007BCB26 /* MessageParentViewModel.swift */; };
+		EA9AA6B32A0D537F007BCB26 /* MessageDetailThreadViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9AA6B22A0D537F007BCB26 /* MessageDetailThreadViewCell.swift */; };
 		EA9C4B3329FE8B9C00D46F15 /* RequestPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B3229FE8B9C00D46F15 /* RequestPostService.swift */; };
 		EA9C4B3629FEC0A000D46F15 /* MessageListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B3529FEC0A000D46F15 /* MessageListResponse.swift */; };
 		EA9C4B3829FEC6B600D46F15 /* EventsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B3729FEC6B600D46F15 /* EventsListResponse.swift */; };
@@ -52,6 +53,11 @@
 		EAA83BC32A02C73800C48813 /* UserCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA83BC22A02C73800C48813 /* UserCollectionViewCellViewModel.swift */; };
 		EAA873A129FF2D3100A5D24A /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA873A029FF2D3100A5D24A /* MessageCollectionViewCell.swift */; };
 		EAA873A329FF2DB800A5D24A /* MessageCellViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA873A229FF2DB800A5D24A /* MessageCellViewViewModel.swift */; };
+		EAAC9EAC2A1264FD00C393B9 /* EventCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EAB2A1264FD00C393B9 /* EventCreateViewController.swift */; };
+		EAAC9EAF2A126EDF00C393B9 /* EventCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EAE2A126EDF00C393B9 /* EventCreateViewModel.swift */; };
+		EAAC9EB22A126F1A00C393B9 /* EventCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EB12A126F1A00C393B9 /* EventCreateView.swift */; };
+		EAAC9EB42A12B3E900C393B9 /* EventCreateMapViewCellCiewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EB32A12B3E900C393B9 /* EventCreateMapViewCellCiewModel.swift */; };
+		EAAC9EB62A12B72D00C393B9 /* EventCreateMapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EB52A12B72D00C393B9 /* EventCreateMapViewCell.swift */; };
 		EAB08D362A013C950058240C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB08D352A013C950058240C /* TabBarViewController.swift */; };
 		EAB08D392A013D040058240C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB08D382A013D040058240C /* ProfileViewController.swift */; };
 		EAB08D3D2A013D960058240C /* LocationTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB08D3C2A013D960058240C /* LocationTrackingViewController.swift */; };
@@ -76,6 +82,9 @@
 		EAC7E37E2A004773007E8656 /* CityBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7E37D2A004773007E8656 /* CityBody.swift */; };
 		EAC7E3802A00486D007E8656 /* CityListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7E37F2A00486D007E8656 /* CityListResponse.swift */; };
 		EAC7E3822A004B50007E8656 /* EventCellViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7E3812A004B50007E8656 /* EventCellViewViewModel.swift */; };
+		EACC3D032A0D7BBF00F557FE /* ProfileBriefListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC3D022A0D7BBF00F557FE /* ProfileBriefListViewController.swift */; };
+		EACC3D062A0D7C6500F557FE /* ProfileBriefListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC3D052A0D7C6500F557FE /* ProfileBriefListViewModel.swift */; };
+		EACC3D092A0D7D2600F557FE /* ProfileBriefListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC3D082A0D7D2600F557FE /* ProfileBriefListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +135,7 @@
 		EA9AA6AC2A0C6C17007BCB26 /* MessageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailView.swift; sourceTree = "<group>"; };
 		EA9AA6AE2A0D1896007BCB26 /* MessageDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewCell.swift; sourceTree = "<group>"; };
 		EA9AA6B02A0D1CF0007BCB26 /* MessageParentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageParentViewModel.swift; sourceTree = "<group>"; };
+		EA9AA6B22A0D537F007BCB26 /* MessageDetailThreadViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailThreadViewCell.swift; sourceTree = "<group>"; };
 		EA9C4B3229FE8B9C00D46F15 /* RequestPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPostService.swift; sourceTree = "<group>"; };
 		EA9C4B3529FEC0A000D46F15 /* MessageListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListResponse.swift; sourceTree = "<group>"; };
 		EA9C4B3729FEC6B600D46F15 /* EventsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListResponse.swift; sourceTree = "<group>"; };
@@ -145,6 +155,11 @@
 		EAA83BC22A02C73800C48813 /* UserCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		EAA873A029FF2D3100A5D24A /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA873A229FF2DB800A5D24A /* MessageCellViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellViewViewModel.swift; sourceTree = "<group>"; };
+		EAAC9EAB2A1264FD00C393B9 /* EventCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateViewController.swift; sourceTree = "<group>"; };
+		EAAC9EAE2A126EDF00C393B9 /* EventCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateViewModel.swift; sourceTree = "<group>"; };
+		EAAC9EB12A126F1A00C393B9 /* EventCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateView.swift; sourceTree = "<group>"; };
+		EAAC9EB32A12B3E900C393B9 /* EventCreateMapViewCellCiewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateMapViewCellCiewModel.swift; sourceTree = "<group>"; };
+		EAAC9EB52A12B72D00C393B9 /* EventCreateMapViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateMapViewCell.swift; sourceTree = "<group>"; };
 		EAB08D352A013C950058240C /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		EAB08D382A013D040058240C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EAB08D3C2A013D960058240C /* LocationTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTrackingViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +184,9 @@
 		EAC7E37D2A004773007E8656 /* CityBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBody.swift; sourceTree = "<group>"; };
 		EAC7E37F2A00486D007E8656 /* CityListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListResponse.swift; sourceTree = "<group>"; };
 		EAC7E3812A004B50007E8656 /* EventCellViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewViewModel.swift; sourceTree = "<group>"; };
+		EACC3D022A0D7BBF00F557FE /* ProfileBriefListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBriefListViewController.swift; sourceTree = "<group>"; };
+		EACC3D052A0D7C6500F557FE /* ProfileBriefListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBriefListViewModel.swift; sourceTree = "<group>"; };
+		EACC3D082A0D7D2600F557FE /* ProfileBriefListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBriefListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +295,7 @@
 		EA0B642129FC4169001DD8DB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EACC3D072A0D7D0B00F557FE /* OtherView */,
 				EAB08D312A00A2AC0058240C /* Location */,
 				EAC7E3782A0043EB007E8656 /* Event */,
 				EA0B644629FD6666001DD8DB /* Map */,
@@ -363,6 +382,7 @@
 		EA9A401E2A06D907006E40DA /* OtherViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EACC3D052A0D7C6500F557FE /* ProfileBriefListViewModel.swift */,
 				EA9A401F2A06D97A006E40DA /* EventPasswordInputViewModel.swift */,
 			);
 			path = OtherViewModel;
@@ -382,6 +402,7 @@
 			children = (
 				EA9AA6AC2A0C6C17007BCB26 /* MessageDetailView.swift */,
 				EA9AA6AE2A0D1896007BCB26 /* MessageDetailViewCell.swift */,
+				EA9AA6B22A0D537F007BCB26 /* MessageDetailThreadViewCell.swift */,
 			);
 			path = MessageDetailView;
 			sourceTree = "<group>";
@@ -426,6 +447,7 @@
 		EA9C4B4129FEC9A000D46F15 /* OtherViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EACC3D022A0D7BBF00F557FE /* ProfileBriefListViewController.swift */,
 				EAB4BE762A06D3040029F9ED /* EventPasswordInputModalViewController.swift */,
 			);
 			path = OtherViewController;
@@ -441,6 +463,24 @@
 				EAA1D0632A0B015100A3F192 /* MessagePinnedViewModel.swift */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		EAAC9EAD2A126ECD00C393B9 /* EventCreateViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EAAC9EAE2A126EDF00C393B9 /* EventCreateViewModel.swift */,
+				EAAC9EB32A12B3E900C393B9 /* EventCreateMapViewCellCiewModel.swift */,
+			);
+			path = EventCreateViewModel;
+			sourceTree = "<group>";
+		};
+		EAAC9EB02A126F0A00C393B9 /* EventCreateView */ = {
+			isa = PBXGroup;
+			children = (
+				EAAC9EB12A126F1A00C393B9 /* EventCreateView.swift */,
+				EAAC9EB52A12B72D00C393B9 /* EventCreateMapViewCell.swift */,
+			);
+			path = EventCreateView;
 			sourceTree = "<group>";
 		};
 		EAB08D312A00A2AC0058240C /* Location */ = {
@@ -497,6 +537,7 @@
 		EAC7E3722A0042D8007E8656 /* EventDetails */ = {
 			isa = PBXGroup;
 			children = (
+				EAAC9EAD2A126ECD00C393B9 /* EventCreateViewModel */,
 				EAC7E3732A004300007E8656 /* EventListViewModel.swift */,
 				EAC7E3812A004B50007E8656 /* EventCellViewViewModel.swift */,
 			);
@@ -507,6 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				EAC7E3762A004378007E8656 /* EventListViewController.swift */,
+				EAAC9EAB2A1264FD00C393B9 /* EventCreateViewController.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -514,6 +556,7 @@
 		EAC7E3782A0043EB007E8656 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				EAAC9EB02A126F0A00C393B9 /* EventCreateView */,
 				EAC7E3792A004408007E8656 /* EventListView.swift */,
 				EAC7E37B2A004439007E8656 /* EventCellView.swift */,
 				EAA812B12A05D4C900B7FB07 /* EventPasswordModal.swift */,
@@ -521,6 +564,14 @@
 				EABA73162A08739200422D6B /* EventCellParentView.swift */,
 			);
 			path = Event;
+			sourceTree = "<group>";
+		};
+		EACC3D072A0D7D0B00F557FE /* OtherView */ = {
+			isa = PBXGroup;
+			children = (
+				EACC3D082A0D7D2600F557FE /* ProfileBriefListView.swift */,
+			);
+			path = OtherView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -668,13 +719,17 @@
 				EAB08D392A013D040058240C /* ProfileViewController.swift in Sources */,
 				EAA1D0662A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift in Sources */,
 				EA0B63F329FBF364001DD8DB /* ContentView.swift in Sources */,
+				EAAC9EB62A12B72D00C393B9 /* EventCreateMapViewCell.swift in Sources */,
 				EAB193042A04283F00A7F0C3 /* ProfileViewModel.swift in Sources */,
 				EAB67EFA2A01887C0043B58C /* InfoResponse.swift in Sources */,
 				EAA1D0642A0B015100A3F192 /* MessagePinnedViewModel.swift in Sources */,
 				EA9AA6AD2A0C6C17007BCB26 /* MessageDetailView.swift in Sources */,
 				EAA1D0682A0B0C2400A3F192 /* MessageCollectionParentViewCell.swift in Sources */,
+				EACC3D092A0D7D2600F557FE /* ProfileBriefListView.swift in Sources */,
 				EAB193012A041DB500A7F0C3 /* ApiCacheManager.swift in Sources */,
 				EAB7AEF629FDC5A3007C3BF5 /* AstellaService.swift in Sources */,
+				EA9AA6B32A0D537F007BCB26 /* MessageDetailThreadViewCell.swift in Sources */,
+				EAAC9EB22A126F1A00C393B9 /* EventCreateView.swift in Sources */,
 				EAB943522A02823B001602A2 /* ImageManager.swift in Sources */,
 				EABA73172A08739200422D6B /* EventCellParentView.swift in Sources */,
 				EABA165A2A05205700B39140 /* ProfileDetailCollectionCell.swift in Sources */,
@@ -686,13 +741,16 @@
 				EA0B645829FD7154001DD8DB /* LocationInfo.swift in Sources */,
 				EA0B645629FD6E53001DD8DB /* Event.swift in Sources */,
 				EA0B643729FD4243001DD8DB /* SocialMediaGroup.swift in Sources */,
+				EACC3D032A0D7BBF00F557FE /* ProfileBriefListViewController.swift in Sources */,
 				EA9C4B4929FF0A5100D46F15 /* EventstructMainViewController.swift in Sources */,
+				EACC3D062A0D7C6500F557FE /* ProfileBriefListViewModel.swift in Sources */,
 				EAB192FF2A03DC1400A7F0C3 /* RequestGetService.swift in Sources */,
 				EAC7E37A2A004408007E8656 /* EventListView.swift in Sources */,
 				EAB08D362A013C950058240C /* TabBarViewController.swift in Sources */,
 				EA0B645429FD687A001DD8DB /* MapMainView.swift in Sources */,
 				EA9C4B3629FEC0A000D46F15 /* MessageListResponse.swift in Sources */,
 				EAA3B4422A0445E300D63F20 /* ProfilePhotoCollectionViewCell.swift in Sources */,
+				EAAC9EAF2A126EDF00C393B9 /* EventCreateViewModel.swift in Sources */,
 				EA0B63F129FBF364001DD8DB /* AstellaApp.swift in Sources */,
 				EAA873A129FF2D3100A5D24A /* MessageCollectionViewCell.swift in Sources */,
 				EAB08D3D2A013D960058240C /* LocationTrackingViewController.swift in Sources */,
@@ -704,7 +762,9 @@
 				EA0B642F29FD38E6001DD8DB /* Message.swift in Sources */,
 				EAA812B42A06955A00B7FB07 /* EventMemberCollectionCellView.swift in Sources */,
 				EAA83BC32A02C73800C48813 /* UserCollectionViewCellViewModel.swift in Sources */,
+				EAAC9EB42A12B3E900C393B9 /* EventCreateMapViewCellCiewModel.swift in Sources */,
 				EA9AA6A72A0C69CC007BCB26 /* MessageDetailViewController.swift in Sources */,
+				EAAC9EAC2A1264FD00C393B9 /* EventCreateViewController.swift in Sources */,
 				EAC7E3772A004378007E8656 /* EventListViewController.swift in Sources */,
 				EAB7AEFA29FDC68F007C3BF5 /* AstellaApiEndpoints.swift in Sources */,
 				EAA83BC02A02C51C00C48813 /* UsersCollectionViewCell.swift in Sources */,
