@@ -331,10 +331,10 @@
             filePath = "Astella/app/core/View/Event/EventCreateView/EventCreateView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "addConstraint()"
-            landmarkType = "9">
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "38DAA9BD-B8CC-4068-B4E3-B20DF21E8B5C - 6de54e7d10cbfd9b"
@@ -379,8 +379,8 @@
             filePath = "Astella/app/core/Controller/Event/EventCreateViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "addConstrains()"
             landmarkType = "7">
             <Locations>
@@ -427,10 +427,10 @@
             filePath = "Astella/app/core/View/Event/EventCreateView/EventCreateView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "addConstraint()"
-            landmarkType = "9">
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "565A3503-11A1-4DE7-BB04-C63056BB73B6 - 6de54e7d10cbf2fe"

@@ -73,6 +73,7 @@
 		EABA16582A051BE100B39140 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA16572A051BE100B39140 /* ProfileView.swift */; };
 		EABA165A2A05205700B39140 /* ProfileDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA16592A05205700B39140 /* ProfileDetailCollectionCell.swift */; };
 		EABA73172A08739200422D6B /* EventCellParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA73162A08739200422D6B /* EventCellParentView.swift */; };
+		EABE9D632A158014000B3FAE /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE9D622A158014000B3FAE /* UserManager.swift */; };
 		EAC1FE2B2A01AC3800FC307A /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1FE2A2A01AC3800FC307A /* UserListResponse.swift */; };
 		EAC1FE2D2A01AFF400FC307A /* FooterReusableLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1FE2C2A01AFF400FC307A /* FooterReusableLoaderView.swift */; };
 		EAC7E3742A004300007E8656 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7E3732A004300007E8656 /* EventListViewModel.swift */; };
@@ -175,6 +176,7 @@
 		EABA16572A051BE100B39140 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EABA16592A05205700B39140 /* ProfileDetailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCollectionCell.swift; sourceTree = "<group>"; };
 		EABA73162A08739200422D6B /* EventCellParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellParentView.swift; sourceTree = "<group>"; };
+		EABE9D622A158014000B3FAE /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		EAC1FE2A2A01AC3800FC307A /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
 		EAC1FE2C2A01AFF400FC307A /* FooterReusableLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterReusableLoaderView.swift; sourceTree = "<group>"; };
 		EAC7E3732A004300007E8656 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				EA9C4B4A29FF0FF800D46F15 /* Extensions.swift */,
 				EAB943512A02823B001602A2 /* ImageManager.swift */,
 				EAB193002A041DB500A7F0C3 /* ApiCacheManager.swift */,
+				EABE9D622A158014000B3FAE /* UserManager.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				EAAC9EAF2A126EDF00C393B9 /* EventCreateViewModel.swift in Sources */,
 				EA0B63F129FBF364001DD8DB /* AstellaApp.swift in Sources */,
 				EAA873A129FF2D3100A5D24A /* MessageCollectionViewCell.swift in Sources */,
+				EABE9D632A158014000B3FAE /* UserManager.swift in Sources */,
 				EAB08D3D2A013D960058240C /* LocationTrackingViewController.swift in Sources */,
 				EA9C4B3F29FEC92700D46F15 /* MessageListView.swift in Sources */,
 				EAA3B44A2A04722200D63F20 /* ProfilePhotoCellViewModel.swift in Sources */,

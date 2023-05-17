@@ -25,10 +25,10 @@ class MessageParentViewModel : NSObject {
     func postMessage(msg : String, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         UserLocationManager.shared.getUserLocation {[weak self] location in
             guard let eventId = self?.eventId else { return }
-            guard let userId = UUID(uuidString: "db212c03-8d8a-4d36-9046-ab60ac5b250d") else {return}
+            guard let userId = UUID(uuidString: UserManager.shared.getUserId()) else {return}
             let req = RequestPostService(
                 urlIds:
-                    AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: eventId.uuidString, messageId: ""),
+                    AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: eventId.uuidString, messageId: ""),
                 endpoint: AstellaEndpoints.POST_MESSAGE_TO_EVENT,
                 httpMethod: "POST",
                 httpBody: PostMessageToEventBody(
@@ -44,7 +44,7 @@ class MessageParentViewModel : NSObject {
     public func getMessageThread(msg : Message, page : String, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         guard let eventId = eventId else {return}
         let req = RequestGetService(
-            urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: eventId.uuidString, messageId: msg.id.uuidString),
+            urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: eventId.uuidString, messageId: msg.id.uuidString),
                         endpoint: AstellaEndpoints.GET_MESSAGE_THREAD,
             queryParameters: [URLQueryItem(name: "page", value: page)])
         AstellaService.shared.execute(req, expecting: MessageListResponse.self, completion: completion)
@@ -54,7 +54,7 @@ class MessageParentViewModel : NSObject {
     public func pinMessage(messageId : UUID, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         guard let eventId = eventId else {return}
         AstellaService.shared.execute(
-            RequestPostService(urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d",
+            RequestPostService(urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(),
                                                      eventId: eventId.uuidString,
                                                      messageId: messageId.uuidString),
                                endpoint: AstellaEndpoints.PIN_MESSAGE,
@@ -68,7 +68,7 @@ class MessageParentViewModel : NSObject {
     public func unpinMessage(messageId : UUID, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         guard let eventId = eventId else {return}
         AstellaService.shared.execute(
-            RequestPostService(urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d",
+            RequestPostService(urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(),
                                                      eventId: eventId.uuidString, messageId:  messageId.uuidString),
                                endpoint: AstellaEndpoints.UNPIN_MESSAGE,
             httpMethod: "DELETE",
@@ -84,7 +84,7 @@ class MessageParentViewModel : NSObject {
             let point = LocationBody(latitude: 53.020485, longitude: -8.128898)
             guard let event = self?.eventId?.uuidString else {return}
             AstellaService.shared.execute(
-                RequestPostService(urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: event, messageId: messageId.uuidString),
+                RequestPostService(urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: event, messageId: messageId.uuidString),
                                    endpoint: AstellaEndpoints.LIKE_MESSAGE_IN_EVENT,
                 httpMethod: "POST",
                 httpBody: point,
@@ -99,7 +99,7 @@ class MessageParentViewModel : NSObject {
             let point = LocationBody(latitude: 53.020485, longitude: -8.128898)
             guard let event = self?.eventId?.uuidString else {return}
             AstellaService.shared.execute(
-                RequestPostService(urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: event, messageId: messageId.uuidString),
+                RequestPostService(urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: event, messageId: messageId.uuidString),
                                    endpoint: AstellaEndpoints.UNLIKE_MESSAGE_IN_EVENT,
                 httpMethod: "DELETE",
                 httpBody: point,

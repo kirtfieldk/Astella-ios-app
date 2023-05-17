@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 final class EventCreateViewModel : NSObject {
     
@@ -14,6 +15,8 @@ final class EventCreateViewModel : NSObject {
     }
     
     private var sections : [SectionTypes] = []
+    private var locationInfo : LocationInfoPost?
+    private var userCords : CLLocationCoordinate2D?
     
     public func setupSections() {
         sections = [
@@ -25,18 +28,25 @@ final class EventCreateViewModel : NSObject {
         super.init()
     }
     
-    public func postCreateEvent(event : Event) {
+    public func postCreateEvent(name : String, desc : String, isPublic : Bool, code : String, duration : Int, completion : @escaping (Result<EventListResponse, Error>) -> Void) {
+        guard let locationInfo = locationInfo else {return}
+        let event = EventPost(name: name, is_public: isPublic, code: code, description: desc, duration: duration, location_info: locationInfo)
         let req = RequestPostService(
             urlIds: AstellaUrlIds(userId: "", eventId: "", messageId: ""),
             endpoint: AstellaEndpoints.CREATE_EVENT, httpMethod: "POST", httpBody: event, queryParameters: [])
-        AstellaService.shared.execute(req, expecting: EventListResponse.self) { result in
-            switch result {
-            case .success(_):
-                print("Scicess")
-            case .failure(let err):
-                print(String(describing: err))
-            }
-        }
+        AstellaService.shared.execute(req, expecting: EventListResponse.self, completion: completion) 
+    }
+    
+    public func addUserToEvent(eventId : UUID, code : String, completion: @escaping (Result<BooleanResponse, Error>) -> Void) {
+        guard let userCords = userCords else {return}
+        let body = AddUserToEventBody(code: code, latitude: userCords.latitude, longitude: userCords.longitude)
+        let req = RequestPostService(urlIds:
+                                        AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: eventId.uuidString, messageId: ""),
+                                     endpoint: AstellaEndpoints.ADD_USER_TO_EVENT,
+                                     httpMethod: "POST",
+                                     httpBody: body,
+                                     queryParameters: [])
+        AstellaService.shared.execute(req, expecting: BooleanResponse.self, completion: completion)
     }
     
     private func createMapCollectionView() -> NSCollectionLayoutSection {
@@ -95,6 +105,7 @@ extension EventCreateViewModel : UICollectionViewDelegate, UICollectionViewDataS
                 fatalError("Unsupported cell")
             }
             cell.configuration(viewModel : viewModel)
+            cell.delegate = self
             return cell
         
         }
@@ -102,3 +113,12 @@ extension EventCreateViewModel : UICollectionViewDelegate, UICollectionViewDataS
 }
 
 
+extension EventCreateViewModel : EventCreateMapViewCellDelegate {
+    func setUserCords(coords: CLLocationCoordinate2D) {
+        self.userCords = coords
+    }
+    
+    func submitLocationInfo(info: LocationInfoPost) {
+        self.locationInfo = info
+    }
+}

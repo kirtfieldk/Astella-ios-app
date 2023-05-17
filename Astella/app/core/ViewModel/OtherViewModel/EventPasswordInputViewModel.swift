@@ -24,7 +24,7 @@ final class EventPasswordInputViewModel {
         UserLocationManager.shared.getUserLocation {[weak self] location in
             guard let eventId = self?.event.id.uuidString else {return}
             let req = RequestPostService(
-                urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: eventId, messageId: ""),
+                urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: eventId, messageId: ""),
                 endpoint: AstellaEndpoints.ADD_USER_TO_EVENT,
                 httpMethod: "POST",
                 httpBody: AddUserToEventBody(code: password,

@@ -17,6 +17,7 @@ final class EventCreateViewController : UIViewController {
         guard let eventCreateView = eventCreateView else {return}
         eventCreateView.mapCollectionView?.delegate = vm
         eventCreateView.mapCollectionView?.dataSource = vm
+        eventCreateView.delegate = self
         title = "Create Event"
         view.addSubviews(eventCreateView)
         addConstrains()
@@ -40,6 +41,16 @@ final class EventCreateViewController : UIViewController {
             eventCreateView.rightAnchor.constraint(equalTo: view.rightAnchor),
             eventCreateView.leftAnchor.constraint(equalTo: view.leftAnchor),
         ])
+    }
+}
+
+
+extension EventCreateViewController : EventCreateViewDelegate {
+    func pushToMessageViewController(event: Event) {
+        let vm = MessageListViewModel(event: event)
+        let vc = MessagesViewController(viewModel: vm)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
