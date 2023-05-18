@@ -10,30 +10,29 @@ import UIKit
 final class ProfileDetailCollectionCell : UICollectionViewCell {
     static let cellIdentifier = "ProfileDetailCollectionCell"
     
-    private let nameLabel : UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 18, weight: .bold)
-        label.contentMode = .scaleAspectFit
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private let textView: UITextView = {
         let textView = UITextView()
-        textView.layer.masksToBounds = true
         textView.textColor = UIColor.black
+        textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = NSTextAlignment.left
         textView.dataDetectorTypes = UIDataDetectorTypes.all
         textView.layer.shadowOpacity = 0.5
-        textView.isEditable = false
+        textView.contentMode = .scaleAspectFit
+        textView.font = .systemFont(ofSize: 20)
+        textView.alpha = 1
         return textView
-        
     }()
+    
+    private let divider : UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubviews(nameLabel, textView)
+        addSubviews(textView, divider)
         addConstraints()
     }
     
@@ -42,24 +41,31 @@ final class ProfileDetailCollectionCell : UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        nameLabel.text = nil
+        super.prepareForReuse()
         textView.text = nil
     }
+    
     func configure(with viewModel : ProfileDetailCellViewModel) {
-        nameLabel.text = viewModel.usr.username
         textView.text = viewModel.usr.description
-
+        if viewModel.isEditing {
+            textView.isEditable = true
+            textView.layer.borderWidth = 1
+            textView.layer.cornerRadius = 10
+        } else {
+            textView.isEditable = false
+        }
     }
     
     func addConstraints() {
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            nameLabel.bottomAnchor.constraint(equalTo: textView.topAnchor),
-            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-//            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-//            textView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-//            textView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            textView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            textView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            textView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+            textView.heightAnchor.constraint(equalToConstant: 160),
+            divider.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 1),
+            divider.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            divider.rightAnchor.constraint(equalTo: rightAnchor, constant: -10 ),
+            divider.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
     

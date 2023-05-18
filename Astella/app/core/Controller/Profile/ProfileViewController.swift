@@ -47,3 +47,8 @@ final class ProfileViewController : UIViewController {
     
 
 
+extension ProfileViewController : ProfileViewModelDelegate {
+    func goToSettings(user : User) {
+        let vm = ProfileViewModel(user: user, isEditing: true)
+    }
+}

@@ -330,7 +330,6 @@ final class EventCreateView : UIView {
 
 //MARK: - Delegate
 extension EventCreateView : UIScrollViewDelegate {
-    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let currentPos = scrollView.contentOffset
         if currentPos.y < 100 && currentPos.y != 0 {

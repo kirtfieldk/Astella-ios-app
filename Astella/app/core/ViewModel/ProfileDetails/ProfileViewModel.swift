@@ -9,46 +9,89 @@ import UIKit
 
 
 final class ProfileViewModel : NSObject{
-    private let user : User?
-    private var profilePhotoCellModels : [ProfilePhotoCellViewModel] = []
+    public let user : User?
+    private let isEditing : Bool
+    public weak var delegate : ProfileViewModelDelegate?
     var photoList : [URL] = []
+    var socialMap : [String : URL] = [:]
     enum SectionTypes {
         case photos(viewModel : [ProfilePhotoCellViewModel])
         case bio(viewModel : ProfileDetailCellViewModel)
+        case socials(viewModel : [ProfileDetailSocialCellViewModel])
     }
     public var sections : [SectionTypes] = []
 
-    init(user : User) {
+    //MARK: - INIT PhotoArray SocialArray
+    init(user : User, isEditing : Bool) {
         self.user = user
+        self.isEditing = isEditing
         super.init()
-        buildPhotoArray()
+        buildPhotoArray(images: [user.img_one, user.img_two, user.img_three])
+        buildSocialArray()
         setUpSections()
     }
     
-    private func buildPhotoArray() {
-        guard let user = user else {return}
-        guard let photoOne = URL(string: user.img_one) else {
+    private func buildPhotoArray(images : [String?]) {
+        images.forEach { img in
+            buildPhotoArray(img: img)
+        }
+    }
+    
+    private func buildPhotoArray(img : String?) {
+        guard let img = img else {return}
+        guard let photo = URL(string: img) else {
             return
         }
-        photoList.append(photoOne)
-        guard let photoTwo = URL(string: user.img_two) else {
-            return
+        photoList.append(photo)
+    }
+    //MARK: - Build social map
+    private func buildSocialArray() {
+        for media in SocialMediaTypes.allCases {
+            switch media {
+            case .twitter:
+                buildSocialArray(social: media.rawValue, url: user?.twitter)
+            case .instagram:
+                buildSocialArray(social: media.rawValue, url: user?.ig)
+            case .tiktok:
+                buildSocialArray(social: media.rawValue, url: user?.tiktok)
+            case .snapchat:
+                buildSocialArray(social: media.rawValue, url: user?.twitter)
+            case .youtube:
+                buildSocialArray(social: media.rawValue, url: user?.twitter)
+            }
         }
-        photoList.append(photoTwo)
-        guard let photoThree = URL(string: user.img_three) else {
-            return
-        }
-        photoList.append(photoThree)
+    }
+    
+    private func buildSocialArray(social : String, url : String?) {
+        guard let url = url, let socialUrl = URL(string: url) else {return}
+        socialMap[social] = socialUrl
     }
 
     public func setUpSections() {
         guard let user = user else {return}
+        var userSocials : [ProfileDetailSocialCellViewModel] = []
+        for (social, url) in socialMap {
+            userSocials.append(ProfileDetailSocialCellViewModel(socialLink: url, social: social, isEditing: isEditing))
+        }
         sections = [
             .photos(viewModel: photoList.compactMap({
                 return ProfilePhotoCellViewModel(imageUrl: $0)
             })),
-            .bio(viewModel: .init(usr: user)),
+            .bio(viewModel: .init(usr: user, isEditing: isEditing)),
+            .socials(viewModel: userSocials)
         ]
+    }
+    
+    public func getUserName() -> String {
+        guard let userName = user?.username else {
+            return ""
+        }
+        return userName
+    }
+    
+    public func goToSettings() {
+        guard let user = user else {return}
+        delegate?.goToSettings(user : user)
     }
     
     //MARK: - Creating Sections
@@ -65,10 +108,42 @@ final class ProfileViewModel : NSObject{
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(150)),
+                heightDimension: .absolute(185)),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
+    }
+    
+    public func createSocialsSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        )
+        item.contentInsets = NSDirectionalEdgeInsets(
+            top: 1,
+            leading: 2,
+            bottom: 1,
+            trailing: 2)
+        var group : NSCollectionLayoutGroup
+        if isEditing {
+            group = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(50)),
+                subitems: [item])
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        } else {
+            group = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.24),
+                    heightDimension: .absolute(50)),
+                subitems: [item, item])
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .groupPaging
+            return section
+        }
+       
     }
     
     //Rows
@@ -88,9 +163,6 @@ final class ProfileViewModel : NSObject{
                 heightDimension: .fractionalHeight(0.60)),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        //scroll horizontal
-//        section.orthogonalScrollingBehavior = .continuous
-        //Snaps to next card
         section.orthogonalScrollingBehavior = .groupPaging
 
         return section
@@ -112,6 +184,9 @@ extension ProfileViewModel : UICollectionViewDataSource, UICollectionViewDelegat
             return self.count
         case .bio(viewModel: _):
             return 1
+        case .socials(viewModel: let self):
+            print(self.count)
+            return self.count
         }
     }
     
@@ -142,7 +217,20 @@ extension ProfileViewModel : UICollectionViewDataSource, UICollectionViewDelegat
             }
             cell.configure(with: viewModel)
             return cell
+        case .socials(viewModel: let viewModel):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ProfileDetailSocialCellView.cellIdentifier,
+                for: indexPath
+            ) as? ProfileDetailSocialCellView else {
+                fatalError("Unsupported cell")
+            }
+            cell.configuration(viewModel: viewModel[indexPath.row])
+            return cell
         }
     }
     
+}
+
+protocol ProfileViewModelDelegate : AnyObject {
+    func goToSettings(user : User)
 }

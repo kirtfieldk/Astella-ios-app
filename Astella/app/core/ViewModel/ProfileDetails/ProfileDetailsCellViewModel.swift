@@ -10,9 +10,10 @@ import Foundation
 
 final class ProfileDetailCellViewModel {
     let usr : User
+    let isEditing : Bool
     
-    init(usr : User) {
+    init(usr : User, isEditing : Bool) {
         self.usr = usr
-        
+        self.isEditing = isEditing
     }
 }

@@ -21,12 +21,12 @@ final class TabBarViewController: UITabBarController {
         if let sheet = eventVc.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
         }
-        let profileVc = ProfileViewController(viewModel : ProfileViewModel(user: User.usr))
+        let profileVc = ProfileViewController(viewModel : ProfileViewModel(user: User.usr, isEditing: false))
         let mapVc = LocationTrackingViewController()
         let eventCreateVc = EventCreateViewController()
 
         eventVc.navigationItem.largeTitleDisplayMode = .automatic
-        profileVc.navigationItem.largeTitleDisplayMode = .automatic
+        profileVc.navigationItem.largeTitleDisplayMode = .never
         mapVc.navigationItem.largeTitleDisplayMode = .automatic
         eventCreateVc.navigationItem.largeTitleDisplayMode = .never
 

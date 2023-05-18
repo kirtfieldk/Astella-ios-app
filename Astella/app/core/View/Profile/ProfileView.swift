@@ -14,6 +14,21 @@ final class ProfileView : UIView {
     private let viewModel : ProfileViewModel
     public var collectionView : UICollectionView?
     
+    private let nameLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 30, weight: .bold)
+        return label
+    }()
+    
+    private let settingButton : UIButton = {
+        let btn = UIButton()
+        let img = UIImage(systemName: "gear")
+        btn.setImage(img, for: .normal)
+        btn.addTarget(self, action: #selector(goToSettings), for: .touchDown)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
     
     init(frame : CGRect, viewModel : ProfileViewModel) {
         self.viewModel = viewModel
@@ -21,9 +36,8 @@ final class ProfileView : UIView {
         translatesAutoresizingMaskIntoConstraints = false
         let collectionView = createCollectionView()
         self.collectionView = collectionView
-        //Do not need view since we are already in view
-        addSubviews(collectionView)
-//        setupCollectionView()
+        nameLabel.text = viewModel.getUserName()
+        addSubviews(nameLabel, collectionView, settingButton)
         addConstraints()
     }
 
@@ -35,7 +49,15 @@ final class ProfileView : UIView {
     private func addConstraints() {
         guard let collectionView = collectionView else {return}
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            nameLabel.topAnchor.constraint(equalTo: topAnchor),
+            nameLabel.leftAnchor.constraint(equalTo: leftAnchor),
+            nameLabel.rightAnchor.constraint(equalTo: settingButton.leftAnchor),
+            
+            settingButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            settingButton.topAnchor.constraint(equalTo: topAnchor),
+            settingButton.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
+
+            collectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
             collectionView.leftAnchor.constraint(equalTo: leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -58,7 +80,10 @@ final class ProfileView : UIView {
             ProfileDetailCollectionCell.self,
             forCellWithReuseIdentifier: ProfileDetailCollectionCell.cellIdentifier
         )
-
+        collectionView.register(
+            ProfileDetailSocialCellView.self,
+            forCellWithReuseIdentifier: ProfileDetailSocialCellView.cellIdentifier
+        )
         return collectionView
     }
     
@@ -69,16 +94,15 @@ final class ProfileView : UIView {
             return viewModel.createProfilePhotoSection()
         case .bio:
             return viewModel.createProfileBioSection()
+        case .socials:
+            return viewModel.createSocialsSection()
         }
         
     }
     
-    ///Set the data source, for this project the data will come from view models
-//    private func setupCollectionView() {
-//        guard let collectionView = collectionView else {return}
-//        print("Created collectionView")
-//        collectionView.delegate = viewModel
-//        collectionView.dataSource = viewModel
-//
-//    }
+    @objc
+    private func goToSettings() {
+        viewModel.goToSettings()
+    }
+
 }
