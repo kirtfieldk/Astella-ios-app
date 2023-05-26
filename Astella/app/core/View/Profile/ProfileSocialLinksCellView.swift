@@ -17,12 +17,13 @@ final class ProfileSocialLinksCellView : UICollectionViewCell {
     }()
     
     private var socialInput : UITextField = {
-       let input = UITextField()
-        
+        let input = UITextField()
+        input.translatesAutoresizingMaskIntoConstraints = false
         return input
     }()
     
     public func configuration(isEditing : Bool, url : String, social : String) {
+        
         if isEditing {
             addSubviews(socialInput)
         } else {
@@ -32,5 +33,9 @@ final class ProfileSocialLinksCellView : UICollectionViewCell {
     
     public override func prepareForReuse() {
         super.prepareForReuse()
+        socialInput.text = nil
+        btn.setTitle(nil, for: .normal)
     }
+    
+    
 }

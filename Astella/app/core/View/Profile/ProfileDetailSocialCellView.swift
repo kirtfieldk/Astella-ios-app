@@ -43,40 +43,42 @@ final class ProfileDetailSocialCellView : UICollectionViewCell {
     }
     
     public func configuration(viewModel : ProfileDetailSocialCellViewModel) {
+        viewModel.delegate = self
         if (viewModel.isEditing) {
             backgroundColor = UIColor(red: 21 / 255, green: 43 / 255, blue: 56 / 255, alpha: 1)
-            label.text = viewModel.social
+            label.text = viewModel.social.rawValue
+            socialInput.text = viewModel.socialLink.absoluteString
             addSubviews(socialInput, label)
             addInputConstraint()
         } else {
-            socialButton.setTitle(viewModel.social, for: .normal)
+            socialButton.setTitle(viewModel.social.rawValue, for: .normal)
             addSubview(socialButton)
             addBtnConstraint()
         }
         addColor(social: viewModel.social)
     }
     
-    private func addColor(social : String) {
+    private func addColor(social : SocialMediaTypes) {
         switch social {
-        case SocialMediaTypes.tiktok.rawValue:
+        case SocialMediaTypes.tiktok:
             label.backgroundColor = .black
             socialInput.backgroundColor = .black
             socialInput.textColor = .white
             label.textColor = .white
             socialButton.backgroundColor = .black
-        case SocialMediaTypes.twitter.rawValue:
+        case SocialMediaTypes.twitter:
             label.backgroundColor = .systemBlue
             socialInput.backgroundColor = .systemBlue
             socialButton.backgroundColor = .systemBlue
-        case SocialMediaTypes.youtube.rawValue:
+        case SocialMediaTypes.youtube:
             label.backgroundColor = .systemRed
             socialInput.backgroundColor = .systemRed
             socialButton.backgroundColor = .systemRed
-        case SocialMediaTypes.instagram.rawValue:
+        case SocialMediaTypes.instagram:
             label.backgroundColor = .systemPink
             socialInput.backgroundColor = .systemPink
             socialButton.backgroundColor = .systemPink
-        case SocialMediaTypes.snapchat.rawValue:
+        case SocialMediaTypes.snapchat:
             label.backgroundColor = .systemYellow
             socialInput.backgroundColor = .systemYellow
             socialButton.backgroundColor = .systemYellow
@@ -115,4 +117,12 @@ final class ProfileDetailSocialCellView : UICollectionViewCell {
         ])
     }
 
+}
+
+
+extension ProfileDetailSocialCellView : ProfileDetailSocialCellViewModelDelegate {
+    func grabInputValue() -> String {
+        guard let txt = socialInput.text else {return ""}
+        return txt
+    }
 }

@@ -7,20 +7,44 @@
 
 import UIKit
 
-final class ProfilePhotoCellViewModel  {
+final class ProfilePhotoCellViewModel : NSObject {
     
-    public let imageUrl: URL?
-    public var image : UIImage?
+    public let imageUrl: UIImage
+    public let editing : Bool
+    public weak var delegate : ProfilePhotoCellViewModelDelegate?
+    public weak var collectionDelegate : ProfilePhotoCellViewModelUpdateCollectionViewDelegate?
+
     
     // MARK: - Init
-    init(imageUrl: URL) {
+    init(imageUrl: UIImage, editing : Bool) {
         self.imageUrl = imageUrl
+        self.editing = editing
+    }
+}
+
+extension ProfilePhotoCellViewModel : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("Image selected")
+        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+            //SetImage
+            DispatchQueue.main.async {
+                self.delegate?.refreshImage(image: image)
+            }
+            self.collectionDelegate?.updateCollectionView(image : image, oldPhoto: imageUrl)
+        }            
+        picker.dismiss(animated: true, completion: nil)
+
     }
     
-    // MARK: - Public
-    public func fetchImage(completion : @escaping (Result<Data, Error>) -> Void) {
-        guard let imageUrl = imageUrl else {return}
-        ImageManager.shared.downloadImage(imageUrl, completion: completion)  
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
-    
+}
+
+protocol ProfilePhotoCellViewModelDelegate : AnyObject {
+    func refreshImage(image : UIImage)
+}
+
+protocol ProfilePhotoCellViewModelUpdateCollectionViewDelegate : AnyObject {
+    func updateCollectionView(image : UIImage, oldPhoto : UIImage)
 }

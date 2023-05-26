@@ -23,9 +23,21 @@ final class ProfileView : UIView {
     
     private let settingButton : UIButton = {
         let btn = UIButton()
-        let img = UIImage(systemName: "gear")
+        let img = UIImage(systemName: "slider.horizontal.3")
         btn.setImage(img, for: .normal)
+        btn.tintColor = .black
         btn.addTarget(self, action: #selector(goToSettings), for: .touchDown)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    private let saveBtn : UIButton = {
+        let btn = UIButton()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.configuration = .plain()
+        btn.tintColor = .systemCyan
+        btn.addTarget(self, action: #selector(updateUser), for: .touchDown)
+        btn.setTitle("Save", for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -34,11 +46,23 @@ final class ProfileView : UIView {
         self.viewModel = viewModel
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
+        setUpView()
+    }
+    
+    public func setUpView() {
         let collectionView = createCollectionView()
         self.collectionView = collectionView
         nameLabel.text = viewModel.getUserName()
-        addSubviews(nameLabel, collectionView, settingButton)
+        if viewModel.isEditing {
+            willRemoveSubview(settingButton)
+            addSubviews(nameLabel, collectionView, saveBtn)
+        } else {
+            willRemoveSubview(saveBtn)
+            addSubviews(nameLabel, collectionView, settingButton)
+        }
         addConstraints()
+
+        
     }
 
     // MARK: - INIT
@@ -48,20 +72,33 @@ final class ProfileView : UIView {
 
     private func addConstraints() {
         guard let collectionView = collectionView else {return}
-        NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: topAnchor),
-            nameLabel.leftAnchor.constraint(equalTo: leftAnchor),
-            nameLabel.rightAnchor.constraint(equalTo: settingButton.leftAnchor),
-            
-            settingButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            settingButton.topAnchor.constraint(equalTo: topAnchor),
-            settingButton.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
-
-            collectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
+        if viewModel.isEditing {
+            NSLayoutConstraint.activate([
+                nameLabel.topAnchor.constraint(equalTo: topAnchor),
+                nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+                nameLabel.trailingAnchor.constraint(equalTo: saveBtn.leadingAnchor),
+                saveBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+                saveBtn.topAnchor.constraint(equalTo: topAnchor),
+                saveBtn.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
+                collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+                collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+                collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                nameLabel.topAnchor.constraint(equalTo: topAnchor),
+                nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+                nameLabel.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor),
+                settingButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+                settingButton.topAnchor.constraint(equalTo: topAnchor),
+                settingButton.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
+                collectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+                collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+                collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+                collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            ])
+        }
+       
     }
     
     //MARK: - Register Cells
@@ -97,12 +134,16 @@ final class ProfileView : UIView {
         case .socials:
             return viewModel.createSocialsSection()
         }
-        
     }
     
     @objc
     private func goToSettings() {
         viewModel.goToSettings()
+    }
+    
+    @objc
+    private func updateUser() {
+        viewModel.updateUser()
     }
 
 }

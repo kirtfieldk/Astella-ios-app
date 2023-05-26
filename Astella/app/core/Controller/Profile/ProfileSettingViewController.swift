@@ -18,12 +18,21 @@ final class ProfileSettingViewController : UIViewController {
     init(viewModel : ProfileSettingViewModel) {
         self.viewModel = viewModel
         self.settingView = ProfileSettingView(frame: .zero, viewModel: viewModel)
-        super.init()
+        super.init(nibName: nil, bundle: nil)
+        settingView.collectionView?.delegate = viewModel
+        settingView.collectionView?.dataSource = viewModel
+        self.viewModel.delegate = self
+        title = "Settings"
         view.addSubview(settingView)
+        addConstraints()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func addConstraints() {
@@ -33,5 +42,14 @@ final class ProfileSettingViewController : UIViewController {
             settingView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             settingView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+}
+
+extension ProfileSettingViewController : ProfileSettingViewModelDelegate {
+    func pushToEditProfile() {
+        let vm = ProfileViewModel(user: User.usr, isEditing: true)
+        let vc = ProfileViewController(viewModel: vm)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

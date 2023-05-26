@@ -47,6 +47,7 @@ final class ProfileDetailCollectionCell : UICollectionViewCell {
     
     func configure(with viewModel : ProfileDetailCellViewModel) {
         textView.text = viewModel.usr.description
+        viewModel.delegate = self
         if viewModel.isEditing {
             textView.isEditable = true
             textView.layer.borderWidth = 1
@@ -69,4 +70,13 @@ final class ProfileDetailCollectionCell : UICollectionViewCell {
         ])
     }
     
+}
+
+
+extension ProfileDetailCollectionCell : ProfileDetailCellViewModelDelegate {
+    func grabInputValue() -> String {
+        guard let txt = textView.text else {return ""}
+        print(txt)
+        return txt
+    }
 }

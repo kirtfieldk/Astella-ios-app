@@ -12,14 +12,14 @@ struct User : Hashable, Codable, Identifiable {
     let id : UUID
     let created : String
     let username : String
-    let description : String
-    let ig : String
-    let twitter : String
-    let tiktok : String
-    let avatar_url : String
-    let img_one : String
-    let img_two : String
-    let img_three : String
+    var description : String
+    var ig : String
+    var twitter : String
+    var tiktok : String
+    var avatar_url : String
+    var img_one : String
+    var img_two : String
+    var img_three : String
 
     static let usr = User(id: UUID(),
                           created: "2023-05-03 19:20:53.237084",
@@ -29,9 +29,9 @@ struct User : Hashable, Codable, Identifiable {
                           twitter: "Twitter",
                           tiktok: "TikTok",
                           avatar_url: "",
-                          img_one: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+                          img_one: "https://d2vz9qh9qrykid.cloudfront.net/Simulator%20Screenshot%20-%20iPad%20Air%20(5th%20generation)%20-%202023-05-09%20at%2007.52.12.png",
                           img_two: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
-                          img_three: "https://rickandmortyapi.com/api/character/avatar/3.jpeg")
+                          img_three: "")
 }
 
 struct EmptyBody : Codable {

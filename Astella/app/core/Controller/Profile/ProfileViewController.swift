@@ -18,6 +18,7 @@ final class ProfileViewController : UIViewController {
         self.viewModel = viewModel
         self.profileView = ProfileView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -32,7 +33,10 @@ final class ProfileViewController : UIViewController {
         view.addSubview(profileView)
         setUpView()
 
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func setUpView() {
@@ -49,6 +53,11 @@ final class ProfileViewController : UIViewController {
 
 extension ProfileViewController : ProfileViewModelDelegate {
     func goToSettings(user : User) {
-        let vm = ProfileViewModel(user: user, isEditing: true)
+        let vm = ProfileSettingViewModel(user: User.usr)
+        let vc = ProfileSettingViewController(viewModel: vm)
+        vc.navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
 }
+

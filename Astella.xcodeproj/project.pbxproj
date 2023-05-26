@@ -51,6 +51,7 @@
 		EAA812B42A06955A00B7FB07 /* EventMemberCollectionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA812B32A06955A00B7FB07 /* EventMemberCollectionCellView.swift */; };
 		EAA83BC02A02C51C00C48813 /* UsersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA83BBF2A02C51C00C48813 /* UsersCollectionViewCell.swift */; };
 		EAA83BC32A02C73800C48813 /* UserCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA83BC22A02C73800C48813 /* UserCollectionViewCellViewModel.swift */; };
+		EAA8601A2A178B750070A0EF /* ProfileSettingViewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA860192A178B750070A0EF /* ProfileSettingViewCellCollectionViewCell.swift */; };
 		EAA873A129FF2D3100A5D24A /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA873A029FF2D3100A5D24A /* MessageCollectionViewCell.swift */; };
 		EAA873A329FF2DB800A5D24A /* MessageCellViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA873A229FF2DB800A5D24A /* MessageCellViewViewModel.swift */; };
 		EAAC9EAC2A1264FD00C393B9 /* EventCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EAB2A1264FD00C393B9 /* EventCreateViewController.swift */; };
@@ -83,6 +84,8 @@
 		EABE9D652A15A2F1000B3FAE /* ProfileSocialLinksCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE9D642A15A2F1000B3FAE /* ProfileSocialLinksCellView.swift */; };
 		EAC1FE2B2A01AC3800FC307A /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1FE2A2A01AC3800FC307A /* UserListResponse.swift */; };
 		EAC1FE2D2A01AFF400FC307A /* FooterReusableLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1FE2C2A01AFF400FC307A /* FooterReusableLoaderView.swift */; };
+		EAC461212A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC461202A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift */; };
+		EAC461232A170A190068C1E7 /* SettingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC461222A170A190068C1E7 /* SettingEnums.swift */; };
 		EAC7E3742A004300007E8656 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7E3732A004300007E8656 /* EventListViewModel.swift */; };
 		EAC7E3772A004378007E8656 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7E3762A004378007E8656 /* EventListViewController.swift */; };
 		EAC7E37A2A004408007E8656 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7E3792A004408007E8656 /* EventListView.swift */; };
@@ -161,6 +164,7 @@
 		EAA812B32A06955A00B7FB07 /* EventMemberCollectionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMemberCollectionCellView.swift; sourceTree = "<group>"; };
 		EAA83BBF2A02C51C00C48813 /* UsersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA83BC22A02C73800C48813 /* UserCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		EAA860192A178B750070A0EF /* ProfileSettingViewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA873A029FF2D3100A5D24A /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA873A229FF2DB800A5D24A /* MessageCellViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellViewViewModel.swift; sourceTree = "<group>"; };
 		EAAC9EAB2A1264FD00C393B9 /* EventCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 		EABE9D642A15A2F1000B3FAE /* ProfileSocialLinksCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSocialLinksCellView.swift; sourceTree = "<group>"; };
 		EAC1FE2A2A01AC3800FC307A /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
 		EAC1FE2C2A01AFF400FC307A /* FooterReusableLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterReusableLoaderView.swift; sourceTree = "<group>"; };
+		EAC461202A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingCellViewModel.swift; sourceTree = "<group>"; };
+		EAC461222A170A190068C1E7 /* SettingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnums.swift; sourceTree = "<group>"; };
 		EAC7E3732A004300007E8656 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		EAC7E3762A004378007E8656 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		EAC7E3792A004408007E8656 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
@@ -233,6 +239,7 @@
 		EA0B63E429FBF364001DD8DB = {
 			isa = PBXGroup;
 			children = (
+				EA0B642029FC3B3F001DD8DB /* Info.plist */,
 				EA0B63EF29FBF364001DD8DB /* Astella */,
 				EA0B640029FBF367001DD8DB /* AstellaTests */,
 				EA0B640A29FBF367001DD8DB /* AstellaUITests */,
@@ -253,7 +260,6 @@
 		EA0B63EF29FBF364001DD8DB /* Astella */ = {
 			isa = PBXGroup;
 			children = (
-				EA0B642029FC3B3F001DD8DB /* Info.plist */,
 				EA0B642829FD3839001DD8DB /* app */,
 				EA0B63F429FBF366001DD8DB /* Assets.xcassets */,
 				EA0B63F629FBF366001DD8DB /* Preview Content */,
@@ -352,6 +358,7 @@
 				EA0B645529FD6E53001DD8DB /* Event.swift */,
 				EA0B645729FD7154001DD8DB /* LocationInfo.swift */,
 				EAC7E37D2A004773007E8656 /* CityBody.swift */,
+				EAC461222A170A190068C1E7 /* SettingEnums.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -560,6 +567,7 @@
 			isa = PBXGroup;
 			children = (
 				EAB735802A16C91F00D4A221 /* ProfileSettingViewModel.swift */,
+				EAC461202A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift */,
 			);
 			path = ProfileSetting;
 			sourceTree = "<group>";
@@ -568,6 +576,7 @@
 			isa = PBXGroup;
 			children = (
 				EAB735832A16CA3600D4A221 /* ProfileSettingView.swift */,
+				EAA860192A178B750070A0EF /* ProfileSettingViewCellCollectionViewCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -638,6 +647,8 @@
 			dependencies = (
 			);
 			name = Astella;
+			packageProductDependencies = (
+			);
 			productName = Astella;
 			productReference = EA0B63ED29FBF364001DD8DB /* Astella.app */;
 			productType = "com.apple.product-type.application";
@@ -710,6 +721,8 @@
 				Base,
 			);
 			mainGroup = EA0B63E429FBF364001DD8DB;
+			packageReferences = (
+			);
 			productRefGroup = EA0B63EE29FBF364001DD8DB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -776,6 +789,7 @@
 				EACC3D092A0D7D2600F557FE /* ProfileBriefListView.swift in Sources */,
 				EAB193012A041DB500A7F0C3 /* ApiCacheManager.swift in Sources */,
 				EAB7AEF629FDC5A3007C3BF5 /* AstellaService.swift in Sources */,
+				EAC461212A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift in Sources */,
 				EA9AA6B32A0D537F007BCB26 /* MessageDetailThreadViewCell.swift in Sources */,
 				EAAC9EB22A126F1A00C393B9 /* EventCreateView.swift in Sources */,
 				EAB943522A02823B001602A2 /* ImageManager.swift in Sources */,
@@ -783,6 +797,7 @@
 				EABA165A2A05205700B39140 /* ProfileDetailCollectionCell.swift in Sources */,
 				EA9C4B3B29FEC8C200D46F15 /* MessageListViewModel.swift in Sources */,
 				EAB735842A16CA3600D4A221 /* ProfileSettingView.swift in Sources */,
+				EAC461232A170A190068C1E7 /* SettingEnums.swift in Sources */,
 				EA0B642D29FD38C4001DD8DB /* User.swift in Sources */,
 				EAB766A62A164FE300001D5F /* ProfileDetailSocialCellViewModel.swift in Sources */,
 				EAB4BE772A06D3040029F9ED /* EventPasswordInputModalViewController.swift in Sources */,
@@ -820,6 +835,7 @@
 				EA9AA6A72A0C69CC007BCB26 /* MessageDetailViewController.swift in Sources */,
 				EAAC9EAC2A1264FD00C393B9 /* EventCreateViewController.swift in Sources */,
 				EAC7E3772A004378007E8656 /* EventListViewController.swift in Sources */,
+				EAA8601A2A178B750070A0EF /* ProfileSettingViewCellCollectionViewCell.swift in Sources */,
 				EAB7AEFA29FDC68F007C3BF5 /* AstellaApiEndpoints.swift in Sources */,
 				EAA83BC02A02C51C00C48813 /* UsersCollectionViewCell.swift in Sources */,
 				EAC1FE2B2A01AC3800FC307A /* UserListResponse.swift in Sources */,
@@ -991,11 +1007,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Astella/Preview Content\"";
+				DEVELOPMENT_TEAM = 3UHU7X2B3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Astella/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Need to access user location to access local events and users.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Need to access user location to access local events and users.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to photos to upload images to profile.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1022,11 +1040,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Astella/Preview Content\"";
+				DEVELOPMENT_TEAM = 3UHU7X2B3T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Astella/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Need to access user location to access local events and users.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Need to access user location to access local events and users.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to photos to upload images to profile.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

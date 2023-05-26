@@ -10,6 +10,7 @@ import UIKit
 
 final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
     static let cellIdentifier = "ProfilePictureCollectionViewCell"
+    private var viewModel : ProfilePhotoCellViewModel?
 
     var imageView : UIImageView = {
         let imageView = UIImageView()
@@ -28,21 +29,27 @@ final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
         return label
     }()
     
+    private let uploadPhotoBtn : UIButton = {
+        let btn = UIButton()
+        let image = UIImage(systemName: "plus.circle")
+        btn.setImage(image, for: .normal)
+        btn.tintColor = .black
+        btn.configuration = .tinted()
+        btn.addTarget(self, action: #selector(uploadImage), for: .touchDown)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
     override init(frame : CGRect) {
         super.init(frame : frame)
         contentView.layer.masksToBounds = false
         ///Using content view helps with safe area
-        addSubviews()
-        addConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addSubviews() {
-        contentView.addSubviews(imageView,nameLabel)
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -50,21 +57,25 @@ final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
     }
     
     func configure(viewModel : ProfilePhotoCellViewModel) {
-        viewModel.fetchImage {[weak self] data in
-            switch data {
-            case .success(let data):
-                DispatchQueue.main.async {
-                    self?.imageView.image = UIImage(data: data)
-                }
-            case .failure(let err):
-                print(String(describing: err))
-                print("ERROR")
-                break
-            }
+        self.viewModel = viewModel
+        self.viewModel?.delegate = self
+        print("configured ProfilePhotoCollectionViewCell")
+        imageView.image = viewModel.imageUrl
+        if !viewModel.editing {
+            contentView.addSubviews(imageView)
+            addPhotoConstraints()
+        } else {
+            contentView.addSubviews(imageView, uploadPhotoBtn)
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(tapGestureRecognizer)
+            addEmptyConstraints()
+            backgroundColor = .systemGray
         }
+        
     }
     
-    func addConstraints() {
+    func addPhotoConstraints() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
@@ -73,8 +84,53 @@ final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
         ])
     }
     
+    func addEmptyConstraints() {
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            imageView.bottomAnchor.constraint(equalTo: uploadPhotoBtn.topAnchor),
+            uploadPhotoBtn.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            uploadPhotoBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            uploadPhotoBtn.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            uploadPhotoBtn.heightAnchor.constraint(equalToConstant: 30),
+
+
+        ])
+    }
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
     }
+    
+    @objc
+    private func uploadImage() {
+        popupImagePicker()
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        popupImagePicker()
+    }
+    
+    private func popupImagePicker() {
+        guard let parent = findViewController() else {return}
+        
+        let vc = UIImagePickerController()
+        vc.delegate = viewModel
+        vc.sourceType = .photoLibrary
+        vc.allowsEditing = true
+        parent.present(vc, animated: true)
+        
+    }
+    
+}
+
+
+extension ProfilePhotoCollectionViewCell : ProfilePhotoCellViewModelDelegate {
+    func refreshImage(image : UIImage) {
+        imageView.image = image
+    }
+    
     
 }
