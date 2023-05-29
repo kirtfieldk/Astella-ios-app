@@ -10,18 +10,39 @@ import UIKit
 
 final class TabBarViewController: UITabBarController {
 
+    private var user : User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTabs()
+        getUser()
     }
 
+    func getUser() {
+        UserManager.shared.getUser {[weak self] result in
+            switch result {
+            case .success(let data):
+                if data.data.count > 0 {
+                    self?.user = data.data[0]
+                    UserManager.shared.setUserId(userId: data.data[0].id.uuidString)
+                    DispatchQueue.main.async {
+                        self?.setUpTabs()
+                    }
+                } else {
+                    print("User not found with id: \(UserManager.shared.getUserId())")
+                }
+            case .failure(let err):
+                print(String(describing: err))
+            }
+        }
+    }
     
     private func setUpTabs() {
+        guard let user = user else {return}
         let eventVc = EventListViewController()
         if let sheet = eventVc.sheetPresentationController {
             sheet.detents = [.medium(), .large()]
         }
-        let profileVc = ProfileViewController(viewModel : ProfileViewModel(user: User.usr, isEditing: false))
+        let profileVc = ProfileViewController(viewModel : ProfileViewModel(userId: user.id.uuidString, isEditing: false))
         let mapVc = LocationTrackingViewController()
         let eventCreateVc = EventCreateViewController()
 

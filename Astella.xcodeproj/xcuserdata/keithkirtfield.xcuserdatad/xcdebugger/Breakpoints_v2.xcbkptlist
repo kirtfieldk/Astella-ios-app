@@ -513,32 +513,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "67FC5E7B-3E0F-4CFF-A68B-7B87AD625C43"
-            shouldBeEnabled = "Yes"
+            uuid = "EB6F8410-6308-4F69-8689-883B3460FA8E"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Astella/app/core/View/Profile/ProfileView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "setUpView()"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "addConstraints()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EB6F8410-6308-4F69-8689-883B3460FA8E"
+            uuid = "08411BB9-1FDF-402E-8143-5CD543DA698E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Astella/app/core/View/Profile/ProfileView.swift"
+            filePath = "Astella/app/core/ViewModel/ProfileDetails/ProfileDetailsCellViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "addConstraints()"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "grabInputValue()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

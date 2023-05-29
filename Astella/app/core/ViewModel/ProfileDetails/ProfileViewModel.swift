@@ -9,20 +9,26 @@ import UIKit
 
 
 final class ProfileViewModel : NSObject{
-    public let user : User?
+    public var userId : String?
+    public var user : User?
     public let isEditing : Bool
     public weak var delegate : ProfileViewModelDelegate?
 
     var photoList : [UIImage?] = []
     var socialMap : [SocialMediaTypes : URL] = [:]
+    var AllSocialMap : [SocialMediaTypes : String] = [:]
     private let noImg = UIImage(systemName: "person.bust")
-    private var tiktok : String
-    private var twitter : String
-    private var youtube : String
-    private var ig : String
-    private var snapchat : String
-    private var desc : String
+    private var tiktok : String?
+    private var twitter : String?
+    private var youtube : String?
+    private var ig : String?
+    private var snapchat : String?
+    private var desc : String?
     private let maxSize = 3
+    private var photoOne : UIImage?
+    private var photoTwo : UIImage?
+    private var photoThree : UIImage?
+    private var photoViewModelMap : [Int : ProfilePhotoCellViewModel] = [:]
     enum SectionTypes {
         case photos(viewModel : [ProfilePhotoCellViewModel])
         case bio(viewModel : ProfileDetailCellViewModel)
@@ -31,31 +37,42 @@ final class ProfileViewModel : NSObject{
     public var sections : [SectionTypes] = []
 
     //MARK: - INIT PhotoArray SocialArray
-    init(user : User, isEditing : Bool) {
-        self.user = user
+    init(userId : String, isEditing : Bool) {
+        self.userId = userId
         self.isEditing = isEditing
-        self.tiktok = user.tiktok
-        self.twitter = user.tiktok
-        self.youtube = user.twitter
-        self.desc = user.description
-        self.ig = user.ig
-        self.snapchat = user.twitter
         super.init()
+    
+    
+    }
+    
+    public func getUser(completion: @escaping(Result<UserListResponse, Error>) -> Void) {
+        UserManager.shared.getUser(completion: completion)
+    }
+    
+    public func setUserParams(user : User, tiktok : String, twitter : String, youtube : String, desc : String, ig : String, snapchat : String ) {
+        self.user = user
+        self.tiktok = tiktok
+        self.twitter = twitter
+        self.youtube = youtube
+        self.desc = desc
+        self.ig = ig
+        self.snapchat = twitter
+    }
+    
+    public func buildSocialAndPhotoArr() {
+        guard let user = user else {return}
         buildSocialArray()
         buildPhotoArray(images: [user.img_one, user.img_two, user.img_three])
-        
     }
     
     //MARK: Image building Dispatch Group
     private func buildPhotoArray(images : [String]) {
+        self.delegate?.isFetchUserImage(fetching: true)
         let group = DispatchGroup()
         var photos : [UIImage?] = []
         for img in images {
-            guard let photo = URL(string: img) else {
-                continue
-            }
             group.enter()
-            ImageManager.shared.downloadImage(photo) {result in
+            ImageManager.shared.downloadImage(img) {result in
                 defer {
                     group.leave()
                 }
@@ -67,15 +84,18 @@ final class ProfileViewModel : NSObject{
                     print(String(describing: err))
                 }
             }
-
         }
-        let currentSize = images.count
-        for _ in currentSize...maxSize {
-            photos.append(noImg)
+        if isEditing {
+            let currentSize = images.count
+            for _ in currentSize...maxSize {
+                photos.append(noImg)
+            }
         }
         group.notify(queue: .main) {
-            self.photoList = photos
-            self.setUpSections()
+            print("Setting up sections after fetching all photos")
+            self.photoList = photos.reversed()
+            self.delegate?.isFetchUserImage(fetching: false)
+            self.delegate?.isDoneLoading()
         }
     }
     
@@ -100,20 +120,32 @@ final class ProfileViewModel : NSObject{
     }
     
     private func buildSocialArray(social : SocialMediaTypes, url : String?) {
-        guard let url = url, let socialUrl = URL(string: url) else {return}
+        AllSocialMap[social] = url
+        guard let url = url, let socialUrl = URL(string: url) else {
+            return
+        }
         socialMap[social] = socialUrl
     }
 
     public func setUpSections() {
         guard let user = user else {return}
         var userSocials : [ProfileDetailSocialCellViewModel] = []
-        for (social, url) in socialMap {
-            userSocials.append(ProfileDetailSocialCellViewModel(socialLink: url, social: social, isEditing: isEditing))
+        if !isEditing {
+            for (social, url) in socialMap {
+                userSocials.append(ProfileDetailSocialCellViewModel(socialLink: url, social: social, isEditing: isEditing, socialString: nil))
+            }
+        } else {
+            for (social, url) in AllSocialMap {
+                userSocials.append(ProfileDetailSocialCellViewModel(socialLink: nil, social: social, isEditing: isEditing, socialString: url))
+            }
         }
+        var index = 0
         sections = [
             .photos(viewModel: photoList.compactMap({
                 guard let imageUrl = $0 else {return nil}
-                let vm = ProfilePhotoCellViewModel(imageUrl: imageUrl, editing: isEditing)
+                let vm = ProfilePhotoCellViewModel(imageUrl: imageUrl, editing: isEditing, isEmpty: imageUrl == noImg)
+                photoViewModelMap[index] = vm
+                index+=1
                 vm.collectionDelegate = self
                 return vm
             })),
@@ -151,6 +183,7 @@ final class ProfileViewModel : NSObject{
                 heightDimension: .absolute(185)),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
     
@@ -209,39 +242,39 @@ final class ProfileViewModel : NSObject{
     }
     
     //MARK: - Updating User
-    public func updateUser() {
-//        if isEditing {
-//            for (el) in sections {
-//                switch el {
-//                case .bio(let viewModel):
-//                    desc = viewModel.grabInputValue()
-//                case .photos(_):
-//                    print("Photot")
-//                case .socials(let viewModels):
-//                    viewModels.forEach { model in
-//                        updateUserParams(viewModel: model)
-//                    }
-//                }
-//            }
-//            guard let id = user?.id, let created = user?.created, let username = user?.username, let imgOne = photoList[0]?.absoluteString, let imgTwo = photoList[1]?.absoluteString, let imgThree = photoList[2]?.absoluteString, let avatar = user?.avatar_url else {return}
-//            let newUser = User(id: id, created: created, username: username, description: desc, ig: ig, twitter: twitter, tiktok: tiktok, avatar_url: avatar, img_one: imgOne, img_two: imgTwo, img_three: imgThree)
-//        }
-    }
-    
-    //MARK: - Update User
-    private func updateUser(updated : User) {
-        let req = RequestPostService(urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: "", messageId: ""),
-                                     endpoint: AstellaEndpoints.UPDATE_USER, httpMethod: "PUT",
-                                     httpBody: updated, queryParameters: [])
-        AstellaService.shared.execute(req, expecting: UserListResponse.self) { result in
-            switch result {
-            case .success(let data):
-                UserManager.shared.setUser(user: data.data[0])
-            case .failure(let err):
-                print(String(describing: err))
+    public func updateUser(completion : @escaping (Result<UserListResponse, Error>) -> Void) {
+        if isEditing {
+            for el in sections {
+                switch el {
+                case .bio(let viewModel):
+                    desc = viewModel.grabInputValue()
+                case .photos(_):
+                    updateUserImages()
+                case .socials(let viewModels):
+                    viewModels.forEach { model in
+                        updateUserParams(viewModel: model)
+                    }
+                }
             }
+            guard let id = userId, let created = user?.created, let username = user?.username, let avatar = user?.avatar_url,
+            let ig = ig, let twitter = twitter, let tiktok = tiktok, let desc = desc else {return}
+            let userParams : [String : String] = [
+                "id" : id,
+                "created" : created,
+                "username" : username,
+                "ig" : ig,
+                "twitter" : twitter,
+                "tiktok" : tiktok,
+                "description" : desc,
+            ]
+            let imageParams : [String : UIImage?] = [
+                "img_one" : photoOne,
+                "img_two" : photoTwo,
+                "img_three" : photoThree
+            ]
+            let req = RequestMultipartForm(urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: "", messageId: ""), endpoint: AstellaEndpoints.UPDATE_USER, httpMethod: "PUT", paramMap: userParams, paramFileMap: imageParams)
+            AstellaService.shared.execute(req, expecting: UserListResponse.self, completion: completion) 
         }
-        
     }
     
     private func updateUserParams(viewModel : ProfileDetailSocialCellViewModel) {
@@ -256,6 +289,34 @@ final class ProfileViewModel : NSObject{
             youtube = viewModel.grabInputValue()
         case .twitter:
             twitter = viewModel.grabInputValue()
+        }
+    }
+    
+    private func updateUserImages() {
+        for i in 0...maxSize - 1 {
+            let vm = photoViewModelMap[i]
+            guard let vm = vm else {
+                continue
+            }
+            switch i {
+            case 0:
+                if !vm.isEmpty {
+                    print("Image one not empty")
+                    photoOne = vm.imageUrl
+                }
+            case 1:
+                if !vm.isEmpty {
+                    print("Image two not empty")
+                    photoTwo = vm.imageUrl
+                }
+            case 2:
+                if !vm.isEmpty {
+                    print("Image three not empty")
+                    photoThree = vm.imageUrl
+                }
+            default:
+                return
+            }
         }
     }
     
@@ -276,7 +337,6 @@ extension ProfileViewModel : UICollectionViewDataSource, UICollectionViewDelegat
             if isEditing {
                 return 3
             }
-            print(self.count)
             return self.count
         case .bio(viewModel: _):
             return 1
@@ -329,17 +389,24 @@ extension ProfileViewModel : UICollectionViewDataSource, UICollectionViewDelegat
 //MARK: - Delegate To VC
 protocol ProfileViewModelDelegate : AnyObject {
     func goToSettings(user : User)
+    func reloadCollectionView()
+    func isFetchUserImage(fetching : Bool)
+    func isDoneLoading()
 }
 
 extension ProfileViewModel : ProfilePhotoCellViewModelUpdateCollectionViewDelegate {
-    func updateCollectionView(image: UIImage, oldPhoto: UIImage) {
-        for i in 0...photoList.count-1 {
-            if photoList[i] == oldPhoto {
-                photoList[i] = image
-                break
-            }
-            if i == photoList.count-1 {
-                photoList.append(image)
+    func updateCollectionView(image: UIImage, oldPhoto: UIImage?) {
+        if oldPhoto == nil {
+            photoList.append(image)
+        } else {
+            for i in 0...photoList.count-1 {
+                if photoList[i] == oldPhoto {
+                    photoList[i] = image
+                    break
+                }
+                if i == photoList.count-1 {
+                    photoList.append(image)
+                }
             }
         }
         setUpSections()

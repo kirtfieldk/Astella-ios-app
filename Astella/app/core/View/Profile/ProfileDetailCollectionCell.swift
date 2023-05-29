@@ -9,6 +9,7 @@ import UIKit
 
 final class ProfileDetailCollectionCell : UICollectionViewCell {
     static let cellIdentifier = "ProfileDetailCollectionCell"
+    private var viewModel : ProfileDetailCellViewModel?
     
     private let textView: UITextView = {
         let textView = UITextView()
@@ -46,8 +47,10 @@ final class ProfileDetailCollectionCell : UICollectionViewCell {
     }
     
     func configure(with viewModel : ProfileDetailCellViewModel) {
+        self.viewModel = viewModel
         textView.text = viewModel.usr.description
-        viewModel.delegate = self
+        self.viewModel?.delegate = self
+        print("ProfileDetailCollectionCell Configured")
         if viewModel.isEditing {
             textView.isEditable = true
             textView.layer.borderWidth = 1
@@ -76,7 +79,6 @@ final class ProfileDetailCollectionCell : UICollectionViewCell {
 extension ProfileDetailCollectionCell : ProfileDetailCellViewModelDelegate {
     func grabInputValue() -> String {
         guard let txt = textView.text else {return ""}
-        print(txt)
         return txt
     }
 }

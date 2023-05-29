@@ -40,6 +40,17 @@ final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
         return btn
     }()
     
+    private let removeImageBtn : UIButton = {
+        let btn = UIButton()
+        let image = UIImage(systemName: "x.square")
+        btn.setImage(image, for: .normal)
+        btn.tintColor = .systemRed
+        btn.configuration = .borderedTinted()
+        btn.addTarget(self, action: #selector(removeImage), for: .touchDown)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
     override init(frame : CGRect) {
         super.init(frame : frame)
         contentView.layer.masksToBounds = false
@@ -65,7 +76,7 @@ final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
             contentView.addSubviews(imageView)
             addPhotoConstraints()
         } else {
-            contentView.addSubviews(imageView, uploadPhotoBtn)
+            contentView.addSubviews(imageView, uploadPhotoBtn, removeImageBtn)
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
             imageView.isUserInteractionEnabled = true
             imageView.addGestureRecognizer(tapGestureRecognizer)
@@ -94,6 +105,9 @@ final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
             uploadPhotoBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             uploadPhotoBtn.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             uploadPhotoBtn.heightAnchor.constraint(equalToConstant: 30),
+            
+            removeImageBtn.topAnchor.constraint(equalTo: contentView.topAnchor),
+            removeImageBtn.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
 
 
         ])
@@ -115,12 +129,23 @@ final class ProfilePhotoCollectionViewCell : UICollectionViewCell {
     
     private func popupImagePicker() {
         guard let parent = findViewController() else {return}
-        
         let vc = UIImagePickerController()
         vc.delegate = viewModel
         vc.sourceType = .photoLibrary
         vc.allowsEditing = true
         parent.present(vc, animated: true)
+    }
+    
+    func getImage() -> UIImage? {
+        return imageView.image
+    }
+    
+    @objc
+    func removeImage() {
+        guard let viewModel = viewModel else {return}
+        viewModel.imageUrl = nil
+        viewModel.isEmpty = true
+        imageView.image = nil
         
     }
     

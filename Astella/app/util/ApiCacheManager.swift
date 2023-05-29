@@ -33,7 +33,7 @@ final class ApiCacheManger {
               endpoint != AstellaEndpoints.POST_MESSAGE_TO_EVENT, endpoint != AstellaEndpoints.LIKE_MESSAGE_IN_EVENT,
               endpoint != AstellaEndpoints.GET_MESSAGE_IN_EVENT, endpoint != AstellaEndpoints.UNLIKE_MESSAGE_IN_EVENT,
               endpoint != AstellaEndpoints.PIN_MESSAGE, endpoint != AstellaEndpoints.UNPIN_MESSAGE, endpoint != AstellaEndpoints.GET_USER_PIN, endpoint != AstellaEndpoints.GET_MESSAGE_THREAD,
-              endpoint != AstellaEndpoints.GET_USRS_LIKE_MESSAGE
+              endpoint != AstellaEndpoints.GET_USRS_LIKE_MESSAGE, endpoint != AstellaEndpoints.GET_USER
         else {
             return nil
         }
@@ -45,6 +45,15 @@ final class ApiCacheManger {
             return
         }
         targetCache.setObject(data as NSData, forKey: url.absoluteString as NSString) 
+    }
+    
+    public func removeCache(for endpoint : AstellaEndpoints) {
+        guard let targetCache = cacheDictionary[endpoint] else {
+            return
+        }
+        print("Removing from cache \(endpoint)")
+        targetCache.removeAllObjects()
+        
     }
 }
 

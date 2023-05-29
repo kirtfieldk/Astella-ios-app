@@ -80,8 +80,9 @@
 		EABA16582A051BE100B39140 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA16572A051BE100B39140 /* ProfileView.swift */; };
 		EABA165A2A05205700B39140 /* ProfileDetailCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA16592A05205700B39140 /* ProfileDetailCollectionCell.swift */; };
 		EABA73172A08739200422D6B /* EventCellParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABA73162A08739200422D6B /* EventCellParentView.swift */; };
+		EABADD602A213747009A2A7C /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABADD5F2A213747009A2A7C /* DataExtension.swift */; };
+		EABC9B352A20E42800F3B170 /* RequestMultipartForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC9B342A20E42800F3B170 /* RequestMultipartForm.swift */; };
 		EABE9D632A158014000B3FAE /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE9D622A158014000B3FAE /* UserManager.swift */; };
-		EABE9D652A15A2F1000B3FAE /* ProfileSocialLinksCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE9D642A15A2F1000B3FAE /* ProfileSocialLinksCellView.swift */; };
 		EAC1FE2B2A01AC3800FC307A /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1FE2A2A01AC3800FC307A /* UserListResponse.swift */; };
 		EAC1FE2D2A01AFF400FC307A /* FooterReusableLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1FE2C2A01AFF400FC307A /* FooterReusableLoaderView.swift */; };
 		EAC461212A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC461202A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift */; };
@@ -193,8 +194,9 @@
 		EABA16572A051BE100B39140 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EABA16592A05205700B39140 /* ProfileDetailCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailCollectionCell.swift; sourceTree = "<group>"; };
 		EABA73162A08739200422D6B /* EventCellParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellParentView.swift; sourceTree = "<group>"; };
+		EABADD5F2A213747009A2A7C /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		EABC9B342A20E42800F3B170 /* RequestMultipartForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMultipartForm.swift; sourceTree = "<group>"; };
 		EABE9D622A158014000B3FAE /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		EABE9D642A15A2F1000B3FAE /* ProfileSocialLinksCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSocialLinksCellView.swift; sourceTree = "<group>"; };
 		EAC1FE2A2A01AC3800FC307A /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
 		EAC1FE2C2A01AFF400FC307A /* FooterReusableLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterReusableLoaderView.swift; sourceTree = "<group>"; };
 		EAC461202A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingCellViewModel.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				EA9C4B3229FE8B9C00D46F15 /* RequestPostService.swift */,
 				EAB192FE2A03DC1400A7F0C3 /* RequestGetService.swift */,
 				EAB766A92A16782E00001D5F /* SocialMediaTypes.swift */,
+				EABC9B342A20E42800F3B170 /* RequestMultipartForm.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				EAB943512A02823B001602A2 /* ImageManager.swift */,
 				EAB193002A041DB500A7F0C3 /* ApiCacheManager.swift */,
 				EABE9D622A158014000B3FAE /* UserManager.swift */,
+				EABADD5F2A213747009A2A7C /* DataExtension.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -380,7 +384,6 @@
 				EAA3B4412A0445E300D63F20 /* ProfilePhotoCollectionViewCell.swift */,
 				EABA16572A051BE100B39140 /* ProfileView.swift */,
 				EABA16592A05205700B39140 /* ProfileDetailCollectionCell.swift */,
-				EABE9D642A15A2F1000B3FAE /* ProfileSocialLinksCellView.swift */,
 				EAB766A72A16508600001D5F /* ProfileDetailSocialCellView.swift */,
 			);
 			path = Profile;
@@ -781,6 +784,7 @@
 				EAA1D0662A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift in Sources */,
 				EA0B63F329FBF364001DD8DB /* ContentView.swift in Sources */,
 				EAAC9EB62A12B72D00C393B9 /* EventCreateMapViewCell.swift in Sources */,
+				EABC9B352A20E42800F3B170 /* RequestMultipartForm.swift in Sources */,
 				EAB193042A04283F00A7F0C3 /* ProfileViewModel.swift in Sources */,
 				EAB67EFA2A01887C0043B58C /* InfoResponse.swift in Sources */,
 				EAA1D0642A0B015100A3F192 /* MessagePinnedViewModel.swift in Sources */,
@@ -809,6 +813,7 @@
 				EACC3D032A0D7BBF00F557FE /* ProfileBriefListViewController.swift in Sources */,
 				EA9C4B4929FF0A5100D46F15 /* EventstructMainViewController.swift in Sources */,
 				EACC3D062A0D7C6500F557FE /* ProfileBriefListViewModel.swift in Sources */,
+				EABADD602A213747009A2A7C /* DataExtension.swift in Sources */,
 				EAB192FF2A03DC1400A7F0C3 /* RequestGetService.swift in Sources */,
 				EAC7E37A2A004408007E8656 /* EventListView.swift in Sources */,
 				EAB08D362A013C950058240C /* TabBarViewController.swift in Sources */,
@@ -817,7 +822,6 @@
 				EAA3B4422A0445E300D63F20 /* ProfilePhotoCollectionViewCell.swift in Sources */,
 				EAB735812A16C91F00D4A221 /* ProfileSettingViewModel.swift in Sources */,
 				EAAC9EAF2A126EDF00C393B9 /* EventCreateViewModel.swift in Sources */,
-				EABE9D652A15A2F1000B3FAE /* ProfileSocialLinksCellView.swift in Sources */,
 				EA0B63F129FBF364001DD8DB /* AstellaApp.swift in Sources */,
 				EAB766AA2A16782E00001D5F /* SocialMediaTypes.swift in Sources */,
 				EAA873A129FF2D3100A5D24A /* MessageCollectionViewCell.swift in Sources */,

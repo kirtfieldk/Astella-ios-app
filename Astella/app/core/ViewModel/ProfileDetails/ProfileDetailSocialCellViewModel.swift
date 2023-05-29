@@ -9,15 +9,17 @@ import Foundation
 
 
 final class ProfileDetailSocialCellViewModel {
-    public let socialLink : URL
+    public let socialLink : URL?
     public let social : SocialMediaTypes
     public let isEditing : Bool
     public weak var delegate : ProfileDetailSocialCellViewModelDelegate?
+    public var socialString : String?
     
-    init(socialLink: URL, social: SocialMediaTypes, isEditing : Bool) {
+    init(socialLink: URL?, social: SocialMediaTypes, isEditing : Bool, socialString : String?) {
         self.socialLink = socialLink
         self.social = social
         self.isEditing = isEditing
+        self.socialString = socialString
     }
     
     //MARK: - INOUT param

@@ -45,9 +45,10 @@ final class ProfileDetailSocialCellView : UICollectionViewCell {
     public func configuration(viewModel : ProfileDetailSocialCellViewModel) {
         viewModel.delegate = self
         if (viewModel.isEditing) {
+            guard let socialtext = viewModel.socialString else {return}
             backgroundColor = UIColor(red: 21 / 255, green: 43 / 255, blue: 56 / 255, alpha: 1)
             label.text = viewModel.social.rawValue
-            socialInput.text = viewModel.socialLink.absoluteString
+            socialInput.text = socialtext
             addSubviews(socialInput, label)
             addInputConstraint()
         } else {
@@ -82,8 +83,6 @@ final class ProfileDetailSocialCellView : UICollectionViewCell {
             label.backgroundColor = .systemYellow
             socialInput.backgroundColor = .systemYellow
             socialButton.backgroundColor = .systemYellow
-        default:
-            label.backgroundColor = .white
         }
         
     }
@@ -122,6 +121,7 @@ final class ProfileDetailSocialCellView : UICollectionViewCell {
 
 extension ProfileDetailSocialCellView : ProfileDetailSocialCellViewModelDelegate {
     func grabInputValue() -> String {
+        print("Grabbing Info from Descriptions")
         guard let txt = socialInput.text else {return ""}
         return txt
     }

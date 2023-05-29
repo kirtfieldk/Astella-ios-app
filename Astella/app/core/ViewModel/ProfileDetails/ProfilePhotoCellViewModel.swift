@@ -9,16 +9,18 @@ import UIKit
 
 final class ProfilePhotoCellViewModel : NSObject {
     
-    public let imageUrl: UIImage
+    public var imageUrl: UIImage?
     public let editing : Bool
     public weak var delegate : ProfilePhotoCellViewModelDelegate?
     public weak var collectionDelegate : ProfilePhotoCellViewModelUpdateCollectionViewDelegate?
+    public var isEmpty : Bool
 
     
     // MARK: - Init
-    init(imageUrl: UIImage, editing : Bool) {
+    init(imageUrl: UIImage, editing : Bool, isEmpty : Bool) {
         self.imageUrl = imageUrl
         self.editing = editing
+        self.isEmpty = isEmpty
     }
 }
 
@@ -26,11 +28,11 @@ extension ProfilePhotoCellViewModel : UIImagePickerControllerDelegate, UINavigat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print("Image selected")
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-            //SetImage
+            isEmpty = false
             DispatchQueue.main.async {
                 self.delegate?.refreshImage(image: image)
             }
-            self.collectionDelegate?.updateCollectionView(image : image, oldPhoto: imageUrl)
+            collectionDelegate?.updateCollectionView(image : image, oldPhoto: imageUrl)
         }            
         picker.dismiss(animated: true, completion: nil)
 
@@ -39,6 +41,7 @@ extension ProfilePhotoCellViewModel : UIImagePickerControllerDelegate, UINavigat
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
 }
 
 protocol ProfilePhotoCellViewModelDelegate : AnyObject {
@@ -46,5 +49,5 @@ protocol ProfilePhotoCellViewModelDelegate : AnyObject {
 }
 
 protocol ProfilePhotoCellViewModelUpdateCollectionViewDelegate : AnyObject {
-    func updateCollectionView(image : UIImage, oldPhoto : UIImage)
+    func updateCollectionView(image : UIImage, oldPhoto : UIImage?)
 }

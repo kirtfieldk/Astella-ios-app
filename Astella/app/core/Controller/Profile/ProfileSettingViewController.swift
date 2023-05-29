@@ -33,6 +33,7 @@ final class ProfileSettingViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
     }
     
     func addConstraints() {
@@ -47,7 +48,7 @@ final class ProfileSettingViewController : UIViewController {
 
 extension ProfileSettingViewController : ProfileSettingViewModelDelegate {
     func pushToEditProfile() {
-        let vm = ProfileViewModel(user: User.usr, isEditing: true)
+        let vm = ProfileViewModel(userId: UserManager.shared.getUserId(), isEditing: true)
         let vc = ProfileViewController(viewModel: vm)
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)

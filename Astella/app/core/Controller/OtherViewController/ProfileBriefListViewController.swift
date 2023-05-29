@@ -65,7 +65,7 @@ final class ProfileBriefListViewController : UIViewController {
 
 extension ProfileBriefListViewController : ProfileBreifListViewModelDelegate {
     func redirectIntoProfileDetail(usr: User) {
-        let vm = ProfileViewModel(user: usr, isEditing: false)
+        let vm = ProfileViewModel(userId: usr.id.uuidString, isEditing: false)
         let vc = ProfileViewController(viewModel: vm)
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)

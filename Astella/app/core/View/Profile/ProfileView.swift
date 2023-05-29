@@ -10,15 +10,22 @@ import UIKit
 
 
 final class ProfileView : UIView {
-    
+    //MARK: - Vars
     private let viewModel : ProfileViewModel
     public var collectionView : UICollectionView?
     
-    private let nameLabel : UILabel = {
+    public let nameLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 30, weight: .bold)
         return label
+    }()
+    
+    public let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.hidesWhenStopped = true
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
     }()
     
     private let settingButton : UIButton = {
@@ -46,23 +53,23 @@ final class ProfileView : UIView {
         self.viewModel = viewModel
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        setUpView()
-    }
+        createCollectionViews()
+
+   }
     
-    public func setUpView() {
+    //MARK: - Create Collection View
+    public func createCollectionViews() {
         let collectionView = createCollectionView()
         self.collectionView = collectionView
-        nameLabel.text = viewModel.getUserName()
+        self.collectionView?.isHidden = true
+        addSubviews(nameLabel, collectionView, spinner)
+        spinner.startAnimating()
         if viewModel.isEditing {
-            willRemoveSubview(settingButton)
-            addSubviews(nameLabel, collectionView, saveBtn)
+            addSubviews(saveBtn)
         } else {
-            willRemoveSubview(saveBtn)
-            addSubviews(nameLabel, collectionView, settingButton)
+            addSubviews(settingButton)
         }
         addConstraints()
-
-        
     }
 
     // MARK: - INIT
@@ -74,18 +81,27 @@ final class ProfileView : UIView {
         guard let collectionView = collectionView else {return}
         if viewModel.isEditing {
             NSLayoutConstraint.activate([
+                spinner.widthAnchor.constraint(equalToConstant: 100),
+                spinner.heightAnchor.constraint(equalToConstant: 100),
+                spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+                spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
                 nameLabel.topAnchor.constraint(equalTo: topAnchor),
                 nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
                 nameLabel.trailingAnchor.constraint(equalTo: saveBtn.leadingAnchor),
                 saveBtn.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
                 saveBtn.topAnchor.constraint(equalTo: topAnchor),
                 saveBtn.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
+                collectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
                 collectionView.leftAnchor.constraint(equalTo: leftAnchor),
                 collectionView.rightAnchor.constraint(equalTo: rightAnchor),
                 collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
         } else {
             NSLayoutConstraint.activate([
+                spinner.widthAnchor.constraint(equalToConstant: 100),
+                spinner.heightAnchor.constraint(equalToConstant: 100),
+                spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+                spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
                 nameLabel.topAnchor.constraint(equalTo: topAnchor),
                 nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
                 nameLabel.trailingAnchor.constraint(equalTo: settingButton.leadingAnchor),
@@ -143,7 +159,31 @@ final class ProfileView : UIView {
     
     @objc
     private func updateUser() {
-        viewModel.updateUser()
+        viewModel.updateUser { [weak self] result in
+            switch result {
+            case .success(let data):
+                print("Successfully Updated User \(String(describing: self?.viewModel.user?.id))")
+                if data.data.count > 0 {
+                    self?.viewModel.user = data.data[0]
+                    DispatchQueue.main.async {
+                        self?.collectionView?.reloadData()
+                        self?.navigateToProfilePage()
+                    }
+                }
+            case .failure(let err):
+                print(String(describing: err))
+            }
+        
+        }
+    }
+    
+    private func navigateToProfilePage() {
+        guard let currentViewController = findViewController(), let userId = viewModel.userId else {return}
+        let vm = ProfileViewModel(userId: userId, isEditing: false)
+        let vc = ProfileViewController(viewModel: vm)
+        vc.navigationItem.largeTitleDisplayMode = .never
+        currentViewController.navigationController?.pushViewController(vc, animated: true)
     }
 
 }
+

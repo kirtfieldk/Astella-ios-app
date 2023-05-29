@@ -29,9 +29,9 @@ struct User : Hashable, Codable, Identifiable {
                           twitter: "Twitter",
                           tiktok: "TikTok",
                           avatar_url: "",
-                          img_one: "https://d2vz9qh9qrykid.cloudfront.net/Simulator%20Screenshot%20-%20iPad%20Air%20(5th%20generation)%20-%202023-05-09%20at%2007.52.12.png",
-                          img_two: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
-                          img_three: "")
+                          img_one: "img_one.png",
+                          img_two: "img_two.png",
+                          img_three: "img_three.png")
 }
 
 struct EmptyBody : Codable {
