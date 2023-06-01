@@ -281,26 +281,13 @@ final class EventCreateView : UIView {
         viewModel.postCreateEvent(name: name, desc: desc, isPublic: isPublic, code: code, duration: duration) {[weak self] result in
             switch result {
             case .success(let data):
-                self?.addUserToEvent(data: data, code: code)
+                DispatchQueue.main.async {
+                    self?.createSuccessful(result: data)
+                }
             case .failure(let err):
                 print(String(describing: err))
             }
         }
-    }
-    
-    func addUserToEvent(data : EventListResponse, code : String) {
-        viewModel.addUserToEvent(eventId: data.data[0].id, code: code) {[weak self] result in
-        switch result {
-        case .success(let resp):
-            if resp.message {
-                DispatchQueue.main.async {
-                    self?.createSuccessful(result: data)
-                }
-            }
-        case .failure(let err):
-            print(String(describing: err))
-        }
-    }
     }
     
     func createSuccessful(result : EventListResponse) {

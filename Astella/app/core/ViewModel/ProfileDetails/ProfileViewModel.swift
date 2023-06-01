@@ -56,7 +56,7 @@ final class ProfileViewModel : NSObject{
         self.youtube = youtube
         self.desc = desc
         self.ig = ig
-        self.snapchat = twitter
+        self.snapchat = snapchat
     }
     
     public func buildSocialAndPhotoArr() {
@@ -112,9 +112,9 @@ final class ProfileViewModel : NSObject{
             case .tiktok:
                 buildSocialArray(social: media, url: tiktok)
             case .snapchat:
-                buildSocialArray(social: media, url: twitter)
+                buildSocialArray(social: media, url: snapchat)
             case .youtube:
-                buildSocialArray(social: media, url: twitter)
+                buildSocialArray(social: media, url: youtube)
             }
         }
     }
@@ -257,7 +257,7 @@ final class ProfileViewModel : NSObject{
                 }
             }
             guard let id = userId, let created = user?.created, let username = user?.username, let avatar = user?.avatar_url,
-            let ig = ig, let twitter = twitter, let tiktok = tiktok, let desc = desc else {return}
+            let ig = ig, let twitter = twitter, let tiktok = tiktok, let snapchat = snapchat, let youtube = youtube, let desc = desc else {return}
             let userParams : [String : String] = [
                 "id" : id,
                 "created" : created,
@@ -265,6 +265,8 @@ final class ProfileViewModel : NSObject{
                 "ig" : ig,
                 "twitter" : twitter,
                 "tiktok" : tiktok,
+                "youtube" : youtube,
+                "snapchat" : snapchat,
                 "description" : desc,
             ]
             let imageParams : [String : UIImage?] = [

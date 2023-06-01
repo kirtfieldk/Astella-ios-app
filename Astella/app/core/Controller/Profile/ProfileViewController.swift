@@ -98,7 +98,7 @@ extension ProfileViewController : ProfileViewModelDelegate {
     }
     
     func goToSettings(user : User) {
-        let vm = ProfileSettingViewModel(user: User.usr)
+        let vm = ProfileSettingViewModel()
         let vc = ProfileSettingViewController(viewModel: vm)
         vc.navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.pushViewController(vc, animated: true)

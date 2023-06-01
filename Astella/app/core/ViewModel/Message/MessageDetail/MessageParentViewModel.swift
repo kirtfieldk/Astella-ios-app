@@ -24,8 +24,9 @@ class MessageParentViewModel : NSObject {
     //MARK: - POST MSG
     func postMessage(msg : String, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         UserLocationManager.shared.getUserLocation {[weak self] location in
-            guard let eventId = self?.eventId else { return }
-            guard let userId = UUID(uuidString: UserManager.shared.getUserId()) else {return}
+            guard let eventId = self?.eventId, let userId = UUID(uuidString: UserManager.shared.getUserId()) else { return }
+            let coords = location.coordinate
+            print("posted message - USERID: \(UserManager.shared.getUserId()) EventId: \(eventId.uuidString)")
             let req = RequestPostService(
                 urlIds:
                     AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: eventId.uuidString, messageId: ""),
@@ -35,7 +36,7 @@ class MessageParentViewModel : NSObject {
                     content: msg, user_id: userId,
                     parent_id: self?.parentId,
                     event_id: eventId, upvotes: 0, pinned: false,
-                    latitude: 53.020485, longitude: -8.128898),
+                    latitude: coords.latitude, longitude: coords.longitude),
                 queryParameters: [])
             AstellaService.shared.execute(req, expecting: MessageListResponse.self, completion: completion) 
         }
@@ -81,7 +82,8 @@ class MessageParentViewModel : NSObject {
     // MARK: - LIKE MSG
     public func upvoteMessage(messageId : UUID, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         UserLocationManager.shared.getUserLocation {[weak self] location in
-            let point = LocationBody(latitude: 53.020485, longitude: -8.128898)
+            let coords = location.coordinate
+            let point = LocationBody(latitude: coords.latitude, longitude: coords.longitude)
             guard let event = self?.eventId?.uuidString else {return}
             AstellaService.shared.execute(
                 RequestPostService(urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: event, messageId: messageId.uuidString),
@@ -96,7 +98,8 @@ class MessageParentViewModel : NSObject {
     
     public func downvoteMessage(messageId : UUID, completion: @escaping (Result<MessageListResponse, Error>) -> Void) {
         UserLocationManager.shared.getUserLocation {[weak self] location in
-            let point = LocationBody(latitude: 53.020485, longitude: -8.128898)
+            let coords = location.coordinate
+            let point = LocationBody(latitude: coords.latitude, longitude: coords.longitude)
             guard let event = self?.eventId?.uuidString else {return}
             AstellaService.shared.execute(
                 RequestPostService(urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: event, messageId: messageId.uuidString),

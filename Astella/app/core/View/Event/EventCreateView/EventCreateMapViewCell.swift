@@ -56,8 +56,14 @@ final class EventCreateMapViewCell : UICollectionViewCell {
         return map
     }()
     
-    var locationManager: CLLocationManager?
-
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public func configuration(viewModel : EventCreateMapViewCellViewModel) {
         addSubviews(map, titleLable, slider)
         map.delegate = self
@@ -117,7 +123,15 @@ final class EventCreateMapViewCell : UICollectionViewCell {
     @objc
     func updatePolySize(){
         guard let pin = pin, let city = titleLable.text  else {return}
-        let locationInfo = LocationInfoPost(top_left_lat: pin.coordinate.latitude - Double(slider.value), top_left_lon: pin.coordinate.longitude + Double(slider.value), top_right_lat: pin.coordinate.latitude + Double(slider.value), top_right_lon: pin.coordinate.longitude + Double(slider.value), bottom_left_lat: pin.coordinate.latitude - Double(slider.value), bottom_left_lon: pin.coordinate.longitude - Double(slider.value), bottom_right_lat: pin.coordinate.latitude + Double(slider.value), bottom_right_lon: pin.coordinate.longitude - Double(slider.value),
+        let locationInfo = LocationInfoPost(
+            top_left_lat: pin.coordinate.latitude - Double(slider.value),
+            top_left_lon: pin.coordinate.longitude + Double(slider.value),
+            top_right_lat: pin.coordinate.latitude + Double(slider.value),
+            top_right_lon: pin.coordinate.longitude + Double(slider.value),
+            bottom_left_lat: pin.coordinate.latitude - Double(slider.value),
+            bottom_left_lon: pin.coordinate.longitude - Double(slider.value),
+            bottom_right_lat: pin.coordinate.latitude + Double(slider.value),
+            bottom_right_lon: pin.coordinate.longitude - Double(slider.value),
                                             city: city)
         var cords = [
             CLLocationCoordinate2D(latitude: locationInfo.top_right_lat, longitude: locationInfo.top_right_lon),

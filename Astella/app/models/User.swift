@@ -16,22 +16,12 @@ struct User : Hashable, Codable, Identifiable {
     var ig : String
     var twitter : String
     var tiktok : String
+    var youtube : String
+    var snapchat : String
     var avatar_url : String
     var img_one : String
     var img_two : String
     var img_three : String
-
-    static let usr = User(id: UUID(),
-                          created: "2023-05-03 19:20:53.237084",
-                          username: "KeithK",
-                          description: "MyDESC",
-                          ig: "igTwi",
-                          twitter: "Twitter",
-                          tiktok: "TikTok",
-                          avatar_url: "",
-                          img_one: "img_one.png",
-                          img_two: "img_two.png",
-                          img_three: "img_three.png")
 }
 
 struct EmptyBody : Codable {

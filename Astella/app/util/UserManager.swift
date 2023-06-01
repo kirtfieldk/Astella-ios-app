@@ -18,7 +18,7 @@ final class UserManager : NSObject {
     }
     
     func getUserId() -> String {
-        guard let userId = userId else {return "db212c03-8d8a-4d36-9046-ab60ac5b250d"}
+        guard let userId = userId else {return "077a6b0d-6a83-4ca0-8e2d-eea7e156b4b5"}
         return userId
     }
     

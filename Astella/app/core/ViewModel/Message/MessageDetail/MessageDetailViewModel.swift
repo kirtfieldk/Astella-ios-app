@@ -95,6 +95,7 @@ final class MessageDetailViewModel : MessageParentViewModel {
                     print("Unable to Post Message")
                     return
                 }
+                print(resp.data[0])
                 DispatchQueue.main.async {
                     self?.threadMsg.append(resp.data[0])
                     self?.buildSections()

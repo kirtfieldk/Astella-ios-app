@@ -1,8 +1,8 @@
 //
-//  MessagestructMainViewController.swift
+//  EventStructMainViewController.swift
 //  Astella
 //
-//  Created by Keith Kirtfield on 4/30/23.
+//  Created by Keith Kirtfield on 5/29/23.
 //
 
 import SwiftUI

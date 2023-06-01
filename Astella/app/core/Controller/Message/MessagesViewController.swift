@@ -90,25 +90,47 @@ final class MessagesViewController: UIViewController {
 extension MessagesViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return viewModel.messageSections.count
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.messageCellViewModels.count
+        let sectionType = viewModel.messageSections[section]
+        switch sectionType {
+        case .eventOverview(_):
+            return 1
+        case .messages(let viewModel):
+            return viewModel.count
+        }
     }
     
     ///Deque and return single cell, using messagecellview
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MessageCollectionViewCell.cellIdentifier,
-            for: indexPath
-        ) as? MessageCollectionViewCell else {
-            fatalError("Unsupported cell")
+        let sectionType = viewModel.messageSections[indexPath.section]
+        switch sectionType {
+            
+        case .eventOverview(let viewModel):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: EventOverviewCollectionViewCell.cellIdentifier,
+                for: indexPath
+            ) as? EventOverviewCollectionViewCell else {
+                fatalError("Unsupported cell")
+            }
+            cell.configuration(with: viewModel)
+            return cell
+            
+        case .messages(let viewModel):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: MessageCollectionViewCell.cellIdentifier,
+                for: indexPath
+            ) as? MessageCollectionViewCell else {
+                fatalError("Unsupported cell")
+            }
+            cell.delegate = self.viewModel
+            cell.vcDelegate = self
+            cell.configuration(with: viewModel[indexPath.row])
+            return cell
         }
-        cell.delegate = viewModel
-        cell.vcDelegate = self
-        cell.configuration(with: viewModel.messageCellViewModels[indexPath.row])
-        return cell
+       
     }
     
     ///Get the size of the UI screenof the device
@@ -120,15 +142,21 @@ extension MessagesViewController : UICollectionViewDataSource, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        redirectIntoMessageDetail(msg: viewModel.messageCellViewModels[indexPath.row].message,
-                                        eventId: viewModel.messageCellViewModels[indexPath.row].eventId)
+        let sectionType = viewModel.messageSections[indexPath.section]
+        switch sectionType {
+        case .eventOverview(_):
+            return
+        case .messages(let viewModel):
+            redirectIntoMessageDetail(msg: viewModel[indexPath.row].message,
+                                            eventId: viewModel[indexPath.row].eventId)
+        }
+        
     }
 }
 
 //MARK: - Connect to Cell
 extension MessagesViewController : MessageCollectionParentViewToVcCellDelegate {
     func redirectToUpvoteUserList(msg: Message) {
-        print("redirected")
         let vm = ProfileBriefListViewModel(msg: msg, eventId: viewModel.eventId)
         let vc = ProfileBriefListViewController(viewModel: vm)
         vc.navigationItem.largeTitleDisplayMode = .never

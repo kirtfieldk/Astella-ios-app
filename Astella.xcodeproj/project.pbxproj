@@ -40,7 +40,6 @@
 		EA9C4B3B29FEC8C200D46F15 /* MessageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B3A29FEC8C200D46F15 /* MessageListViewModel.swift */; };
 		EA9C4B3F29FEC92700D46F15 /* MessageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B3E29FEC92700D46F15 /* MessageListView.swift */; };
 		EA9C4B4329FEC9B500D46F15 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B4229FEC9B500D46F15 /* MessagesViewController.swift */; };
-		EA9C4B4929FF0A5100D46F15 /* EventstructMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B4829FF0A5100D46F15 /* EventstructMainViewController.swift */; };
 		EA9C4B4B29FF0FF800D46F15 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9C4B4A29FF0FF800D46F15 /* Extensions.swift */; };
 		EAA1D0642A0B015100A3F192 /* MessagePinnedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1D0632A0B015100A3F192 /* MessagePinnedViewModel.swift */; };
 		EAA1D0662A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA1D0652A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift */; };
@@ -54,6 +53,8 @@
 		EAA8601A2A178B750070A0EF /* ProfileSettingViewCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA860192A178B750070A0EF /* ProfileSettingViewCellCollectionViewCell.swift */; };
 		EAA873A129FF2D3100A5D24A /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA873A029FF2D3100A5D24A /* MessageCollectionViewCell.swift */; };
 		EAA873A329FF2DB800A5D24A /* MessageCellViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA873A229FF2DB800A5D24A /* MessageCellViewViewModel.swift */; };
+		EAA9EBDD2A26290D00D5BE32 /* EventOverviewCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EBDC2A26290D00D5BE32 /* EventOverviewCollectionViewModel.swift */; };
+		EAA9EBDF2A26398F00D5BE32 /* EventOverviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EBDE2A26398F00D5BE32 /* EventOverviewCollectionViewCell.swift */; };
 		EAAC9EAC2A1264FD00C393B9 /* EventCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EAB2A1264FD00C393B9 /* EventCreateViewController.swift */; };
 		EAAC9EAF2A126EDF00C393B9 /* EventCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EAE2A126EDF00C393B9 /* EventCreateViewModel.swift */; };
 		EAAC9EB22A126F1A00C393B9 /* EventCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAAC9EB12A126F1A00C393B9 /* EventCreateView.swift */; };
@@ -85,6 +86,7 @@
 		EABE9D632A158014000B3FAE /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE9D622A158014000B3FAE /* UserManager.swift */; };
 		EAC1FE2B2A01AC3800FC307A /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1FE2A2A01AC3800FC307A /* UserListResponse.swift */; };
 		EAC1FE2D2A01AFF400FC307A /* FooterReusableLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC1FE2C2A01AFF400FC307A /* FooterReusableLoaderView.swift */; };
+		EAC34B322A24FE3E00CA5D3E /* EventStructMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC34B312A24FE3E00CA5D3E /* EventStructMainViewController.swift */; };
 		EAC461212A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC461202A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift */; };
 		EAC461232A170A190068C1E7 /* SettingEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC461222A170A190068C1E7 /* SettingEnums.swift */; };
 		EAC7E3742A004300007E8656 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC7E3732A004300007E8656 /* EventListViewModel.swift */; };
@@ -154,7 +156,6 @@
 		EA9C4B3A29FEC8C200D46F15 /* MessageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListViewModel.swift; sourceTree = "<group>"; };
 		EA9C4B3E29FEC92700D46F15 /* MessageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListView.swift; sourceTree = "<group>"; };
 		EA9C4B4229FEC9B500D46F15 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
-		EA9C4B4829FF0A5100D46F15 /* EventstructMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventstructMainViewController.swift; sourceTree = "<group>"; };
 		EA9C4B4A29FF0FF800D46F15 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EAA1D0632A0B015100A3F192 /* MessagePinnedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePinnedViewModel.swift; sourceTree = "<group>"; };
 		EAA1D0652A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionPinnedViewCell.swift; sourceTree = "<group>"; };
@@ -168,6 +169,8 @@
 		EAA860192A178B750070A0EF /* ProfileSettingViewCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA873A029FF2D3100A5D24A /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAA873A229FF2DB800A5D24A /* MessageCellViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellViewViewModel.swift; sourceTree = "<group>"; };
+		EAA9EBDC2A26290D00D5BE32 /* EventOverviewCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOverviewCollectionViewModel.swift; sourceTree = "<group>"; };
+		EAA9EBDE2A26398F00D5BE32 /* EventOverviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventOverviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAAC9EAB2A1264FD00C393B9 /* EventCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateViewController.swift; sourceTree = "<group>"; };
 		EAAC9EAE2A126EDF00C393B9 /* EventCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateViewModel.swift; sourceTree = "<group>"; };
 		EAAC9EB12A126F1A00C393B9 /* EventCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCreateView.swift; sourceTree = "<group>"; };
@@ -199,6 +202,7 @@
 		EABE9D622A158014000B3FAE /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		EAC1FE2A2A01AC3800FC307A /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
 		EAC1FE2C2A01AFF400FC307A /* FooterReusableLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterReusableLoaderView.swift; sourceTree = "<group>"; };
+		EAC34B312A24FE3E00CA5D3E /* EventStructMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStructMainViewController.swift; sourceTree = "<group>"; };
 		EAC461202A1707CC0068C1E7 /* ProfileSettingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingCellViewModel.swift; sourceTree = "<group>"; };
 		EAC461222A170A190068C1E7 /* SettingEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingEnums.swift; sourceTree = "<group>"; };
 		EAC7E3732A004300007E8656 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 				EAA83BBF2A02C51C00C48813 /* UsersCollectionViewCell.swift */,
 				EAA1D0652A0B0C0C00A3F192 /* MessageCollectionPinnedViewCell.swift */,
 				EAA1D0672A0B0C2400A3F192 /* MessageCollectionParentViewCell.swift */,
+				EAA9EBDE2A26398F00D5BE32 /* EventOverviewCollectionViewCell.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 				EAC7E3752A004350007E8656 /* Event */,
 				EAC7E36D2A003E80007E8656 /* Message */,
 				EA9C4B4129FEC9A000D46F15 /* OtherViewController */,
+				EAC34B312A24FE3E00CA5D3E /* EventStructMainViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -495,6 +501,14 @@
 				EAA1D0632A0B015100A3F192 /* MessagePinnedViewModel.swift */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		EAA9EBDB2A2628EA00D5BE32 /* EventOverview */ = {
+			isa = PBXGroup;
+			children = (
+				EAA9EBDC2A26290D00D5BE32 /* EventOverviewCollectionViewModel.swift */,
+			);
+			path = EventOverview;
 			sourceTree = "<group>";
 		};
 		EAAC9EAD2A126ECD00C393B9 /* EventCreateViewModel */ = {
@@ -588,7 +602,6 @@
 			isa = PBXGroup;
 			children = (
 				EA9C4B4229FEC9B500D46F15 /* MessagesViewController.swift */,
-				EA9C4B4829FF0A5100D46F15 /* EventstructMainViewController.swift */,
 				EA9AA6A62A0C69CC007BCB26 /* MessageDetailViewController.swift */,
 			);
 			path = Message;
@@ -597,6 +610,7 @@
 		EAC7E3722A0042D8007E8656 /* EventDetails */ = {
 			isa = PBXGroup;
 			children = (
+				EAA9EBDB2A2628EA00D5BE32 /* EventOverview */,
 				EAAC9EAD2A126ECD00C393B9 /* EventCreateViewModel */,
 				EAC7E3732A004300007E8656 /* EventListViewModel.swift */,
 				EAC7E3812A004B50007E8656 /* EventCellViewViewModel.swift */,
@@ -798,6 +812,7 @@
 				EAAC9EB22A126F1A00C393B9 /* EventCreateView.swift in Sources */,
 				EAB943522A02823B001602A2 /* ImageManager.swift in Sources */,
 				EABA73172A08739200422D6B /* EventCellParentView.swift in Sources */,
+				EAC34B322A24FE3E00CA5D3E /* EventStructMainViewController.swift in Sources */,
 				EABA165A2A05205700B39140 /* ProfileDetailCollectionCell.swift in Sources */,
 				EA9C4B3B29FEC8C200D46F15 /* MessageListViewModel.swift in Sources */,
 				EAB735842A16CA3600D4A221 /* ProfileSettingView.swift in Sources */,
@@ -811,7 +826,6 @@
 				EA0B645629FD6E53001DD8DB /* Event.swift in Sources */,
 				EA0B643729FD4243001DD8DB /* SocialMediaGroup.swift in Sources */,
 				EACC3D032A0D7BBF00F557FE /* ProfileBriefListViewController.swift in Sources */,
-				EA9C4B4929FF0A5100D46F15 /* EventstructMainViewController.swift in Sources */,
 				EACC3D062A0D7C6500F557FE /* ProfileBriefListViewModel.swift in Sources */,
 				EABADD602A213747009A2A7C /* DataExtension.swift in Sources */,
 				EAB192FF2A03DC1400A7F0C3 /* RequestGetService.swift in Sources */,
@@ -850,6 +864,8 @@
 				EAB766A82A16508600001D5F /* ProfileDetailSocialCellView.swift in Sources */,
 				EA9A40202A06D97A006E40DA /* EventPasswordInputViewModel.swift in Sources */,
 				EAA873A329FF2DB800A5D24A /* MessageCellViewViewModel.swift in Sources */,
+				EAA9EBDD2A26290D00D5BE32 /* EventOverviewCollectionViewModel.swift in Sources */,
+				EAA9EBDF2A26398F00D5BE32 /* EventOverviewCollectionViewCell.swift in Sources */,
 				EA9AA6AF2A0D1896007BCB26 /* MessageDetailViewCell.swift in Sources */,
 				EAC7E3742A004300007E8656 /* EventListViewModel.swift in Sources */,
 				EA9AA6AA2A0C6A68007BCB26 /* MessageDetailViewModel.swift in Sources */,

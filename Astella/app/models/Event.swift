@@ -17,6 +17,7 @@ struct Event : Hashable, Codable, Identifiable {
     let created : String
     let description : String
     let location_info : LocationInfo
+    let user_id : String
 }
 
 struct EventPost : Codable {
@@ -26,4 +27,5 @@ struct EventPost : Codable {
     let description : String
     let duration : Int
     let location_info : LocationInfoPost
+    let user_id : String
 }

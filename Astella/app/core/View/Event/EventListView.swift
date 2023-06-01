@@ -31,6 +31,17 @@ final class EventListView : UIView {
         return spinner
     }()
     
+    private let memberLabel : UILabel = {
+       let label = UILabel()
+        label.text = "Member Events"
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.isHidden = true
+        label.alpha = 0
+        return label
+    }()
+    
     required init?(coder : NSCoder) {
         fatalError("Not Supported")
     }
@@ -42,11 +53,10 @@ final class EventListView : UIView {
         let collectionView = createCollectionView() 
         self.collectionView = collectionView
         
-        addSubviews(collectionView ,spinner)
+        addSubviews(memberLabel, collectionView, spinner)
         addConstraints()
         spinner.startAnimating()
         viewModel.setUpSections()
-        ///TODO -- Grab the userId and EventId, For delegate need to conform to view model delegate
         viewModel.delegate = self
         setupCollectionView()
     }
@@ -89,7 +99,10 @@ final class EventListView : UIView {
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            memberLabel.topAnchor.constraint(equalTo: topAnchor),
+            memberLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            memberLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: memberLabel.bottomAnchor),
             collectionView.leftAnchor.constraint(equalTo: leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -100,8 +113,10 @@ final class EventListView : UIView {
     private func createSection(for sectionIndex : Int) -> NSCollectionLayoutSection {
         let sectionTypes = viewModel.sections
         switch sectionTypes[sectionIndex] {
-        case .localEvents, .memberEvents:
+        case .localEvents:
             return viewModel.createEventSection()
+        case .memberEvents:
+            return viewModel.createUserEventSection()
         }
     }
 }
@@ -112,9 +127,10 @@ extension EventListView : EventListViewModelDelegate {
         guard let collectionView = collectionView else {return}
         collectionView.reloadData()
         viewModel.setUpSections()
-        //Only reload for init fetch of characters
+        memberLabel.isHidden = false
         UIView.animate(withDuration: 0.4) {
             collectionView.alpha = 1
+            self.memberLabel.alpha = 1
         }
     }
     

@@ -117,7 +117,7 @@ final class MessageListView: UIView {
             eventDetailsTabBar.leftAnchor.constraint(equalTo: leftAnchor),
             eventDetailsTabBar.rightAnchor.constraint(equalTo: rightAnchor),
             
-            v.topAnchor.constraint(equalTo: eventDetailsTabBar.bottomAnchor, constant: 20),
+            v.topAnchor.constraint(equalTo: eventDetailsTabBar.bottomAnchor, constant: 5),
             v.leftAnchor.constraint(equalTo: leftAnchor),
             v.rightAnchor.constraint(equalTo: rightAnchor),
             v.bottomAnchor.constraint(equalTo: messageSendBarContainer.topAnchor),
@@ -197,10 +197,12 @@ final class MessageListView: UIView {
             ])
         }
     }
+    
+    
     //MARK: - Register Cells
     private func createMessageCollectionView() -> UICollectionView {
-        let layout = UICollectionViewCompositionalLayout {[weak self] sectionIndex, _ in
-            return self?.viewModel.createMessageSectionLayout()
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            return self.viewModel.createSection(for : sectionIndex)
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -208,6 +210,9 @@ final class MessageListView: UIView {
         collectionView.register(
             MessageCollectionViewCell.self,
             forCellWithReuseIdentifier: MessageCollectionViewCell.cellIdentifier
+        )
+        collectionView.register(EventOverviewCollectionViewCell.self,
+                                forCellWithReuseIdentifier: EventOverviewCollectionViewCell.cellIdentifier
         )
         return collectionView
     }

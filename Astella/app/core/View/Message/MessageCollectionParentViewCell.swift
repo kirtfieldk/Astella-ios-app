@@ -28,6 +28,15 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         return label
     }()
     
+    private let responseCount : UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 12, weight: .light)
+        label.contentMode = .scaleAspectFit
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let content : UITextView = {
        let content = UITextView()
         content.textAlignment = .left
@@ -36,12 +45,14 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         content.translatesAutoresizingMaskIntoConstraints = false
         content.isEditable = false
         content.contentInset = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
+        content.isUserInteractionEnabled = true
         return content
     }()
     
     private let userSignature : UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(red: 55 / 255, green: 140 / 255, blue: 118 / 255, alpha: 0.9)
         return view
     }()
     
@@ -69,7 +80,6 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         let img = UIImage(systemName: "heart.fill")
         btn.setImage(img, for: .normal)
         btn.tintColor = .lightGray
-        btn.addTarget(self, action: #selector(upvoteMessage), for: .touchDown)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -79,7 +89,6 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         let img = UIImage(systemName: "pin.fill")
         btn.setImage(img, for: .normal)
         btn.tintColor = .lightGray
-        btn.addTarget(self, action: #selector(pinMessage), for: .touchDown)
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -88,7 +97,6 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         let btn = UIButton(configuration: .plain())
         btn.configuration?.buttonSize = .medium
         btn.tintColor = .black
-        btn.addTarget(self, action: #selector(redirectToUpvoteUserList), for: .touchDown)
         btn.contentMode = .scaleAspectFit
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -99,12 +107,13 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
     override init(frame : CGRect) {
         super.init(frame : frame)
         contentView.layer.masksToBounds = true
+        translatesAutoresizingMaskIntoConstraints = false
 
         ///Using content view helps with safe area
         contentView.addSubviews(userSignature, mainContentView, divider)
         mainContentView.addSubviews(content, upvoteArea, pinBtn)
         upvoteArea.addSubviews(upvoteBtn, upvoteCtn)
-        userSignature.addSubviews(iconImageView, nameLabel)
+        userSignature.addSubviews(iconImageView, nameLabel, responseCount)
         addConstraints()
         setUpLayers()
     }
@@ -132,9 +141,13 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
 
 
             nameLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor),
-            nameLabel.rightAnchor.constraint(equalTo: userSignature.rightAnchor),
+            nameLabel.rightAnchor.constraint(equalTo: responseCount.leftAnchor),
             nameLabel.topAnchor.constraint(equalTo: userSignature.topAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: userSignature.bottomAnchor),
+            
+            responseCount.trailingAnchor.constraint(equalTo: userSignature.trailingAnchor),
+            responseCount.bottomAnchor.constraint(equalTo: userSignature.bottomAnchor),
+            responseCount.widthAnchor.constraint(equalToConstant: 90),
 
             mainContentView.topAnchor.constraint(equalTo: topAnchor),
             mainContentView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
@@ -188,6 +201,8 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         upvoteCtn.configuration?.title = nil
         upvoteBtn.tintColor = .lightGray
         pinBtn.tintColor = .lightGray
+        responseCount.text = nil
+
     }
     
     public func configuration(with viewModel : MessageCellViewViewModel) {
@@ -197,6 +212,17 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
         self.viewModel = viewModel
         guard let upvoted = viewModel.message.upvoted_by_user else {return}
         self.viewModel?.upvotedByUser = upvoted
+        if viewModel.message.replies > 0 {
+            responseCount.text = "replies \(viewModel.message.replies)"
+        }
+        
+        upvoteBtn.isEnabled = true
+        upvoteBtn.addTarget(self, action: #selector(upvoteMessage), for: .touchUpInside)
+        pinBtn.addTarget(self, action: #selector(pinMessage), for: .touchDown)
+        pinBtn.isEnabled = true
+        upvoteCtn.addTarget(self, action: #selector(redirectToUpvoteUserList), for: .touchDown)
+        upvoteCtn.isEnabled = true
+        
         if upvoted {
             upvoteBtn.tintColor = .red
         }
@@ -269,7 +295,6 @@ class MessageCollectionParentViewCell : UICollectionViewCell {
     // MARK: - Pin Messages
     @objc
     private func pinMessage() {
-        print("CLICKED")
         guard let viewModel = viewModel, let upvotedByUser = viewModel.pinnedByUser else {return}
         if upvotedByUser {
             viewModel.unpinMessage {[weak self] result in

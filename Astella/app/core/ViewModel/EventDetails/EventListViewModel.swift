@@ -57,24 +57,40 @@ final class EventListViewModel : NSObject {
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
                 heightDimension: .fractionalHeight(0.30)),
+            subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
+    
+    public  func createUserEventSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        )
+        item.contentInsets = NSDirectionalEdgeInsets(
+            top: 10,
+            leading: 5,
+            bottom: 10,
+            trailing: 5)
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(0.30)),
             subitems: [item, item])
         let section = NSCollectionLayoutSection(group: group)
-        //scroll horizontal
-//        section.orthogonalScrollingBehavior = .continuous
-        //Snaps to next card
-//        section.orthogonalScrollingBehavior = .groupPaging
+        section.orthogonalScrollingBehavior = .groupPaging
 
         return section
     }
     
     public func setUpSections() {
         sections = [
+            .memberEvents(viewModel: eventsMemberOf.compactMap({
+                return EventCellViewViewModel(event: $0, isMember: true)
+            })),
             .localEvents(viewModel: events.compactMap({ e in
                 return EventCellViewViewModel(event: e,
                                               isMember: eventsMemberOf.contains(where: {$0.id == e.id}))
-            })),
-            .memberEvents(viewModel: eventsMemberOf.compactMap({
-                return EventCellViewViewModel(event: $0, isMember: true)
             }))
         ]
     }
@@ -108,7 +124,7 @@ final class EventListViewModel : NSObject {
     //MARK: - FETCHING USER EVENTS
     func fetchEventsUserMemberOf(tmp : [URLQueryItem], firstFetch : Bool) {
         let req = RequestGetService(
-            urlIds: AstellaUrlIds(userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d", eventId: "", messageId: ""),
+            urlIds: AstellaUrlIds(userId: UserManager.shared.getUserId(), eventId: "", messageId: ""),
             endpoint: AstellaEndpoints.GET_EVENTS_MEMBER_OF,
             queryParameters: tmp)
         AstellaService.shared.execute(req, expecting: EventListResponse.self) {[weak self] result in
@@ -163,7 +179,6 @@ final class EventListViewModel : NSObject {
                 strongSelf.info = model.info
                 strongSelf.isLoadingMoreEvents = false
                 DispatchQueue.main.async {
-                    //Throw in main  queue since it is UI refresh
                     strongSelf.delegate?.didLoadInitEvents()
                 }
                 break

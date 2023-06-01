@@ -13,15 +13,13 @@ protocol ProfileSettingViewModelDelegate : AnyObject {
 }
 
 final class ProfileSettingViewModel : NSObject {
-    private let user : User
     public var sections : [SectionTypes] = []
     public weak var delegate : ProfileSettingViewModelDelegate?
     enum SectionTypes {
         case editProfile(viewModel : [ProfileSettingCellViewModel])
     }
 
-    init(user: User) {
-        self.user = user
+    override init() {
         super.init()
         setUpSections()
     }

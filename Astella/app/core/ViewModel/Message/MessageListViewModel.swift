@@ -28,7 +28,20 @@ final class MessageListViewModel : MessageParentViewModel {
     public var messagePinnedCellViewModels : [MessageCellViewViewModel] = []
 
     private let event : Event
-    private var apiInfo : InfoResponse? = nil   
+    private var apiInfo : InfoResponse? = nil
+    enum MessageSections {
+        case eventOverview(viewModel : EventOverviewCollectionViewModel)
+        case messages (viewModel : [MessageCellViewViewModel])
+    }
+    var messageSections : [MessageSections] = []
+    
+    public func setUpSections() {
+        messageSections = [
+            .eventOverview(viewModel: .init(event : event)),
+            .messages(viewModel: messageCellViewModels)
+        ]
+    }
+    
     public var messages : [Message] = []{
         didSet {
             for msg in messages {
@@ -67,6 +80,15 @@ final class MessageListViewModel : MessageParentViewModel {
         super.init(eventId: event.id)
     }
     
+    public func createSection(for sectionIndex : Int) -> NSCollectionLayoutSection {
+        switch messageSections[sectionIndex] {
+        case .eventOverview:
+            return createEventOverviewSectionLayout()
+        case .messages:
+            return createMessageSectionLayout()
+        }
+    }
+    
     //MARK: - Post Message
     func postMessage(msg : String) {
         super.postMessage(msg: msg) { [weak self] result in
@@ -77,6 +99,7 @@ final class MessageListViewModel : MessageParentViewModel {
                 }
                 DispatchQueue.main.async {
                     self?.messages = resp.data
+                    self?.setUpSections()
                     self?.delegate?.postedMessageRefreshMessages()
                 }
             case .failure(let err):
@@ -89,7 +112,7 @@ final class MessageListViewModel : MessageParentViewModel {
     //MARK: - Fetching Messages
     func fetchMessages(page : String) {
         let urlIds = AstellaUrlIds(
-            userId: "db212c03-8d8a-4d36-9046-ab60ac5b250d",
+            userId: UserManager.shared.getUserId(),
             eventId: eventId.uuidString,
             messageId: "")
         let requestService = RequestGetService(
@@ -104,6 +127,7 @@ final class MessageListViewModel : MessageParentViewModel {
                     self?.messageCellViewModels = []
                     self?.messages = model.data
                     self?.apiInfo = model.info
+                    self?.setUpSections()
                     self?.delegate?.didLoadInitialMessages()
                 }
                 
@@ -190,6 +214,25 @@ final class MessageListViewModel : MessageParentViewModel {
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
                 heightDimension: .absolute(150)),
+            subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        return section
+    }
+    
+    private func createEventOverviewSectionLayout() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        )
+        item.contentInsets = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: 0,
+            bottom: 10,
+            trailing: 0)
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(300)),
             subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
